@@ -2,7 +2,7 @@
 layout: post
 title:  "Bienvenido a mi nuevo Blog"
 lang: es
-date:   2018-06-12 13:20:44 +0200
+date: 2018-06-12 13:20:44 +0200
 categories: personal
 ---
 
