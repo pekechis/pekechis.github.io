@@ -12,5 +12,5 @@ Para más información os dejo algunos enlaces interesantes relacionados conmigo
 - [Repositorio del curso online Maquetación con BootStrap 4](https://github.com/pekechis/openWebinars_Maquetaci-n_con_BootStrap_4)
 - [Repositorio del curso online Componentes de BooStrap 4](https://github.com/pekechis/openWebinars_Componentes_BootStrap_4) 
 - [Repositorio con diversos Dockerfiles](https://github.com/pekechis/Dockefiles)
- [Perfil en LinkedIn](https://www.linkedin.com/in/juandiegoperez/)
+- [Perfil en LinkedIn](https://www.linkedin.com/in/juandiegoperez/)
 
