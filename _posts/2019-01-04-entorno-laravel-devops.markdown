@@ -98,7 +98,7 @@ vagrant ssh
 
 Obtendré una imagen similar a la siguiente:
 
-![Homestead SSH](../_site/assets/homestead_ssh.png)
+![Homestead SSH](img/homestead_ssh.png)
 
 5. Me coloco en el directorio que haya puesto anteriormente en el **Homestead.yaml** y creo un nuevo proyeto laravel.
 
@@ -117,7 +117,7 @@ Obtendré una imagen similar a la siguiente:
 
 7. Comprobaremos que todo esta funcionando. Si todo ha ido bien al poner tuapp.local en tu navegador deberemos ver algo similar a lo siguiente:
 
-![Laravel OK](../_site/assets/laravel_ok.png)
+![Laravel OK](img/laravel_ok.png)
 
 **NOTA:** Dependiendo de la versión de la Box de Vagrant que hayamos instalado tendremos disponibles una u otra versión de sistema, PHP, Nginx etc...pero de esta manera tenemos todos los requisitos diponibles de una sola vez (que no es poco).
 
