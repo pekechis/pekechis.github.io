@@ -4,15 +4,13 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+No quiero aburriros mucho, me llamo Juan Diego Pérez y actualmente soy profesor de ciclos formativos de la familia de informática. De formación y vocación siempre me he dedicado a esto aunque  hay vida más allá de la tecla y la pantalla. 
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+Para más información os dejo algunos enlaces interesantes relacionados conmigo:
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+- [Repositorio de clases](https://github.com/pekechis/teaching_examples).
+- [Repositorio del curso online Maquetación con BootStrap 4].(https://github.com/pekechis/openWebinars_Maquetaci-n_con_BootStrap_4)
+- [Repositorio del curso online Componentes de BootStrap 4](https://github.com/pekechis/openWebinars_Componentes_BootStrap_4) .
+- [Repositorio con diversos Dockerfiles](https://github.com/pekechis/Dockefiles).
+- [Perfil en LinkedIn](https://www.linkedin.com/in/juandiegoperez/).
 
-
-[jekyll-organization]: https://github.com/jekyll
