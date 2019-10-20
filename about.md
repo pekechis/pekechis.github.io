@@ -14,7 +14,7 @@ Para más información os dejo algunos enlaces interesantes relacionados conmigo
 - [Repositorio del curso online sobre HTML y CSS3](https://openwebinars.net/cursos/html5-css3/).
 - [Repositorio del curso online de Maquetación Web](https://openwebinars.net/cursos/maquetacion-web-css/).
 - [Repositorio del curso online de Maquetación con Flex y Grid](https://openwebinars.net/cursos/flexbox-css-grid/).
-- [Repositorio del curso online de Diseñ Responsivo](https://openwebinars.net/cursos/responsive-web-design/).
+- [Repositorio del curso online de Diseño Responsivo](https://openwebinars.net/cursos/responsive-web-design/).
 - [Repositorio con diversos Dockerfiles](https://github.com/pekechis/Dockefiles).
 - [Perfil en LinkedIn](https://www.linkedin.com/in/juandiegoperez/).
 
