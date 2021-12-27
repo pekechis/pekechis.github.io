@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>2.1 Ejecutando contenedores. | 2. Ejecutando y gestionando contenedores </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-1"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">2. Ejecutando y gestionando contenedores</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">P2. Ejecutando y gestionando contenedores Docker</a></li>
+   <li id="active"><a href="21_ejecutando_contenedores.html" class="active no-ch">2.1 Ejecutando contenedores.</a></li>
+   <li><a href="22_los_flags_it.html" class="no-ch">2.2 Los flags -it</a></li>
+   <li><a href="23_ejecucin_de_servicios_puertos_y_variables_de_entorno.html" class="no-ch">2.3 Ejecución de servicios. Puertos y variables de entorno</a></li>
+   <li><a href="24_asignando_nombre_a_los_contenedores.html" class="no-ch">2.4 Asignando nombre a los contenedores</a></li>
+   <li><a href="25_ejecutar_rdenes_en_los_contenedores.html" class="no-ch">2.5 Ejecutar órdenes en los contenedores.</a></li>
+   <li><a href="26_obtencin_de_informacin_de_los_contenedores.html" class="no-ch">2.6 Obtención de información de los contenedores</a></li>
+   <li><a href="27_gestin_de_contenedores.html" class="no-ch">2.7 Gestión de contenedores</a></li>
+   <li><a href="28_vdeo_resumen.html" class="no-ch">2.8. Vídeo resumen</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="index.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="22_los_flags_it.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">2.1 Ejecutando contenedores.</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id9">
+<div class="iDevice emphasis0" >
+<div id="ta9_113_2" class="block iDevice_content">
+<div class="exe-text"><p>Tras instalar docker y hacer la comprobación de que todo está correcto lo que nos pide el cuerpo es empezar a ejecutar contenedores  de todo tipo. Querremos probar todo tipo de sistemas operativos y todo tipo de servicios. Para ello necesitaremos las imágenes de todo aquello que queremos probar. Eso lo podemos conseguir de la siguiente manera:</p>
+<ul>
+<li><strong>docker pull nombre_imagen:version </strong>que descargará desde el repositorio una imagen con la versión indicada o la última versión <strong>(latest)</strong> si no indicamos versión.</li>
+<li>Y la orden fundamental para ejecutar contenedores que es <strong>docker run </strong>cuya función principal es poner en ejecución contenedores en base a una imagen de referencia que le indicaremos.Una <strong>CUESTIÓN IMPORTANTE </strong>que debemos de tener en cuenta al usar <strong>docker run</strong> es que si vamos a <strong>ejecutar un contenedor</strong> que usa como base una<strong> imagen que no tenemos ésta se descargará de manera automática</strong>. Para buscar las imágenes que queremos la opción que os recomiendo es usar el buscador de <a href="https://hub.docker.com/" target="_blank" title="Docker Hub." rel="noopener">Docker Hub.</a></li>
+</ul>
+<p>Esta orden docker run tiene una sintaxis sencilla pero multitud de opciones de las que explicaremos algunas. No obstante la estructura general es la siguiente:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 600px; text-align: center;"><img src="estructuradockerrun.png" alt="Estructura general docker run" title="Estructura general docker run" width="600" height="401" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Estructura general docker run</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p>En este curso no vamos a poder ver todas las opciones que tiene docker run ya que son alrededor de 100, pero iremos introduciendo apartado a apartado las que yo considero que son más importantes para nuestro trabajo diario:</p>
+<ul>
+<li><strong>-d o --detach</strong> para ejecutar un contenedor (normalmente porque tenga un servicio) en background.</li>
+<li><strong>-e o --env</strong> para establecer variables de entorno en la ejecución del contenedor.</li>
+<li><strong>-h o --hostname</strong> para establecer el nombre de red parar el contenedor.</li>
+<li><strong>--help</strong> para obtener ayuda de las opciones de docker.</li>
+<li><strong>--interactive o -i</strong> para mantener la STDIN abierta en el contenedor.</li>
+<li><strong>--ip</strong> si quiero darle una ip concreta al contenedor.</li>
+<li><strong>--name</strong> para darle nombre al contenedor.</li>
+<li><strong>--net o --network</strong> para conectar el contenedor a una red determinada.</li>
+<li><strong>-p o --publish</strong> para conectar puertos del contenedor con los de nuestro host.</li>
+<li><strong>--restart</strong> que permite reiniciar un contenedor si este se "cae" por cualquier motivo.</li>
+<li><strong>--rm</strong> que destruye el contenedor al pararlo.</li>
+<li><strong>--tty o -t</strong> para que el contenedor que vamos a ejecutar nos permita un acceso a un terminal para poder ejecutar órdenes en él.</li>
+<li><strong>--user o -u</strong> para establecer el usuario con el que vamos a ejecutar el contenedor.</li>
+<li><strong>--volume o -v</strong> para montar un bind mount o un volumen en nuestro contenedor.</li>
+<li><strong>--workdir o -w</strong> para establecer el directorio de trabajo en un contenedor.</li>
+</ul>
+<p> A continuación vamos a ver algunos ejemplos básicos. En apartados posteriores de este mismo módulo y en módulos posteriores continuaremos con la introducción de más opciones:</p>
+<p><span style="text-decoration: underline;"><strong>EJEMPLO 1:</strong></span></p>
+<table style="width: 100.133%; background-color: #000000;" height="29" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Descargar  una imagen de manera previa</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker pull ubuntu:18.04</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Crear un contenedor de ubuntu:18.04 y tener acceso a un shell en él. Si no hemos descargado la imagen de manera previa se descargará.<br /></span></p>
+<p><span style="color: #00ff00;"><span style="font-size: 14pt;">&gt; docker run -it ubuntu:18.04 /bin/bash</span><span style="font-size: 14pt;"></span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">root@ef2bea1d6cb1:/#</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Al crear el contenedor se nos da un acceso a un shell del mismo. Es importante destacar que estamos <strong>accediendo como root</strong> que tiene unas implicaciones de seguridad que trataremos en el módulo 8 de este mismo curso. Al salir del terminal el contenedor se para.</p>
+<p><span style="text-decoration: underline;"><strong>EJEMPLO 2:</strong></span></p>
+<table style="width: 100.133%; background-color: #000000;" height="29" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Crear un contenedor de centOs:18.04 y listar el contendido de la carpeta /<br /></span></p>
+<p><span style="color: #00ff00;"><span style="font-size: 14pt;">&gt; docker run ubuntu:18.04 ls /</span><span style="font-size: 14pt;"></span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">bin etc lib lost+found mnt proc run srv tmp var<br />dev home lib64 media opt root sbin sys usr</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Al crear el contenedor se ejecuta la orden ls / y posteriormente el contenedor pasa a estar parado. Y ya no podremos acceder a él. Explicaremos en el próximo apartado el porqué.</p>
+<p><span style="text-decoration: underline;"><strong>EJEMPLO 3:</strong></span></p>
+<table style="width: 100.133%; background-color: #000000;" height="29" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Crear un contenedor de httpd (Servidor Apache)<br /></span></p>
+<p><span style="color: #00ff00;"><span style="font-size: 14pt;">&gt; docker run httpd</span></span><span style="font-size: 14pt; color: #00ff00;"></span></p>
+<p><span style="color: #00ff00;"><span style="font-size: 14pt;">AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.6. Set the 'ServerName' directive globally to suppress this message<br />AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.6. Set the 'ServerName' directive globally to suppress this message<br />[Mon Dec 07 10:01:52.670809 2020] [mpm_event:notice] [pid 1:tid 140412541457536] AH00489: Apache/2.4.46 (Unix) configured -- resuming normal operations<br />[Mon Dec 07 10:01:52.670973 2020] [core:notice] [pid 1:tid 140412541457536] AH00094: Command line: 'httpd -D FOREGROUND'<br /></span></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p> Al ejecutar esa orden se crea un servidor Web Apache 2.4 en la ip mostrada y se nos muestra por pantalla el log de dicho servicio.</p>
+<p><span style="text-decoration: underline;"><strong>EJEMPLO 4:</strong></span></p>
+<table style="width: 100.133%; background-color: #000000;" height="29" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Crear un contenedor de  debian 9 y mostrar el contenido de una carpeta establecida con el parámetro -w <br /></span></p>
+<p><span style="color: #00ff00;"><span style="font-size: 14pt;">&gt; docker run -it -w /etc debian:9 ls</span></span><span style="color: #00ff00;"><span style="font-size: 14pt;"></span></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Al crear el contenedor se ejecuta la orden ls desde el directorio /etc, posteriormente el contenedor pasa a estar parado. Y ya no podremos acceder a él. Explicaremos en el próximo apartado el porqué.</p>
+<p>Conforme vayamos creando contenedores hay dos órdenes que nos van a interesar para hacer un seguimiento de qué tenemos en nuestro sistema:</p>
+<table style="width: 100.133%; background-color: #000000;" height="29" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Mostrar los contenedores en ejecución (Estado Up)<br /></span></p>
+<p><span style="color: #00ff00;"><span style="font-size: 14pt;">&gt; docker ps</span></span><span style="color: #00ff00;"><span style="font-size: 14pt;"></span></span></p>
+<p><span style="color: #00ff00;"><span style="font-size: 14pt;"><span style="font-size: 14pt; color: #ff0000;"># Mostrar todos los contenedores creados ya estén en ejecución (Estado Up) o parados (Estado Exited)<br /></span></span></span></p>
+<p><span style="color: #00ff00;"><span style="font-size: 14pt;"><span style="font-size: 14pt; color: #ff0000;"><span style="color: #00ff00;">&gt; docker ps -a</span><br /></span></span></span></p>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_informarse" id="id10">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_informarse.png)"><h1 class="iDeviceTitle">REFERENCIA COMPLETA DE DOCKER RUN</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta10_108_2" class="block iDevice_content">
+<div class="exe-text"><p>Para aquellos que quieran tener un acceso directo a la <strong>referencia completa de <em>docker run</em></strong> os dejo aquí el enlace:</p>
+<p><a href="https://docs.docker.com/engine/reference/commandline/run/" target="_blank" title="Referencia completa docker run" rel="noopener">https://docs.docker.com/engine/reference/commandline/run/</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="index.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="22_los_flags_it.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

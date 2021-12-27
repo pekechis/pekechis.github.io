@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>3.3 Obteniendo información de las imágenes | 3. Gestión de imágenes en docker </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-3"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">3. Gestión de imágenes en docker</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">3. Gestión de imágenes docker</a></li>
+   <li><a href="31_descarga_de_imgenes.html" class="no-ch">3.1 Descarga de imágenes</a></li>
+   <li><a href="32_borrado_de_imgenes.html" class="no-ch">3.2 Borrado de imágenes</a></li>
+   <li id="active"><a href="33_obteniendo_informacin_de_las_imgenes.html" class="active no-ch">3.3 Obteniendo información de las imágenes</a></li>
+   <li><a href="34_ms_comandos_relacionados_con_imgenes.html" class="no-ch">3.4 Más comandos relacionados con imágenes</a></li>
+   <li><a href="34_vdeo_resumen.html" class="no-ch">3.4 Vídeo resumen</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="32_borrado_de_imgenes.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="34_ms_comandos_relacionados_con_imgenes.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">3.3 Obteniendo información de las imágenes</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id12">
+<div class="iDevice emphasis0" >
+<div id="ta12_111_2" class="block iDevice_content">
+<div class="exe-text"><p>Una vez tenemos ya las imágenes descargadas es muy interesante conocerlas al máximo para poder utilizarlas. Para ello tenemos <strong>dos fuentes principales</strong>:</p>
+<ul>
+<li>La <strong>página de la imagen en DockerHub</strong> que suele recoger sobre todo información relativa a aspectos como:
+<ul>
+<li>Una descripción de la aplicación o servicio que contiene la imagen.</li>
+<li>Una lista de versiones TAGs disponibles.</li>
+<li>Variables de entorno interesantes.</li>
+<li>Cómo ejecutar la imagen.</li>
+</ul>
+</li>
+<li>La salida de las órdenes <strong>docker image inspect / docker inspect </strong>que nos da ya una información más detallada sobre las características, con todos los metadatos de la misma.</li>
+</ul>
+<p>Veamos un ejemplo de la misma:<span style="font-size: 12pt;"></span></p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Dos formas de obtener información de la imagen mysql:8.0.22</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker image inspect mysql:8.0.22<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker inspect mysql:8.0.22</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Obtendremos una salida similar a la siguiente:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 581px; text-align: center;"><img src="salida_inspect.png" alt="Salida del comando docker inspect mysql:8.0.22" title="Salida del comando docker inspect mysql:8.0.22" width="581" height="600" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Salida del comando docker inspect mysql:8.0.22</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p>Esta imagen es una imagen parcial, porque se nos muestra mucha información, está en formato JSON (JavaScript Object Notation) y nos da datos sobre aspectos como:</p>
+<ul>
+<li>El <strong>id y el checksum</strong> de la imagen.</li>
+<li>Los <strong>puertos</strong> abiertos.</li>
+<li>La <strong>arquitectura</strong> y el <strong>sistema operativo</strong> de la imagen.</li>
+<li>El <strong>tamaño de la imagen</strong>.</li>
+<li><strong>Los volúmenes</strong>.</li>
+<li>El <strong>ENTRYPOINT</strong> que es lo que se ejecuta al hacer docker run.</li>
+<li>Las <strong>capas</strong>.</li>
+<li>Y muchas más cosas....</li>
+</ul>
+<p>Adicionalmente podemos formatear la salida usando <a href="https://golang.org/pkg/text/template/" target="_blank" rel="noopener">Go Templates</a> y el flag --format/-f. Una descripción detallada queda fuera de los objetivos de este curso pero vamos a poner varios ejemplos:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #00ff00;"> <span style="font-size: 14pt; color: #ff0000;"># Mostrar la arquitectura y el sistema <br /></span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt;  docker inspect --format '{{.Architecture}} es la arquitectura y el SO es {{.Os}}' mysql:8.0.22<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"> amd64 es la arquitectura y el SO es linux<br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Mostrar la lista de puertos expuestos</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker inspect --format '{{.Config.ExposedPorts}}' mysql:8.0.22</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">map[3306/tcp:{} 33060/tcp:{}]</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NOTA:</strong> <strong>Para poder este formateo debemos conocer en profundidad la estructura del JSON que nos devuelve.</strong></p></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="32_borrado_de_imgenes.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="34_ms_comandos_relacionados_con_imgenes.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>1.4 ¿Qué es Docker Hub? | 1. Introducción a Docker para desarrolladores </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez para la Consejería de Educación" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-3"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">1. Introducción a Docker para desarrolladores</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">1.Introducción. Docker para desarrolladores</a></li>
+   <li><a href="11_qu_es_docker.html" class="no-ch">1.1 ¿Qué es Docker?</a></li>
+   <li><a href="12_instalacin_de_docker.html" class="no-ch">1.2 Instalación de Docker</a></li>
+   <li><a href="13_hola_mundo.html" class="no-ch">1.3 Hola Mundo</a></li>
+   <li id="active"><a href="14_qu_es_docker_hub.html" class="active no-ch">1.4 ¿Qué es Docker Hub?</a></li>
+   <li><a href="15_aplicaciones_a_la_docencia.html" class="no-ch">1.5 Aplicaciones a la docencia</a></li>
+   <li><a href="16_estructura_del_resto_del_curso.html" class="no-ch">1.6 Estructura del resto del curso</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="13_hola_mundo.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="15_aplicaciones_a_la_docencia.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">1.4 ¿Qué es Docker Hub?</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id37">
+<div class="iDevice emphasis0" >
+<div id="ta37_133_2" class="block iDevice_content">
+<div class="exe-text"><figure class="exe-figure exe-image float-left license-custom" style="width: 150px;"><img src="warning-sign-30915_1280.png" alt="Aviso importante" title="Aviso Importante" style="margin: 10px;" width="150" vspace="10" hspace="10" height="125" />
+<figcaption class="figcaption"><span class="title"><em>Aviso Importante</em></span> <span class="license"><span class="sep">(</span><span class="custom-license">No attribution required</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p>Desde Agosto del 2021  Docker ha eliminado la posibilidad de crear "Organizaciones" en las cuentas del plan gratuito.</p>
+<p>Esto no afecta a los objetivos de este tema y no se solicitará como parte de latarea. No obstante durante el vídeo, como es algo interesante, se podrá ver en qué consiste el concepto de organización.</p></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice" id="id36">
+<div class="iDevice emphasis0" >
+<div id="ta36_110_2" class="block iDevice_content">
+<div class="exe-text"><p>Si recordáis, en el apartado anterior cuando hemos ejecutado <strong>docker run hello-world </strong>hemos dicho que pasaban dos cosas:</p>
+<ul>
+<li>Se <strong>DESCARGABA</strong> la imagen que es algo así como la "plantilla" para la creación de contenedores en ejecución.</li>
+<li>Se <strong>EJECUTABA</strong> el contenedor.</li>
+</ul>
+<p><strong>¿PERO EXACTAMENTE, DESDE DÓNDE SE DESCARGA ESA IMAGEN?</strong></p>
+<p>Las imágenes se descargan desde un <strong>REGISTRO </strong>de imágenes que es un  "almacén en la nube" donde los usuarios pueden, entre otras cosas  <strong>crear, probar, almacenar y distribuir imágenes</strong>. Por defecto cuando instalamos docker el registro que vamos a usar es <a href="https://hub.docker.com/" target="_blank" rel="noopener"><strong>DockerHub</strong></a> que además de todo lo anterior tiene muchas más funcionalidades.</p>
+<p>Podríamos crear nuestro propio registro y utilizarlo pero <strong>vamos a seguir utilizando DockerHub por varios motivos:</strong></p>
+<ul>
+<li>Tiene una <strong>gran variedad de imágenes</strong> disponibles para que usemos. La gran mayoría son públicas y gratuitas.</li>
+<li>Me permite <strong>crear y distribuir imágenes de manera muy sencilla</strong>. No olvidemos que es el repositorio por defecto para toda instalación de Docker.</li>
+<li>Me permite crear <strong>organizaciones</strong> para poder crear <strong>equipos</strong> y añadir posteriormente <strong>miembros</strong>, con sus respectivos permisos.</li>
+<li>Dispone de un <strong>interfaz web</strong> de fácil utilización.</li>
+</ul>
+<p>Todas estas características son de especial interés para la docencia en los ciclos formativos de informática. Algunas de las aplicaciones que enseguida nos vienen a la mente sería las siguientes:</p>
+<ul>
+<li>Creación de una <strong>organización para los profesores de cada IES.</strong></li>
+<li><strong>Distribución a los alumnos</strong> de las imágenes creadas a medida por el profesorado. De tal manera que el entorno es el mismo tanto para profesor como para el alumno. Esto nos ahorra muchos problemas posteriormente.</li>
+<li><strong>Presentación de aplicaciones por parte de los alumnos</strong>. Si los alumnos son capaces de crear y subir sus propias imágenes los profesores podrán utilizarlas de manera inmediata sin tener que esperar al manual de instalación o despliegue.</li>
+</ul>
+<p>En el siguiente vídeo vamos a ver como:</p>
+<ul>
+<li>Crear una cuenta en DockerHub</li>
+<li>Crear una organización en DockerHub <span style="color: #ff0000;">(NO INCLUIDO EN EL PLAN GRATUITO DESDE AGOSTO 2021)</span></li>
+<li>Crear un equipo en DockerHub y darle una serie de permisos.<span style="color: #ff0000;">(NO INCLUIDO EN EL PLAN GRATUITO DESDE AGOSTO 2021)</span></li>
+<li>Hacer Login/Logout en DockerHub desde consola.</li>
+</ul>
+<p><iframe width="1280" height="720" src="https://www.youtube.com/embed/wePGnp_jeeI?list=PL-8CyWabyNa85xowmOeBMCspbrn6qNWgl" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0"></iframe></p></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="13_hola_mundo.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="15_aplicaciones_a_la_docencia.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

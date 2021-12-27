@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>6.1 Desde un contenedor en ejecución | Módulo 6. Construyendo mis propias imágenes </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-1"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 6. Construyendo mis propias imágenes</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">6. Construyendo mis propias imágenes</a></li>
+   <li id="active"><a href="61_desde_un_contenedor_en_ejecucin.html" class="active no-ch">6.1 Desde un contenedor en ejecución</a></li>
+   <li><a href="62_el_fichero_dockerfile.html" class="daddy">6.2 El fichero Dockerfile</a>
+   <ul class="other-section">
+      <li><a href="621_resumen_de_comandos_dockerfile.html" class="no-ch">6.2.1 Resumen de comandos Dockerfile</a></li>
+      <li><a href="622_ejemplos_de_ficheros_dockerfile.html" class="no-ch">6.2.2 Ejemplos de ficheros Dockerfile</a></li>
+      <li><a href="623_buenas_prcticas_para_ficheros_dockerfile.html" class="no-ch">6.2.3 Buenas prácticas para ficheros Dockerfile</a></li>
+   </ul>
+   </li>
+   <li><a href="63_conectando_github_con_dockerhub_opcin_de_pago.html" class="no-ch">6.3 Conectando Github con DockerHub (Opción de Pago)</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="index.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="62_el_fichero_dockerfile.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">6.1 Desde un contenedor en ejecución</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id3">
+<div class="iDevice emphasis0" >
+<div id="ta3_112_2" class="block iDevice_content">
+<div class="exe-text"><p>La primera forma para personalizar las imágenes y distribuirlas es partiendo de un contenedor en ejecución. Para ello vamos a tener varias posibilidades:</p>
+<ol>
+<li>Utilizar la secuencia de órdenes <strong>docker commit</strong> /<strong> docker save / docker load.</strong> En este caso la <strong>distribución</strong> se producirá a partir de un<strong> fichero.</strong></li>
+<li>Utilizar la pareja de órdenes <strong>docker commit / docker push.</strong> En este caso la <strong>distribución</strong> se producirá a través de <strong>DockerHub.</strong></li>
+<li>Utilizar la pareja de órdenes <strong>docker export / docker import.</strong> En este caso la distribución de producirá a través de un <strong>fichero.</strong></li>
+</ol>
+<p>En este curso <strong>nos vamos a ocupar  únicamente de las dos primeras</strong> ya que la tercera se limita a copiar el sistema de ficheros sin tener en cuenta la informácion de las imágenes de las que deriva el contenedor (capas, imagen de origen, autor etc..) y además si tenemos volúmenes o bind mounts montados los obviará.</p>
+<p>En el primer caso el flujo es ejecución es el siguiente:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 599px; text-align: center;"><img src="DockerSave_DockerLoad.png" alt="Creación y distribución de nuevas imágenes mediante ficheros" title="Creación y distribución de nuevas imágenes mediante ficheros" width="599" height="401" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Creación y distribución de nuevas imágenes mediante ficheros</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p><br />Si optamos por la segunda opción el flujo de trabajo es el siguiente:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 599px; text-align: center;"><img src="DockerCommitDockerPush.png" alt="Creación y distribución a través de DockerHub" title="Creación y distribución a través de DockerHub" width="599" height="401" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Creación y distribución a través de DockerHub</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p><strong>IMPORTANTE: AL HACER COMMIT DEBEMOS AÑADIR EL NOMBRE DE NUESTRO USUARIO DE DOCKERHUB SI QUEREMOS SUBIRLO.</strong></p>
+<p><br />Cada uno de estos comandos tiene una serie de opciones algunas de las cuales las ilustraremos con una serie de ejemplos:</p>
+<table style="width: 100%; background-color: #000000; height: 10px;" border="0">
+<tbody>
+<tr style="height: 10px;">
+<td style="width: 100%; height: 10px;">
+<p><span style="font-size: 14pt;"><span style="color: #ff0000;"># Creación de una nueva imagen a partir del contenedor con nombre ejemplo (tag=latest)</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker commit ejemplo usuarioDockerHub/ubuntu20netutils</span></p>
+<p><span style="font-size: 14pt;"><span style="color: #ff0000;"># Igual que la anterior pero añadiendo versión (tag)</span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker commit ejemplo usuarioDockerHub/ubuntu20netutils:1.0</span></p>
+<p><span style="font-size: 14pt;"><span style="color: #ff0000;"># Igual que la anterior pero pausando el contenedor durante el commit (--pause/-p) y añadiendo un mensaje describiendo el commit (--message/-m)</span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker commit -m "Versión con Nmap" -p ejemplo usuarioDockerHub/ubuntu20netutils:1.1</span></p>
+<p><span style="font-size: 14pt;"><span style="color: #ff0000;"># Igual que la anterior pero añadiendo la información del autor (--author/-a)</span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker commit -a "Juan Diego Pérez" -m "Versión con Nmap" -p ejemplo usuarioDockerHub/ubuntu20netutils:1.1</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Guardar la imagen ubuntu20netutils:1.1 al ficher u20v1.1.tar</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker save usuarioDockerHub/ubuntu20netutils:1.1 &gt; u20v1.1.tar</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Lo mismo que en el apartado anterior sin la redirección y especificando el fichero (--output / -o)</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker save --output u20v1.1.tar usuarioDockerHub/ubuntu20netutils:1.1</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Carga la imagen con nombre imagen.tar (--input / -i)</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker load --input imagen.tar</span><span style="font-size: 14pt; color: #00ff00;"></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Autentificación en DockerHub</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker login</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Subir una imagen ubuntu20netutils:1.1 a DockerHub</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker push usuarioDockerHub/ubuntu20netutils:1.1</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Subir una imagen ubuntu20netutils:1.1 a DockerHub suprimiendo la salida que se muestra sobre </span><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;">la información del proceso de subida (--quiet /  -q)</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker push -q usuarioDockerHub/ubuntu20netutils:1.1</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Subir a DockerHub todas las versiones (tags) de la imagen ubuntu20netutils (--all-tags / -a)</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker push -a usuarioDockerHub/ubuntu20netutils</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Lo entenderemos mejor con el siguiente vídeo.</p>
+<p><iframe width="1280" height="720" src="https://www.youtube.com/embed/eWkqN9U5yJU?list=PL-8CyWabyNa85xowmOeBMCspbrn6qNWgl" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0"></iframe></p></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="index.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="62_el_fichero_dockerfile.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

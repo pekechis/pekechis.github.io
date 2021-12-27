@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>2.3 Ejecución de servicios. Puertos y variables de entorno | 2. Ejecutando y gestionando contenedores </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-3"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">2. Ejecutando y gestionando contenedores</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">P2. Ejecutando y gestionando contenedores Docker</a></li>
+   <li><a href="21_ejecutando_contenedores.html" class="no-ch">2.1 Ejecutando contenedores.</a></li>
+   <li><a href="22_los_flags_it.html" class="no-ch">2.2 Los flags -it</a></li>
+   <li id="active"><a href="23_ejecucin_de_servicios_puertos_y_variables_de_entorno.html" class="active no-ch">2.3 Ejecución de servicios. Puertos y variables de entorno</a></li>
+   <li><a href="24_asignando_nombre_a_los_contenedores.html" class="no-ch">2.4 Asignando nombre a los contenedores</a></li>
+   <li><a href="25_ejecutar_rdenes_en_los_contenedores.html" class="no-ch">2.5 Ejecutar órdenes en los contenedores.</a></li>
+   <li><a href="26_obtencin_de_informacin_de_los_contenedores.html" class="no-ch">2.6 Obtención de información de los contenedores</a></li>
+   <li><a href="27_gestin_de_contenedores.html" class="no-ch">2.7 Gestión de contenedores</a></li>
+   <li><a href="28_vdeo_resumen.html" class="no-ch">2.8. Vídeo resumen</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="22_los_flags_it.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="24_asignando_nombre_a_los_contenedores.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">2.3 Ejecución de servicios. Puertos y variables de entorno</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id13">
+<div class="iDevice emphasis0" >
+<div id="ta13_111_2" class="block iDevice_content">
+<div class="exe-text"><p>Una de las cosas que <strong>más me gusta de usar docker</strong> no es ya el hecho de que puedo <strong>probar todas versiones de los distintos sistemas</strong> que van apareciendo, es el hecho de que <strong>PARA PROBAR Y USAR CUALQUIER SERVICIO Y CUALQUIER APLICACIÓN NO TENGO QUE INSTALAR NADA EN MI SISTEMA, </strong>sea cual sea el servicio o la aplicación que se me ocurra, siempre la tengo en Docker Hub. Solo tengo que buscarla, averiguar cuál es la versión que quiero y lanzar el contenedor o contenedores necesarios. Y si por casualidad no está lo que yo quiero siempre podré construirlo desde cero, cosa que veremos en el módulo 6.</p>
+<p>No es ya que al evitar la instalación evite la sobrecarga que eso supone y la cantidad de ficheros y "basurilla" que van dejando este proceso, es que el uso de contenedores de este tipo impacta de manera muy favorable en mi práctica docente en al menos dos aspectos:</p>
+<ul>
+<li>Me va a permitir <strong>utilizar servicios y aplicaciones</strong> que a veces, dadas la <strong>limitada potencia de los equipos de aula</strong> que tenemos, es difícil que podamos usar con soltura.. Recordad que una de las características de los contenedores es que eran entornos de ejecución aislados (no dejan basura ninguna si los elimino) y que la sobrecarga sobre el sistema era mínima si lo comparábamos con una máquina virtual arrancando, consiguientemente, de una manera mucho más rápida.</li>
+<li><strong>Elimino</strong> de una vez el problema que tantos quebraderos de cabeza nos da: <strong>"EN MI EQUIPO NO FUNCIONA"</strong>. En cualquier equipo donde se haya instalado docker de manera previa el contenedor que quiero que los demás usen va a funcionar con total seguridad.</li>
+</ul>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 500px; text-align: center;"><img src="works_on_my_machine.png" alt="Funciona en mi ordenador" title="Funciona en mi ordenador" width="500" height="359" />
+<figcaption class="figcaption"><a href="https://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Funciona en mi ordenador</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p>De momento en este apartado <strong>nos vamos a centrar en servicios de un solo contenedor</strong>, estamos hablando de <strong>servidores de bases de datos, servidores web, servidores de aplicaciones etc...</strong> servicios que por otra parte son de uso casi diario en nuestras aulas. Veremos en módulos posteriores aplicaciones que requieren la interacción de más de un contenedor.</p>
+<p>Para la ejecución de contenedores de este tipo vamos a tener que en cuenta varias cosas:</p>
+<ul>
+<li>Usar el <strong>flag -d</strong> para que el servicio se ejecute en <strong>modo background o dettach</strong>. Si no lo hacemos se bloqueará el terminal mostrando el log del servicio (en ciertas ocasiones puede interesarnos) y tendremos que salir del mismo con Ctrl+C. Esto para el contenedor aunque podremos arrancarlo posteriormente.</li>
+<li>Si queremos que el servicio que vamos a lanzar sea accesible desde el exterior tendremos que añadir el<strong> flag -p</strong> de la siguiente manera <strong>-p PUERTO_EN_HOST:PUERTO_EN_CONTENEDOR</strong> que normalmente sería el puerto por defecto del servicio. Esto es una<strong> REDIRECCIÓN DE PUERTOS.</strong> Podemos tener varias reglas -p al arrancar (dependiendo del servicio será necesario) y es muy importante recordar que no podemos tener dos servicios escuchando en el mismo puerto. Si lo intentamos se nos mostrará un mensaje de error.</li>
+<li><strong>Comprobar y definir</strong> si es necesario las <strong>variables de entorno</strong> que puede tener el contenedor. Las variables de entorno importantes se describen <strong>en la página de las imágenes en DockerHub</strong> y para usarlas tenemos que usar el <strong>flag -e NOMBRE_VARIABLE=VALOR.</strong></li>
+</ul>
+<p>Para ilustrar todo esto vamos a poner varios ejemplos:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Ejecuto un servidor Apache sin el flag -d ni redirección de puertos. Se bloquea el terminal mostrando los logs y tendré que salir con Ctrl+C</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker run httpd</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.22. Set the 'ServerName' directive globally to suppress this message<br />AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.22. Set the 'ServerName' directive globally to suppress this message<br />[Mon Dec 07 18:27:28.561909 2020] [mpm_event:notice] [pid 1:tid 140253864719488] AH00489: Apache/2.4.46 (Unix) configured -- resuming normal operations<br />[Mon Dec 07 18:27:28.562072 2020] [core:notice] [pid 1:tid 140253864719488] AH00094: Command line: 'httpd -D FOREGROUND'</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Ejecuto un servidor Apache en background y accediendo desde el exterior a través del puerto 8888 de mi máquina.</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker run -d -p 8888:80 httpd</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Creación de un servidor de base de datos mariadb accediendo desde el exterior a través del puerto 3306 y estableciendo una contraseña de root mediante una variable de </span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># entorno</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker run -it -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root mariadb</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="22_los_flags_it.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="24_asignando_nombre_a_los_contenedores.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

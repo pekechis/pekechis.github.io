@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>4.6 Uso de los volúmenes y bind mounts | Módulo 4. Persistenia en docker </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez  para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-7"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 4. Persistenia en docker</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">4. Persistencia en docker</a></li>
+   <li><a href="41_los_datos_en_los_contenedores.html" class="no-ch">4.1 Los datos en los contenedores</a></li>
+   <li><a href="42_volmenes_y_bind_mount.html" class="no-ch">4.2 Volúmenes y Bind Mount</a></li>
+   <li><a href="43_gestionando_volmenes_y_obteniendo_informacin.html" class="no-ch">4.3 Gestionando volúmenes y obteniendo información</a></li>
+   <li><a href="44_asociando_almacenamiento_a_los_contenedores.html" class="no-ch">4.4 Asociando almacenamiento a los contenedores</a></li>
+   <li><a href="45_herramientas_docker_en_visual_studio_code.html" class="no-ch">4.5 Herramientas Docker en Visual Studio Code</a></li>
+   <li id="active"><a href="46_uso_de_los_volmenes_y_bind_mounts.html" class="active no-ch">4.6 Uso de los volúmenes y bind mounts</a></li>
+   <li><a href="47_bind_mounts_para_desarrollo_depurando_aplicaciones.html" class="no-ch">4.7 Bind mounts para desarrollo. Depurando aplicaciones</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="45_herramientas_docker_en_visual_studio_code.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="47_bind_mounts_para_desarrollo_depurando_aplicaciones.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">4.6 Uso de los volúmenes y bind mounts</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id14">
+<div class="iDevice emphasis0" >
+<div id="ta14_114_2" class="block iDevice_content">
+<div class="exe-text"><p>Hemos visto a lo largo de los apartados anteriores que con el uso de volúmenes y bind mounts conseguimos que los datos de los contenedores persistan y que sobrevivan incluso si los contenedores desaparecen. En este apartado vamos a concretar y desarrollar un poco más los usos que les podemos darles para conseguir:</p>
+<ul>
+<li>Hacer<strong> copias de seguridad de contenidos</strong>. En nuestro caso será tanto para código para datos.</li>
+<li>Compartir <strong>contenidos entre contenedores.</strong> Lo haremos compartiendo código entre varios contenedores.</li>
+<li>Probar una nueva versión de contenedor para <strong>comprobar si la actualización de nuestro sistema puede dar problemas.</strong></li>
+</ul>
+<p>Ilustraremos todo esto en los siguientes vídeos.</p></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id16">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">COMO COPIA DE SEGURIDAD</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta16_116_2" class="block iDevice_content">
+<div class="exe-text"><p><iframe width="794" height="447" src="https://www.youtube.com/embed/rV9mEsPQJW0?list=PL-8CyWabyNa85xowmOeBMCspbrn6qNWgl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id17">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">COMPARTIR CÓDIGO ENTRE CONTENEDORES</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta17_117_2" class="block iDevice_content">
+<div class="exe-text"><p><iframe width="794" height="447" src="https://www.youtube.com/embed/jIYQZIbSeng?list=PL-8CyWabyNa85xowmOeBMCspbrn6qNWgl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id18">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">PARA COMPROBAR COMPATIBILIDAD ENTRE VERSIONES</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta18_118_2" class="block iDevice_content">
+<div class="exe-text"><p><iframe width="794" height="447" src="https://www.youtube.com/embed/qdURCnir3dY?list=PL-8CyWabyNa85xowmOeBMCspbrn6qNWgl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="45_herramientas_docker_en_visual_studio_code.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="47_bind_mounts_para_desarrollo_depurando_aplicaciones.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>5.5 Iptables en contenedores | Módulo 5 Redes en docker </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez JIménez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-10"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 5 Redes en docker</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">5. Redes en docker</a></li>
+   <li><a href="51_tipos_de_redes_en_docker.html" class="no-ch">5.1 Tipos de redes en Docker</a></li>
+   <li><a href="52_gestionando_redes.html" class="no-ch">5.2 Gestionando redes</a></li>
+   <li><a href="53_obteniendo_informacin_de_las_redes.html" class="no-ch">5.3 Obteniendo información de las redes</a></li>
+   <li><a href="54_asociando_redes_a_contenedores.html" class="no-ch">5.4 Asociando redes a contenedores</a></li>
+   <li id="active"><a href="55_iptables_en_contenedores.html" class="active no-ch">5.5 Iptables en contenedores</a></li>
+   <li><a href="56_vdeo_resumen.html" class="no-ch">5.6 Vídeo resumen</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="54_asociando_redes_a_contenedores.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="56_vdeo_resumen.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">5.5 Iptables en contenedores</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id7">
+<div class="iDevice emphasis0" >
+<div id="ta7_111_2" class="block iDevice_content">
+<div class="exe-text"><p>En ocasiones en algunos de los módulos (más relacionados con redes normalmente) puede que queramos montar ciertos entornos,  compuestos por varias máquinas, en los que sea necesario que tengamos nosotros el control de las reglas <strong>iptables</strong> de las distintas máquinas que los conforman.</p>
+<p>Normalmente esto se hace con distintas máquinas virtuales pero en vista de las posibilidades de red que nos dan los contenedores, ¿podría montar entornos de ese estilo con contenedores?. <strong>Por defecto esto no es posible en los contenedores</strong>, pero podemos<strong> conseguirlo</strong> de una de estas dos maneras:</p>
+<ul>
+<li>Arrancar el contenedor con el flag <strong>--cap-add=NET_ADMIN</strong>. Así le damos al contenedor la "capacidad" Linux de administrar la red.</li>
+<li>Arrancar el contenedor de con flag <strong>--privileged </strong> que le da todas las capacidades al contenedor que puede hacer lo mismo que se puede hacer desde el host. Esto, además de habilitar el uso de iptables, me permitiría cosas como "instalar docker dentro de un contenedor docker". Debemos de tener mucho cuidado con esta característica porque puede presentar varios problemas al levantar ciertas limitaciones a los cgroups..</li>
+</ul>
+<p>Independientemente de la opción que elijamos, antes de poder usar iptables, y dado las pocas cosas que incluye por defecto un contenedor, deberemos:</p>
+<ul>
+<li><strong>apt update</strong> (para recargar los repositorios que no vienen cargados por defecto).</li>
+<li><strong>apt install -y iptables</strong> (para instalar la herramienta de firewall para Linux).</li>
+</ul></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="54_asociando_redes_a_contenedores.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="56_vdeo_resumen.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

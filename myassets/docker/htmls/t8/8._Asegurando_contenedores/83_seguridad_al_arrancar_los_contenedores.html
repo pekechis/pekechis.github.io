@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>8.3 Seguridad al arrancar los contenedores | Módulo 8. Asegurando contenedores </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-6"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 8. Asegurando contenedores</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">P8. Asegurando contenedores</a></li>
+   <li><a href="81_seguridad_en_las_imgenes.html" class="no-ch">8.1 Seguridad en las imágenes</a></li>
+   <li><a href="82_seguridad_en_el_proceso_de_build.html" class="no-ch">8.2 Seguridad en el proceso de build</a></li>
+   <li id="active"><a href="83_seguridad_al_arrancar_los_contenedores.html" class="active no-ch">8.3 Seguridad al arrancar los contenedores</a></li>
+   <li><a href="84_video_resumen.html" class="no-ch">8.4 Video Resumen</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="82_seguridad_en_el_proceso_de_build.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="84_video_resumen.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">8.3 Seguridad al arrancar los contenedores</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id13">
+<div class="iDevice emphasis0" >
+<div id="ta13_125_2" class="block iDevice_content">
+<div class="exe-text"><p>Si queremos aumentar la seguridad al desplegar los contenedores podemos actuar en dos sentidos:</p>
+<ul>
+<li><strong>Limitar los recursos</strong> que puede usar el contenedor. Esto será de especial utilidad para evitar ataques de DoS.</li>
+<li><strong>Deshabilitar "capabilities"</strong> del contenedor que voy  a arrancar.</li>
+</ul>
+<p><span style="text-decoration: underline;"><strong>LIMITAR RECURSOS</strong></span></p>
+<p>Para limitar recursos hay un serie de flags de docker run que podemos usar, entre ellos los más destacados son:</p>
+<ul>
+<li><strong>--memory/-m </strong> que establece el límite de memoria que puede llegar a usar un contenedor.</li>
+<li><strong>--memory-reservation</strong> que es similar al anterior pero es un límite blando. Si se sobrepasa docker intentará reducir la memoria consumida por el contenedor.</li>
+<li><strong>--cpus</strong> que limita el número de cpus del sistema que un contenedor puede utilizar.</li>
+<li>....</li>
+</ul>
+<p>Por ejemplo:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Arranco un contenedor con un límite de 4GB y 4cpus<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker runt -it -m 4Gb --cpus=4 httpd .....<br /></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong><span style="text-decoration: underline;">DESHABILITAR LAS CAPACIDADES</span></strong></p>
+<p>Si además queremos quitar capacidades a nuestros contenedores los haremos con el flag <strong>--cap-drop</strong>, el contrario al flag --cap-add que vimos en el módulo de redes para habilitar iptables usando la capacidad NET_ADMIN.</p>
+<p>La lista de las capacidades de los sistemas Linux es larga. Podemos encontrarla en la siguiente dirección: <strong><a href="https://man7.org/linux/man-pages/man7/capabilities.7.html">https://man7.org/linux/man-pages/man7/capabilities.7.html</a></strong></p>
+<p>Por citar algunas podemos destacar:</p>
+<ul>
+<li><em><strong>AUDIT_WRITE: </strong></em> Escribe mensajes en los log de auditoría del Kernel.</li>
+<li><em><strong>CHOWN: </strong></em>Para permitir cambios en el UID y GUID de los ficheros.</li>
+<li><em><strong>NET_BIND_SERVICE: </strong></em>Permite asociar un socket a un puerto que puede ser accedido desde Internet.</li>
+<li><em><strong>NET_ADMIN:</strong></em><strong> </strong>Configuración de interfaces, masquerading, enrutamiento, iptables etc...</li>
+<li><em><strong>SETUID: </strong></em>Manipulación del UID de los procesos etc...</li>
+<li><strong>SETGUID: </strong> Manipulación del GUID de los procesos etc..</li>
+<li><em><strong>FOWNER: </strong></em>Para manipulación de todo tipo de permisos y ACLs en ficheros.</li>
+</ul>
+<p>Un ejemplo de cómo deshabilitar una de estas capacidades sería:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Deshabilitar la escritura de mensajes en el log de auditoría del Kernel<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker runt -it --cap-drop=audit_write  ubuntu:20.04</span><span style="font-size: 14pt; color: #00ff00;"></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Habilitar o deshabilitar capacidades requiere un estudio minucioso para cada contenedor. En general debemos limitar al máximo las capacidades cuando llevemos esos contenedores a producción.</p></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="82_seguridad_en_el_proceso_de_build.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="84_video_resumen.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

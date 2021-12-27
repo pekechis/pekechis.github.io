@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>4.3 Gestionando volúmenes y obteniendo información | Módulo 4. Persistenia en docker </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez  para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-3"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 4. Persistenia en docker</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">4. Persistencia en docker</a></li>
+   <li><a href="41_los_datos_en_los_contenedores.html" class="no-ch">4.1 Los datos en los contenedores</a></li>
+   <li><a href="42_volmenes_y_bind_mount.html" class="no-ch">4.2 Volúmenes y Bind Mount</a></li>
+   <li id="active"><a href="43_gestionando_volmenes_y_obteniendo_informacin.html" class="active no-ch">4.3 Gestionando volúmenes y obteniendo información</a></li>
+   <li><a href="44_asociando_almacenamiento_a_los_contenedores.html" class="no-ch">4.4 Asociando almacenamiento a los contenedores</a></li>
+   <li><a href="45_herramientas_docker_en_visual_studio_code.html" class="no-ch">4.5 Herramientas Docker en Visual Studio Code</a></li>
+   <li><a href="46_uso_de_los_volmenes_y_bind_mounts.html" class="no-ch">4.6 Uso de los volúmenes y bind mounts</a></li>
+   <li><a href="47_bind_mounts_para_desarrollo_depurando_aplicaciones.html" class="no-ch">4.7 Bind mounts para desarrollo. Depurando aplicaciones</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="42_volmenes_y_bind_mount.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="44_asociando_almacenamiento_a_los_contenedores.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">4.3 Gestionando volúmenes y obteniendo información</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id8">
+<div class="iDevice emphasis0" >
+<div id="ta8_114_2" class="block iDevice_content">
+<div class="exe-text"><p>En el apartado anterior presentamos las dos opciones para la persistencia de datos con docker que consideramos que eran de mayor interés para el desarrollo de software: volúmenes y bind mounts. En este apartado nos centraremos  en los volúmenes y en las operaciones básicas que podemos hacer con ellos mediante la orden docker volume. Estas operaciones son:</p>
+<ul>
+<li><strong>Creación</strong> de los volúmenes.</li>
+<li><strong>Eliminación</strong> de los volúmenes.</li>
+<li><strong>Obtención de información</strong> de los volúmenes.</li>
+</ul>
+<p>En el apartado siguiente veremos  como, una vez hayamos definido estos volúmenes, podremos usarlos en nuestros contenedores.</p></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id10">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">CREACIÓN DE VOLÚMENES</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta10_113_2" class="block iDevice_content">
+<div class="exe-text"><p>Para la creación de volúmenes vamos a usar la orden <strong>docker volume create </strong>que tiene la siguiente estructura:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 500px; text-align: center;"><img src="dockerVolumeCreate.png" alt="Creación de volúmenes. Estructura de la orden docker volume create" title="Creación de volúmenes. Estructura de la orden docker volume create" width="500" height="335" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Creación de volúmenes. Estructura de la orden docker volume create</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p>Entre las opciones que podemos incluir a la hora de crear los volúmenes están:<br /><br /></p>
+<ul>
+<li><strong>--driver o -d </strong>para especificar el driver elegido para el volumen. Si no especificamos nada el driver utilizado es el <strong><em>local</em></strong> que es el que nos interesa desde el punto de vista de desarrollo porque desarrollamos en nuestra máquina. Al ser Linux en mi caso ese driver local es<strong> overlay2</strong> pero existen otras posibilidades como <em><strong>aufs, btrfs, zfs, devicemapper o vfs. </strong></em>Si estamos interesados en conocer al detalle cada uno de ellos <a href="https://docs.docker.com/storage/storagedriver/" target="_blank" rel="noopener">aquí</a> tenemos más información.</li>
+<li><strong>--label </strong>para especificar los metadatos del volumen mediante parejas clave-valor.</li>
+<li><strong>--opt o -o </strong>para especificar opciones relativas al driver elegido. Si son opciones relativas al sistema de ficheros  puedo usar una sintaxis similar a las opciones de la orden mount.</li>
+<li><strong>--name </strong>para especificar un nombre para el volumen. Es una alternativa a especificarlo al final que es la  forma que está descrita en la imagen superior.</li>
+</ul>
+<p>Vamos a ilustrar este funcionamiento con varios ejemplos:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Creación de un volumen llamado datos (driver local sin opciones)<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker volume create data</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;"># Creación de un volumen data especificando el driver local</span> </span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker volume create -d local data</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Creación de un volumen llamando web añadiendo varios metadatos</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker volume create --label servicio=http --label server=apache Web</span><span style="font-size: 14pt; color: #00ff00;"></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Aunque queda fuera del alcance de los objetivos de este curso es importante destacar que mediante otras opciones podríamos indicar que los volúmenes estén en otros dispositivos, en montajes nfs e incluso en servicios de almacenamiento en nube públicas o privadas.<br /></strong></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id11">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">ELIMINACIÓN DE VOLÚMENES</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta11_114_2" class="block iDevice_content">
+<div class="exe-text"><p>Para la eliminación de los volúmenes creados tenemos dos opciones:</p>
+<ul>
+<li><strong>docker volume rm</strong> para eliminar un volumen en concreto (por nombre o por id).</li>
+<li><strong>docker volumen prune</strong> para eliminar los volúmenes que no están siendo usados por ningún contenedor.</li>
+</ul>
+<p>A continuación vamos a ver una lista de ejemplos para ilustrar el funcionamiento de ambos:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Borrar un volumen por nombre<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker volume rm nombre_volumen<br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Borrar un volumen por ID</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker volume rm a5175dc955cfcf7f118f72dd37291592a69915f82a49f62f83666ddc81f67441</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Borrar dos volúmenes de una sola vez</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker volume rm nombre_volumen1 nombre_volumen2</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Forzar el borrado de un volumen -f o --force</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker volume rm -f nombre_volumen</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Borrar todos los volúmenes que no tengan contenedores  asociados</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker volume prune</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;"># Borrar todos los volúmenes que no tengan contenedores  asociados sin pedir confirmación (-f o --force)</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker volume prune -f </span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Borrar todos los volúmenes sin usar que contengan cierto valor de etiqueta (--filter)</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker volume prune --filter label=valor</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NOTA: NO SE PUEDEN ELIMINAR VOLÚMENES EN USO POR CONTENEDORES</strong>, salvo que usemos el flag -f o --force y no es algo recomendado.</p>
+<p></p>
+<p></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id12">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">OBTENCIÓN DE INFORMACIÓN DE LOS VOLÚMENES</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta12_115_2" class="block iDevice_content">
+<div class="exe-text"><p>Si queremos obtener información de los volúmenes que hemos creado podemos hacerlo de dos formas:</p>
+<ul>
+<li>Usando <strong>docker volume ls </strong>que nos proporciona una lista de los volúmenes creados y algo de información adicional.</li>
+<li>Usando <strong>docker volume inspect </strong>que nos dará una información mucho más detallada de el volumen que hayamos elegido.</li>
+</ul>
+<p><span style="text-decoration: underline;"><strong>LISTA DE VOLÚMENES DEL SISTEMA</strong></span></p>
+<p>Si ejecutamos la siguiente orden:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Listar los volúmenes creados en el sistema</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker volume ls</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Obtendremos una salida similar a la siguiente:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 765px; text-align: center;"><img src="volumels.png" alt="Obteniendo la lista de volúemes .docker volume ls" title="Obteniendo la lista de volúemes .docker volume ls" width="765" height="74" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Obteniendo la lista de volúemes .docker volume ls</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p style="text-align: left;">Como podemos ver, la información que nos proporciona es limitada, el driver usado y el nombre que tenga cada volumen de la lista. Si no tiene nombre se nos muestra el ID del volumen.</p>
+<p style="text-align: left;"><span style="text-decoration: underline;"><strong>INFORMACIÓN DETALLADA DE UN VOLUMEN</strong></span></p>
+<p style="text-align: left;"><span style="text-decoration: underline;"></span>Si queremos información más detallada de un volumen tenemos que ejecutar la siguiente orden:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Información detallada de un volumen por nombre<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker volume inspect nombre_volumen<br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Información detallada de un volumen por ID</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker volume inspect a5175dc955cfcf7f118f72dd37291592a69915f82a49f62f83666ddc81f67441</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Obtendremos una salida similar a la siguiente:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 678px; text-align: center;"><img src="dockerinspect.png" alt="Información detallada de un volumen. docker inspect" title="Información detallada de un volumen. docker inspect" width="678" height="200" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Información detallada de un volumen. docker inspect</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p>Y la información que nos muestra es:</p>
+<ul>
+<li>La fecha de creación del volúmen.</li>
+<li>El tipo del driver.</li>
+<li>Etiquetas asociadas.</li>
+<li>El punto de montaje.</li>
+<li>El nombre del volumen.</li>
+<li>Las opciones asociadas al driver.</li>
+<li>Y el ámbito del volumen.</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="42_volmenes_y_bind_mount.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="44_asociando_almacenamiento_a_los_contenedores.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

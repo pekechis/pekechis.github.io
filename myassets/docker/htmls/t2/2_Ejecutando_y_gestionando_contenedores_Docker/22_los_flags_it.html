@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>2.2 Los flags -it | 2. Ejecutando y gestionando contenedores </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-2"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">2. Ejecutando y gestionando contenedores</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">P2. Ejecutando y gestionando contenedores Docker</a></li>
+   <li><a href="21_ejecutando_contenedores.html" class="no-ch">2.1 Ejecutando contenedores.</a></li>
+   <li id="active"><a href="22_los_flags_it.html" class="active no-ch">2.2 Los flags -it</a></li>
+   <li><a href="23_ejecucin_de_servicios_puertos_y_variables_de_entorno.html" class="no-ch">2.3 Ejecución de servicios. Puertos y variables de entorno</a></li>
+   <li><a href="24_asignando_nombre_a_los_contenedores.html" class="no-ch">2.4 Asignando nombre a los contenedores</a></li>
+   <li><a href="25_ejecutar_rdenes_en_los_contenedores.html" class="no-ch">2.5 Ejecutar órdenes en los contenedores.</a></li>
+   <li><a href="26_obtencin_de_informacin_de_los_contenedores.html" class="no-ch">2.6 Obtención de información de los contenedores</a></li>
+   <li><a href="27_gestin_de_contenedores.html" class="no-ch">2.7 Gestión de contenedores</a></li>
+   <li><a href="28_vdeo_resumen.html" class="no-ch">2.8. Vídeo resumen</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="21_ejecutando_contenedores.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="23_ejecucin_de_servicios_puertos_y_variables_de_entorno.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">2.2 Los flags -it</h1></header>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_orientacion" id="id12">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_orientacion.png)"><h1 class="iDeviceTitle">LOS FLAGS -it</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta12_110_2" class="block iDevice_content">
+<div class="exe-text"><p>Una de las cosas en las que <strong>me atasqué un poco</strong> cuando empecé a trabajar con docker fue el hecho de que<strong> "a veces"</strong> me encontraba con que <strong>los contenedores se paraban y ya no podía acceder a ellos ni iniciarlos de nuevo (con docker start).</strong> Al principio no sabía el porqué y además me desconcertaba el hecho de que me pasaba con algunos contenedores y con otros no.</p>
+<p>Sin entrar en detalles, que derivan de cómo se han construido los contenedores, la solución para que no os pase esto está en:</p>
+<ul>
+<li><strong>Siempre usar el flag -it</strong> al ejecutar una orden docker run si es un contenedor que no tiene servicios. Este -it es la unión del  flag -i (--interactive) y el flag -t (--tty) que lo que hacen es abrir la entrada estándar del contenedor que estamos ejecutando y permitir la posibilidad de abrir un terminal en el contenedor. Es decir,  <strong>nos va a permitir interactuar con él.</strong></li>
+<li><strong>No debemos añadir al final otra orden que no sea /bin/bash</strong> (u otro shell que puedan contener los contenedores) ya que eso sobreescribe la orden de arranque de algunos contenedores (shell o inicio de servicio dependiendo del tipo de contenedor) y será imposible volver a arrancarlos una vez parados. Hay que tener en cuenta que una vez arrancados, si lo hemos hecho bien, siempre podremos ejecutar órdenes en el contenedor, tal y como veremos posteriormente.</li>
+</ul>
+<p>Debemos de tener en cuenta que si los contenedores no son contenedores con servicios se paran tras salir la primera vez de interactuar con ellos. Para iniciarlos de nuevo, como ya he dejado ver en el primer párrafo, tenemos la orden docker start cuyo funcionamiento es muy simple. Lo vamos a ilustrar con un ejemplo.</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Arrancar el contenedor con nombre servidorWeb (debe estar parado)</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker start servidorWeb</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Arrancar el contenedor con ID 511eeed5992d</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker start 511eeed5992d</span></p>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="21_ejecutando_contenedores.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="23_ejecucin_de_servicios_puertos_y_variables_de_entorno.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

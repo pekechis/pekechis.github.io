@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>5.2 Gestionando redes | Módulo 5 Redes en docker </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez JIménez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-2"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 5 Redes en docker</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">5. Redes en docker</a></li>
+   <li><a href="51_tipos_de_redes_en_docker.html" class="no-ch">5.1 Tipos de redes en Docker</a></li>
+   <li id="active"><a href="52_gestionando_redes.html" class="active no-ch">5.2 Gestionando redes</a></li>
+   <li><a href="53_obteniendo_informacin_de_las_redes.html" class="no-ch">5.3 Obteniendo información de las redes</a></li>
+   <li><a href="54_asociando_redes_a_contenedores.html" class="no-ch">5.4 Asociando redes a contenedores</a></li>
+   <li><a href="55_iptables_en_contenedores.html" class="no-ch">5.5 Iptables en contenedores</a></li>
+   <li><a href="56_vdeo_resumen.html" class="no-ch">5.6 Vídeo resumen</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="51_tipos_de_redes_en_docker.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="53_obteniendo_informacin_de_las_redes.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">5.2 Gestionando redes</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id3">
+<div class="iDevice emphasis0" >
+<div id="ta3_111_2" class="block iDevice_content">
+<div class="exe-text"><p>En el apartado anterior comentamos que para usar docker para el desarrollo vamos a tener <strong>más que suficiente</strong> con la creación de <strong>redes</strong> con el driver <strong>bridge</strong>. Sin embargo, vamos a tener que hacer una diferenciación entre <strong>dos tipos de redes "bridged"</strong>: la red creada <strong>por defecto</strong> por docker para que funcionen todos los contenedores y aquellas redes "bridged" <strong>definidas por el usuario</strong>, es decir, por nosotros. Esta red por defecto se llama <strong>bridge  </strong>y podemos comprobrar que se ha creado ejecutando la siguiente orden que nos muestra todas las redes docker que tengamos:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Mostrar todas las redes docker creadas</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker network ls</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Como resultado obtendremos una salida similar a la siguiente, en la que se destaca mediante un recuadro la red bridge por defecto.</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 742px; text-align: center;"><img src="networkls.png" alt="Red bridge docker por defecto" title="Red bridge docker por defecto" width="742" height="114" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Red bridge docker por defecto</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p>Esta salida, además del nombre de cada una de las redes creadas recoge la siguiente información:</p>
+<ul>
+<li>El <strong>NETWORK ID </strong> que me sirve para identificar una red y que se puede usar indistintamente con el nombre para cualquiera de las operaciones de gestión de redes (crear, borrar, obtener información etc...)</li>
+<li>El <strong>DRIVER, </strong>que como ya dijimos en el apartado anterior me define el tipo de red que voy a "conectar" a los contenedores. Podía tomar los valores bridge, none, host,macvlan y overlay.</li>
+<li>El <strong>SCOPE </strong>que nos indica el ámbito de nuestras redes y que en este caso son redes locales dentro de nuestra propia máquina.</li>
+</ul>
+<p>Esta red "bridged" por defecto, que es la usada por defecto por los contenedores, se diferencia en varios aspectos de las redes "bridged" que creamos nosotros. Estos aspectos son los siguientes:</p>
+<ul>
+<li>Las redes que nosotros definamos proporcionan <strong>resolución DNS entre los contenedores</strong> cosa que la red por defecto no hace a  no ser que usemos opciones que ya se consideran "deprectated".</li>
+<li>Puedo <strong>conectar en caliente a los contenedores redes "bridged" definidas por el usuario</strong>. Si uso la red por defecto tengo que parar previamente el contenedor.</li>
+<li>Me permite gestionar de manera más segura el <strong>aislamiento de los contenedores</strong> ,ya que si no indico una red al arrancar un contenedor éste se incluye en la red por defecto donde pueden convivir servicios que no tengan nada que ver.</li>
+<li>Tengo más control sobre la configuración de las redes si las defino yo. Los contenedores de la red por defecto comparten todos la misma configuración de red (MTU, reglas ip tables etc...).</li>
+<li>Los contenedores dentro de la  red "bridge" comparten todos ciertas variables de entorno lo que puede provocar ciertos conflictos.</li>
+</ul>
+<p>Una vez nos hemos situado vamos a ver cómo realizamos las operaciones más comunes para gestionar y trabajar con redes en docker. Estas operaciones son:</p>
+<ul>
+<li>Listado de las redes (ya visto, <strong><em>docker network ls</em></strong>)</li>
+<li>Creación de las redes. <em><strong>(docker network create)</strong></em></li>
+<li>Borrado de las redes. <em><strong>(docker network rm / docker network prune)</strong></em></li>
+</ul>
+<p>Una descripción más detallada de lo todas las opciones la podemos ver en la <a href="https://docs.docker.com/network" target="_blank" title="Redes en docker. Referencia" rel="noopener">referencia completa de redes en docker </a>pero, tal y como acostumbramos en este curso, vamos a ilustrar su funcionamiento con distintos ejemplos.</p>
+<p><span style="text-decoration: underline;"><strong>EJEMPLOS DE CREACIÓN DE REDES</strong></span></p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Crear una red. Al no poner nada más coge las opciones por defecto, red bridge local y el mismo docker elige la dirección de red y la máscara <br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker network create red1<br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Crear una red (la red2) dándole explícitamente el driver bridge (-d) , una dirección y una máscara de red (--subnet) y una gateway (--gateway)</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker network create -d bridge --subnet 172.24.0.0./16 --gateway 172.24.0.1 red2</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>La orden <em><strong>docker network create </strong></em> tiene más opciones para las redes de tipo bridge y muchas más para redes de otro tipo. Pero como estamos en un curso de docker aplicado al desarrollo estas opciones son más que suficientes para poder montar nuestros entornos y los de nuestros alumnos.<span style="text-decoration: underline;"><strong></strong></span></p>
+<p><strong>NOTA: CADA RED DOCKER QUE CREO CREA UN PUENTE DE RED ESPECÍFICO PARA CADA RED QUE PODEMOS VER CON ifconfig / ip a<br /></strong></p>
+<p><span style="text-decoration: underline;"><strong>ELIMINACIÓN DE REDES</strong></span><span style="text-decoration: underline;"><strong></strong></span></p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Eliminar la red red1<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker network rm red1 <br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Eliminar una red con un determinado ID<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker network rm 3cb4100fe2dc<br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Eliminar todas la redes que no tengan contenedores asociados</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker network prune</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Eliminar todas las redes que no tengas contenedores asociados sin preguntar confirmación (-f o --force)</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker netowkr prune -f</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Eliminar todas las redes que no tengan contenedores asociados y que fueron creadas hace más de 1 hora (--filter)</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker network prune  --filter until=60m</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NOTA: NO PUEDO BORRAR UNA RED QUE TENGA CONTENEDORES QUE LA ESTÉN USANDO. DEBERÉ PRIMERO BORRAR LOS CONTENEDORES O DESCONECTAR LA RED.</strong></p></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="51_tipos_de_redes_en_docker.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="53_obteniendo_informacin_de_las_redes.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>5.1 Tipos de redes en Docker | Módulo 5 Redes en docker </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez JIménez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-1"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 5 Redes en docker</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">5. Redes en docker</a></li>
+   <li id="active"><a href="51_tipos_de_redes_en_docker.html" class="active no-ch">5.1 Tipos de redes en Docker</a></li>
+   <li><a href="52_gestionando_redes.html" class="no-ch">5.2 Gestionando redes</a></li>
+   <li><a href="53_obteniendo_informacin_de_las_redes.html" class="no-ch">5.3 Obteniendo información de las redes</a></li>
+   <li><a href="54_asociando_redes_a_contenedores.html" class="no-ch">5.4 Asociando redes a contenedores</a></li>
+   <li><a href="55_iptables_en_contenedores.html" class="no-ch">5.5 Iptables en contenedores</a></li>
+   <li><a href="56_vdeo_resumen.html" class="no-ch">5.6 Vídeo resumen</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="index.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="52_gestionando_redes.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">5.1 Tipos de redes en Docker</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id2">
+<div class="iDevice emphasis0" >
+<div id="ta2_112_2" class="block iDevice_content">
+<div class="exe-text"><p>Cuando nuestro contenedor y los servicios que podemos tener instalados en él  tienen algún tipo de conexión nosotros <strong>no hemos tenido que configurar nada</strong> y el contenedor ni sabe ni es consciente del funcionamiento de la red ni de la plataforma sobre la que funciona. El contenedor es  <strong>red y sistema agnóstico</strong>.</p>
+<p>Esto se consigue con un sistema de red en el que nosotros podemos "enchufar" distintos dispositivos de red a cada contenedor usando distintos drivers que pueden ser de los siguientes tipos:</p>
+<ul>
+<li><strong>Bridge:</strong> Es el driver por defecto. Mi equipo actúa como puente del contenedor con el exterior y como medio de comunicación entre los distintos contenedores que tengo en ejecución dentro de una misma red docker.</li>
+<li><strong>Host:</strong> El contenedor usa directamente la red de mi máquina (el host).</li>
+<li><strong>Overlay:</strong> Un sistema que conecta distintos servicios docker de máquinas diferentes. Se utiliza para docker Swarm, que es la tecnología de docker para la orquestación de contenedores.</li>
+<li><strong>MacVlan:</strong> Que nos permite asignar una MAC a nuestro contenedor que parecerá que es un dispositivo físico en nuestra red.</li>
+<li><strong>None:</strong>  Si queremos que el contenedor no tenga conectividad alguna.</li>
+</ul>
+<p>Aunque todos estos tipos de drivers tienen su utilizad en determinadas situaciones lo cierto es que para los objetivos del curso nos vamos a centrar únicamente en los drivers de tipo <strong>BRIDGE </strong>que me van a permitir, siempre dentro nuestra máquina local:</p>
+<ul>
+<li><strong>Aislar los distintos contenedores</strong> que tengo en distintas subredes docker, de tal manera que desde cada una de las subredes solo podremos acceder a los equipos de esa misma subred.</li>
+<li><strong>Aislar los contenedores del acceso exterior.</strong></li>
+<li><strong>Publicar servicios</strong> que tengamos en los contenedores <strong>mediante redirecciones</strong> que docker implementará con las pertinentes reglas de ip tables.</li>
+</ul>
+<p>Un ejemplo de una configuración de una <strong>RED CONSTRUIDA CON EL DRIVER BRIDGE</strong> podría ser la siguiente:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 630px; text-align: center;"><img src="Docker_Brigde.png" alt="Ejemplo red docker con driver bridge" title="Ejemplo red docker con driver bridge" width="630" height="693" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Ejemplo red docker con driver bridge</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p>Este esquema representa una aplicación típica compuesta por dos servicios, un servidor web y un servidor de base de datos , cada uno de ellos en un contenedor diferente y haciendo accesible al exterior mi servidor web en el puerto 8080. </p>
+<p>Para que todo esto funcione docker creará de manera automática los interfaces virtuales y los puentes de red necesarios para cada uno de los dispositivos y configurará las reglas necesarias para que esos interfaces tengan acceso a internet,  para aislar los contenedores del resto de las redes y para establecer las redirecciones de puertos necesarias.</p>
+<p>Todo esto lo veremos con más detalle en los apartados posteriores de este mismo módulo.</p>
+<p></p>
+<p></p></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="index.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="52_gestionando_redes.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>Módulo 9.Integración y despliegue continuo con Jenkins y docker </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<meta name="description" content="Módulo 9" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-0"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 9.Integración y despliegue continuo con Jenkins y docker</div></header>
+<nav id="siteNav">
+<ul>
+   <li id="active"><a href="index.html" class="active daddy main-node">9. Integración y despliegue continuo con Jenkins y docker</a></li>
+   <li><a href="91_conceptos_importantes.html" class="no-ch">9.1 Conceptos importantes</a></li>
+   <li><a href="92_ejemplo_prctico.html" class="no-ch">9.2 Ejemplo práctico</a></li>
+   <li><a href="recursos.html" class="no-ch">Recursos</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="91_conceptos_importantes.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">9. Integración y despliegue continuo con Jenkins y docker</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id8">
+<div class="iDevice emphasis0" >
+<div id="ta8_133_2" class="block iDevice_content">
+<div class="exe-text"><figure class="exe-figure exe-image float-left license-custom" style="width: 150px; text-align: center;"><img src="warning-sign-30915_1280.png" alt="Aviso importante" title="Aviso Importante" style="margin: 10px;" width="150" vspace="10" hspace="10" height="125" />
+<figcaption class="figcaption"><span class="title"><em>Aviso Importante</em></span> <span class="license"><span class="sep">(</span><span class="custom-license">No attribution required</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p>Como ya se comentó en el apartado 6.3 de este mismo curso, la empresa Docker ha eliminado la posibilidad de realizar  "Automated Builds" en las cuentas del plan gratuito.</p>
+<p>Eso no afecta a los objetivos de este tema, pero una parte del flujo de trabajo que definamos quedará sin realizarse: La construcción automática de la nueva imagen del contenedor tomando como base el Dockerfile de mi repositorio en DockerHub.</p>
+<p>Existen otras herramientas y la posibilidad de realizar esta construcción desde la propio máquina en la que esté instalada Jenkins pero como usaremos Jenkins desde un contenedor no profundizaremos más e indicaremos qué parte se dejará de realizar.</p></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice" id="id0">
+<div class="iDevice emphasis0" >
+<div id="ta0_116_2" class="block iDevice_content">
+<div class="exe-text"><p>Para acabar el curso vamos a salirnos un poco del tema pero sin salirnos del todo. Pretendo que ,usando contenedores, podamos montar un "pseudo" flujo de despliegue continuo mediante  un servidor Jenkins que lanzaremos desde un contenedor. De esta manera mostraremos otro entorno donde los contenedores son útiles y abriremos el campo de conocimientos demostrando la utilidad de este tipo de conceptos dentro del mundo del desarrollo de software actual.</p>
+<p><span style="text-decoration: underline;"><strong>¿Qué es Jenkins?</strong></span></p>
+<p>Jenkins es un <strong>servidor de automatización</strong> opensource  que me va a permitir automatizar ciertas partes del proceso de desarrollo de software.  Tiene un sistemas de plugins muy completo que permite integrar en cada una de estas fases herramientas para el control de versiones, construcción de software, testing etc...</p>
+<figure class="exe-figure exe-image position-center license-CC-BY-SA" style="width: 500px; text-align: center;"><img src="500px-Jenkins_logo_with_title.svg.png" alt="Jenkins" title="Jenkins, servidor de automatización" width="500" height="161" />
+<figcaption class="figcaption"><a href="https://commons.wikimedia.org/wiki/File:Jenkins_logo_with_title.svg" target="_blank" class="author" rel="noopener">https://commons.wikimedia.org/wiki/File:Jenkins_logo_with_title.svg</a>. <span class="title"><em>Jenkins, servidor de automatización</em></span> <span class="license"><span class="sep">(</span><a href="http://creativecommons.org/licenses/?lang=es" rel="license nofollow noopener" target="_blank" title="Creative Commons BY-SA">CC BY-SA</a><span class="sep">)</span></span></figcaption>
+</figure>
+<p><span style="text-decoration: underline;"><strong> ¿Pero qué vamos a automatizar?</strong></span></p>
+<p>Una vez hayamos levantado un servicio de Jenkins definiremos un flujo automático (PIPELINE) con las siguientes fases:</p>
+<ol>
+<li><strong>PRIMER PASO:</strong> Descarga de un código desde un repositorio de GitHub y construcción (build)</li>
+<li><strong>SEGUNDO PASO:</strong> Simulación de Testing. No entraremos más en esta fase porque no es materia para este curso.</li>
+<li><strong>TERCER PASO:</strong> Generación de una nueva imagen docker que contenga ese código a través de un fichero Dockerfile que esté conectado con DockerHub.<span style="color: #ff0000;"><strong> ESTA PARTE NO SE REALIZARÁ. ÚNICAMENTE HAREMOS "PUSH" EN GITHUB. EL PROCESO DE GENERACIÓN AUTOMÁTICA REQUIERE DE UN PLAN DE PAGO.</strong></span></li>
+<li><strong>CUARTO PASO:</strong> Despliegue del código en un servidor que serán también un contenedor.</li>
+</ol>
+<p>Este flujo es un flujo ad-hoc para este  curso que no responde exactamente a las definiciones generales que  vamos a presentar en el próximo apartado, pero nos va a servir para repasar conceptos que hemos visto a la vez que nos introducimos en el mundo de la automatización.</p>
+<p></p></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="91_conceptos_importantes.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

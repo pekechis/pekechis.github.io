@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>9.1 Conceptos importantes | Módulo 9.Integración y despliegue continuo con Jenkins y docker </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-1"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 9.Integración y despliegue continuo con Jenkins y docker</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">9. Integración y despliegue continuo con Jenkins y docker</a></li>
+   <li id="active"><a href="91_conceptos_importantes.html" class="active no-ch">9.1 Conceptos importantes</a></li>
+   <li><a href="92_ejemplo_prctico.html" class="no-ch">9.2 Ejemplo práctico</a></li>
+   <li><a href="recursos.html" class="no-ch">Recursos</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="index.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="92_ejemplo_prctico.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">9.1 Conceptos importantes</h1></header>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id1">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">CONTINUOS INTEGRATION (CI)</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta1_117_2" class="block iDevice_content">
+<div class="exe-text"><p>Es una <strong>práctica en el desarrollo</strong> de software que consiste en hacer <strong>de manera automática integraciones</strong> dentro de un proyecto. Este concepto de integración se refiere <strong>a la compilación y a la realización de las pruebas</strong> necesarias para comprobar la corrección de software. Es automático y se inicia tras realizar cambios en el sistema de control de versiones (Git,Svn, Mercurial etc..).</p>
+<p>Se hace especial hincapié en la automatización de los test para comprobar que no hay errores tras añadir cambios. Dentro de esas pruebas puede haber pruebas unitarias (U), de integración (I) , de aceptación (A) etc...</p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id2">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">CONTINUOS DELIVERY (CD)</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta2_118_2" class="block iDevice_content">
+<div class="exe-text"><p>Es una aproximación al proceso de desarrollo de software que pretende que se puedan <strong>generar versiones de nuestro sofware en cualquier momento y de una manera segura o confiable.</strong></p>
+<p>Es por lo tanto una <strong>evolución del proceso de Continuous Integration (CI)</strong> a la que se añade la generación del release del software para su <strong>entrega manual (Staging Deployment). </strong> Esto significa que tras tras el proceso de build, testing y generación de la versión hay que<strong> "hacer click" en un botón para desplegar la aplicación.</strong> No hay despliegue sin intervención humana pero está todo preparado para hacerse.</p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id3">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">CONTINUOS DEPLOYMENT (CDep)</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta3_119_2" class="block iDevice_content">
+<div class="exe-text"><p>Va <strong>un paso más allá del Continuos Delivery (CD), se despliega el código a producción de manera automática</strong> y todo empieza tras validar los cambios en el código en el sistema de control de versiones.<strong> No hay intervención humana</strong>. Me permite realizar despliegues en cualquier momento y acelera todo el proceso.</p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice" id="id4">
+<div class="iDevice emphasis0" >
+<div id="ta4_120_2" class="block iDevice_content">
+<div class="exe-text"><figure class="exe-figure exe-image position-center license-pd" style="width: 800px; text-align: center;"></figure>
+<p>Podemos ver la diferencia entre esos conceptos de manera gráfica.</p>
+<figure class="exe-figure exe-image license-pd position-center" style="width: 800px; text-align: center;"><img src="CI_CD_CDep.png" alt="CI / CD / CDep" title="CI / CD / CDep" style="display: block; margin-left: auto; margin-right: auto;" width="800" height="600" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>CI / CD / CDep</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p><br /><br /></p></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="index.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="92_ejemplo_prctico.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

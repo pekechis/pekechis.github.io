@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>4.2 Volúmenes y Bind Mount | Módulo 4. Persistenia en docker </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez  para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-2"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 4. Persistenia en docker</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">4. Persistencia en docker</a></li>
+   <li><a href="41_los_datos_en_los_contenedores.html" class="no-ch">4.1 Los datos en los contenedores</a></li>
+   <li id="active"><a href="42_volmenes_y_bind_mount.html" class="active no-ch">4.2 Volúmenes y Bind Mount</a></li>
+   <li><a href="43_gestionando_volmenes_y_obteniendo_informacin.html" class="no-ch">4.3 Gestionando volúmenes y obteniendo información</a></li>
+   <li><a href="44_asociando_almacenamiento_a_los_contenedores.html" class="no-ch">4.4 Asociando almacenamiento a los contenedores</a></li>
+   <li><a href="45_herramientas_docker_en_visual_studio_code.html" class="no-ch">4.5 Herramientas Docker en Visual Studio Code</a></li>
+   <li><a href="46_uso_de_los_volmenes_y_bind_mounts.html" class="no-ch">4.6 Uso de los volúmenes y bind mounts</a></li>
+   <li><a href="47_bind_mounts_para_desarrollo_depurando_aplicaciones.html" class="no-ch">4.7 Bind mounts para desarrollo. Depurando aplicaciones</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="41_los_datos_en_los_contenedores.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="43_gestionando_volmenes_y_obteniendo_informacin.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">4.2 Volúmenes y Bind Mount</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id4">
+<div class="iDevice emphasis0" >
+<div id="ta4_117_2" class="block iDevice_content">
+<div class="exe-text"><p>Tal y como dijimos en el apartado anterior, de las soluciones de persistencia que nos proporciona docker nos vamos a quedar con dos para este curso, los <em><strong>volúmenes</strong></em> y los <em><strong>bind mounts</strong></em>. Antes de que hablemos de las características y ventajas de cada uno de ellas las vamos situar dentro de nuestro host con el siguiente esquema general:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 538px; text-align: center;"><img src="almacenamiento.png" alt="Persistencia en contenedores" title="Persistencia en contenedores" width="538" height="430" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Persistencia en contenedores</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p></p></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id5">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">VOLÚMENES DOCKER</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta5_118_2" class="block iDevice_content">
+<div class="exe-text"><p>Si elegimos conseguir la persistencia usando <strong>volúmenes</strong> estamos haciendo que<strong> los datos de los contenedores</strong> que nosotros decidamos se almacenen en una<strong> parte del sistema de ficheros</strong> que es <strong>gestionada</strong> por <strong>docker</strong> y a la que, debido a sus permisos, sólo docker tendrá acceso.</p>
+<p>Esa<strong> "ZONA RESERVADA"</strong> de docker cambia de un sistema operativo a otro y también puede cambiar dependiendo de la forma de instalación, pero de manera general podemos decir que es:</p>
+<ul>
+<li><em><strong>/var/lib/docker/volumes</strong></em> en las distribuciones de Linux si lo hemos instalado desde paquetes estándar.</li>
+<li> <strong>/var/snap/docker/common/var-lib-docker/volumes</strong> en Linux si hemos instalado docker mediante snap (no lo recomiendo).</li>
+<li><em><strong>C:\ProgramData\docker\volumes</strong></em> en las instalaciones de Windows.</li>
+<li><em><strong>/var/lib/docker/volumes</strong></em> también en Mac aunque se requiere que haya una conexión previa a la máquina virtual que se crea.</li>
+</ul>
+<p>Este tipo de volúmenes se suele usar en los siguiente casos:</p>
+<ul>
+<li>Para <strong>compartir datos entre contenedores</strong>. Simplemente tendrán que usar el mismo volumen.</li>
+<li>Para <strong>copias de seguridad </strong>ya sea para que sean usadas posteriormente por otros contenedores o para mover esos volúmenes a otros hosts.</li>
+<li>Cuando quiero <strong>almacenar los datos</strong> de mi contenedor no localmente si no <strong>en un proveedor cloud.</strong></li>
+<li>En algunas situaciones donde usando Docker Desktop quiero más rendimiento. Esto se escapa al ámbito de este curso.</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id6">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">Bind Mounts</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta6_119_2" class="block iDevice_content">
+<div class="exe-text"><p>Si elegimos conseguir la persistencia de los datos de los contenedores usando <strong>bind mount </strong> lo que estamos haciendo es <em><strong>"mapear"</strong></em> una parte de mi sistema de ficheros, de la que yo normalmente tengo el control, con una parte del sistema de ficheros del contenedor.</p>
+<p>Este mapeado de partes de mi sistema de ficheros con el sistema de ficheros del contenedor me va a permitir:</p>
+<ul>
+<li><strong>Compartir ficheros</strong> entre el host y los containers.</li>
+<li>Que otras aplicaciones que no sean docker tengan acceso a esos ficheros, ya sean código, ficheros etc...</li>
+</ul>
+<p>Puede parecer que el hecho de que otras aplicaciones accedan a esos datos es algo negativo pero precisamente los <strong>bind mounts </strong>es el mecanismo que vamos a<strong> preferir</strong> para la fase de <strong>DESARROLLO </strong>ya que:</p>
+<ul>
+<li>Las <strong>aplicaciones</strong> que podrán acceder a esos ficheros serán los<strong> IDEs o editores de código.</strong></li>
+<li>Estaremos modificando con aplicaciones locales <strong>código</strong> que a la vez se encuentra <strong>en nuestro equipo y en el contenedor.</strong></li>
+<li>Y desde mi propio equipo estaré probando ese <strong>código en el entorno elegido, o en varios entornos</strong> a la vez <strong>sin necesidad de tener que instalar absolutamente nada</strong> en mi sistema.</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="41_los_datos_en_los_contenedores.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="43_gestionando_volmenes_y_obteniendo_informacin.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

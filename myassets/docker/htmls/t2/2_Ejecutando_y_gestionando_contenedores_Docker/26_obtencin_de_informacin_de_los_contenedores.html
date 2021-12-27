@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>2.6 Obtención de información de los contenedores | 2. Ejecutando y gestionando contenedores </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-6"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">2. Ejecutando y gestionando contenedores</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">P2. Ejecutando y gestionando contenedores Docker</a></li>
+   <li><a href="21_ejecutando_contenedores.html" class="no-ch">2.1 Ejecutando contenedores.</a></li>
+   <li><a href="22_los_flags_it.html" class="no-ch">2.2 Los flags -it</a></li>
+   <li><a href="23_ejecucin_de_servicios_puertos_y_variables_de_entorno.html" class="no-ch">2.3 Ejecución de servicios. Puertos y variables de entorno</a></li>
+   <li><a href="24_asignando_nombre_a_los_contenedores.html" class="no-ch">2.4 Asignando nombre a los contenedores</a></li>
+   <li><a href="25_ejecutar_rdenes_en_los_contenedores.html" class="no-ch">2.5 Ejecutar órdenes en los contenedores.</a></li>
+   <li id="active"><a href="26_obtencin_de_informacin_de_los_contenedores.html" class="active no-ch">2.6 Obtención de información de los contenedores</a></li>
+   <li><a href="27_gestin_de_contenedores.html" class="no-ch">2.7 Gestión de contenedores</a></li>
+   <li><a href="28_vdeo_resumen.html" class="no-ch">2.8. Vídeo resumen</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="25_ejecutar_rdenes_en_los_contenedores.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="27_gestin_de_contenedores.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">2.6 Obtención de información de los contenedores</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id4">
+<div class="iDevice emphasis0" >
+<div id="ta4_108_2" class="block iDevice_content">
+<div class="exe-text"><p>Conforme vayamos usando docker el número de contenedores que tenemos funcionando irá en aumento hasta que llegue un momento en que no sepamos con seguridad aspectos como si el contenedor tenía persistencia o no, si tenía redirección de puertos o no, si le había puesto algún nombre o estaba usando un nombre concedido por docker etc...</p>
+<p>En ese contexto hay varios comandos docker que me van a ayudar a obtener información de un contenedor. En este curso vamos a usar los dos siguientes:</p>
+<ul>
+<li>La orden <strong>docker ps</strong>.</li>
+<li>La orden <strong>docker inspect.</strong></li>
+<li>La orden <strong>docker logs.</strong></li>
+</ul></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id5">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">DOCKER PS</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta5_109_2" class="block iDevice_content">
+<div class="exe-text"><p>La orden <strong>docker ps </strong>nos va a servir para obtener <strong>información de los contenedores</strong> <strong>ya arrancados</strong>. La información que nos proporciona va a ser <strong>menos exhaustiva</strong> que la que podemos obtener con <strong>docker inspect</strong> pero nos puede ayudar a determinar aspectos como:</p>
+<ul>
+<li>El <strong>estado</strong> del contenedor (Parado EXITED o Funcionado UP).</li>
+<li>La <strong>imagen</strong> de la que deriva el contenedor.</li>
+<li>El <strong>tamaño</strong> actual del contenedor.</li>
+<li>La orden que ejecuta el contenedor al arrancar, lo que se llama el <strong>ENTRYPOINT</strong> (hablaremos de ello en el capítulo 6).</li>
+<li>El <strong>nombre</strong> del contenedor, ya sea dado por nosotros o por docker.</li>
+<li><strong>Cuando fue creado</strong> el contenedor.</li>
+<li>Las <strong>redirecciones de puertos</strong>, en caso de haberlas.</li>
+</ul>
+<p>Como muchas de las órdenes de <strong>docker ps</strong> tiene <strong>multitud de opciones</strong> (flags) así que para ilustrar su uso mejor vamos a poner varios ejemplos de las más usadas.</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p> <span style="color: #ff0000; font-size: 14pt;"># Mostrar los contenedores que están en ejecución</span></p>
+<p><span style="color: #00ff00; font-size: 14pt;">&gt; docker ps</span></p>
+<p><span style="color: #ff0000; font-size: 14pt;"># Mostrar todos los contenedores, estén parados o en ejecución (-a o --all)</span></p>
+<p><span style="color: #00ff00; font-size: 14pt;">&gt; docker ps -a</span></p>
+<p><span style="color: #ff0000; font-size: 14pt;"># Añadir la información del tamaño del contenedor a la información por defecto (-s o --size)</span></p>
+<p><span style="color: #00ff00; font-size: 14pt;">&gt; docker ps -a -s </span></p>
+<p><span style="color: #ff0000; font-size: 14pt;"># Mostrar información del último contenedor que se ha creado (-l o --latest). Da igual el estado</span></p>
+<p><span style="color: #00ff00; font-size: 14pt;">&gt; docker ps -l</span></p>
+<p><span style="color: #ff0000; font-size: 14pt;"># Filtar los contenedores de acuerdo a algún criterio usando la opción (-f o --filter)</span></p>
+<p><span style="color: #ff0000; font-size: 14pt;"># Filtrado por nombre</span></p>
+<p><span style="color: #00ff00; font-size: 14pt;">&gt; docker ps --filter name=servidor_web</span></p>
+<p><span style="color: #ff0000; font-size: 14pt;"># Filtrado por puerto. Contenedores que hacen público el puerto 8080</span></p>
+<p><span style="color: #00ff00; font-size: 14pt;">&gt; docker ps --filter publish=8080</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Hay mas opciones e incluso podemos formatear la salida usando el flag --format, pero con estas tenemos más que suficiente para poder empezar a trabajar con docker.</p>
+<p>Una vez ejecutamos el comando elegido obtendremos una salida similar a la siguiente:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 1000px; text-align: center;"><img src="dockerps-a.png" alt="Obtención de información de los contenedores con docker ps -a" title="Obtención de información de los contenedores con docker ps -a" width="1000" height="162" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Obtención de información de los contenedores con docker ps -a</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p>Podemos ver que las filas nos muestran información de cada uno de los contenedores. El tipo de cada información vienen reflejado en las columnas y podemos apreciar que las redirecciones de puertos solo se muestran en aquellos contenedores que están en ejecución (<strong>UP</strong>).</p>
+<p>Los contenedores parados tiene el estado(Status) <strong>EXITED</strong>.</p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id6">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">DOCKER INSPECT</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta6_110_2" class="block iDevice_content">
+<div class="exe-text"><p>Si la información que hemos obtenido usando docker ps , que es una información general, no es suficiente para nuestro objetivo deberemos usar la<strong> docker inspect</strong> que nos va a dar una <strong>información detallada</strong> del contenedor que seleccione. Lo podemos hacer de las siguientes formas:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Por nombre. Por ejemplo: Mostrar información detallada del contenedor cuyo nombre es jenkins</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker inspect jenkins</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Por id. Por ejemplo: Mostrar información detallada del contenedor cuyo id es 5e5adf6815bc</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker inspect 5e5adf6815bc</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Al ejecutar esto obtendremos una imagen similar a la siguiente:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 761px; text-align: center;"><img src="dockerinspect.png" alt="Información detallada con docker inspect" title="Información detallada con docker inspect" width="761" height="799" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Información detallada con docker inspect</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p>Esta imagen es una imagen parcial, porque se nos muestra mucha información, está en formato JSON (JavaScript Object Notation) y nos da datos sobre aspectos como:</p>
+<ul>
+<li>El <strong>id </strong>del contenedor.</li>
+<li>Los <strong>puertos</strong> abiertos y sus redirecciones</li>
+<li>Los <strong>bind mounts y volúmenes</strong> usados.</li>
+<li>El <strong>tamaño del contenedor<br /></strong></li>
+<li>La <strong>configuración de red</strong> del contenedor.</li>
+<li>El <strong>ENTRYPOINT</strong> que es lo que se ejecuta al hacer docker run.</li>
+<li>El valor de las <strong>variables de entorno</strong>.</li>
+<li>Y muchas más cosas....</li>
+</ul>
+<p>Adicionalmente podemos formatear la salida usando <a href="https://golang.org/pkg/text/template/" target="_blank" rel="noopener">Go Templates</a> y el flag --format/-f. Una descripción detallada queda fuera de los objetivos de este curso pero vamos a poner varios ejemplos:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #00ff00;"> <span style="font-size: 14pt; color: #ff0000;"># Mostrar la ip del contenedor<br /></span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt;  docker inspect --format 'La ip es {{.NetworkSettings.Networks.bridge.IPAddress}}' jenkins</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">La ip es 172.17.0.2</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Mostrar las redirecciones de puertos del contenedor<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker inspect --format 'Las redirecciones de puertos son {{.NetworkSettings.Ports}}' jenkins</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"></span><span style="font-size: 14pt; color: #00ff00;"></span><span style="font-size: 14pt; color: #00ff00;">Las redirecciones de puertos son map[50000/tcp:[{0.0.0.0 50000}] 8080/tcp:[{0.0.0.0 9090}]]</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NOTA:</strong> <strong>Para poder este formateo debemos conocer en profundidad la estructura del JSON que nos devuelve.</strong></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id7">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">DOCKER LOGS</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta7_111_2" class="block iDevice_content">
+<div class="exe-text"><p>Los dos comandos que hemos visto anteriormente nos dan información relativa al contenedor pero no nos dan <strong>información de lo que está pasando en el contenedor.</strong> Para determinar este tipo de cosas siempre hemos tenido los<strong> logs</strong> y siguen estando disponibles aunque estemos en docker mediante el uso de la orden<strong> docker logs,</strong> que me va a servir tanto para contenedores que estén <strong>parados</strong> como para contenedores en <strong>ejecución.</strong></p>
+<p>Los podemos hacer de las siguientes formas:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Por nombre. Por ejemplo: Mostrar los logs del contenedor cuyo nombre es jenkins</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker logs jenkins</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Por id. Por ejemplo: Mostrar los logs cuyo id es 5e5adf6815bc</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker logs 5e5adf6815bc</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Evidentemente los logs de una contenedor varían mucho de un contenedor a otro. No es lo mismo un log de un contenedor de base de datos que los logs de un servidor web. No obstante  una posible salida si es un contenedor con jenkins seria esta:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 801px; text-align: center;"><img src="dockerlogsjenkins.png" alt="Salida de la orden docker log jenkins" title="Salida de la orden docker log jenkins" width="801" height="355" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Salida de la orden docker log jenkins</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p>Como todas las órdenes docker logs tiene más opciones más cuyo uso vamos a ilustrar con ejemplos:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Opción -f o --follow . Sigue escuchando la salida que pueden dar los logs del contenedor<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker logs -f jenkins<br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Opción  --tail 5. Muestra las 5 últimas líneas de los logs del contenedor en cuestión<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker logs --tail 5 jenkins<br /></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>CONSULTAR LOS LOGS ES DE ESPECIAL UTILIDAD CUANDO NUESTROS CONTENEDORES CON SERVICIOS ESTÁN FALLANDO</strong></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="25_ejecutar_rdenes_en_los_contenedores.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="27_gestin_de_contenedores.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

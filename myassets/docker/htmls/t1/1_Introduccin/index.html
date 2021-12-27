@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>1. Introducción a Docker para desarrolladores </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez para la Consejería de Educación" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<meta name="description" content="Apartado 1" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-0"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">1. Introducción a Docker para desarrolladores</div></header>
+<nav id="siteNav">
+<ul>
+   <li id="active"><a href="index.html" class="active daddy main-node">1.Introducción. Docker para desarrolladores</a></li>
+   <li><a href="11_qu_es_docker.html" class="no-ch">1.1 ¿Qué es Docker?</a></li>
+   <li><a href="12_instalacin_de_docker.html" class="no-ch">1.2 Instalación de Docker</a></li>
+   <li><a href="13_hola_mundo.html" class="no-ch">1.3 Hola Mundo</a></li>
+   <li><a href="14_qu_es_docker_hub.html" class="no-ch">1.4 ¿Qué es Docker Hub?</a></li>
+   <li><a href="15_aplicaciones_a_la_docencia.html" class="no-ch">1.5 Aplicaciones a la docencia</a></li>
+   <li><a href="16_estructura_del_resto_del_curso.html" class="no-ch">1.6 Estructura del resto del curso</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="11_qu_es_docker.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">1.Introducción. Docker para desarrolladores</h1></header>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id29">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">BIENVENIDOS AL CURSO.</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta29_112_2" class="block iDevice_content">
+<div class="exe-text"><p class="western" align="justify">Desde hace unos años la <strong>adopción</strong> de la tecnología de contenedores <strong>Docker</strong> por parte de los equipos de desarrollo de software ha sufrido un <strong>incremento exponencial.</strong></p>
+<p class="western" align="justify">Su uso<strong> aumenta la productividad</strong> de los desarrolladores y les permite <strong>empaquetar y distribuir sus aplicaciones</strong> y todas sus dependencias en contenedores que pueden ser desplegados con gran facilidad en todo tipo de sistemas operativos, servidores, nubes públicas o privadas etc.</p>
+<p class="western" align="justify">Durante este curso nos introduciremos en los <strong>fundamentos de los contenedores Docker</strong> y buscaremos cómo <strong>usarlos en nuestra práctica docente.</strong></p>
+<p class="western" align="justify">Ejecutaremos contenedores, los configuraremos , crearemos nuestros propios contenedores y para finalizar realizaremos un flujo de despliegue continuo usando contenedores.</p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_recomendacion" id="id32">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_recomendacion.png)"><h1 class="iDeviceTitle">Convenciones utilizadas. Uso del terminal</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta32_115_2" class="block iDevice_content">
+<div class="exe-text"><p>A lo largo del curso habrá muchas ocasiones en que los materiales muestren instrucciones para ser ejecutadas en el terminal. En esos casos:</p>
+<ul>
+<li>Se presentará el terminal con fondo negro</li>
+<li>Los comentarios a las instrucciones se mostrarán con letra roja y empezarán por el carácter #. Éstos no deberán copiarse en el terminal para ser ejecutados, ya que nos dará un error.</li>
+<li>Los comandos se mostrarán con letra verde, empezarán tras el carácter &gt; y nos indicarán las órdenes que si debemos copiar para ser ejecutadas.</li>
+</ul>
+<p>Un ejemplo:</p>
+<table style="width: 100%; background-color: #000000;" border="1">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Esto es un comentario sobre el comando que se va a ejecutar a continuación. NO DEBE SER COPIADO</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; echo "Esto si que es un comando válido. Debe ser copiado"</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="11_qu_es_docker.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>8.2 Seguridad en el proceso de build | Módulo 8. Asegurando contenedores </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-5"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 8. Asegurando contenedores</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">P8. Asegurando contenedores</a></li>
+   <li><a href="81_seguridad_en_las_imgenes.html" class="no-ch">8.1 Seguridad en las imágenes</a></li>
+   <li id="active"><a href="82_seguridad_en_el_proceso_de_build.html" class="active no-ch">8.2 Seguridad en el proceso de build</a></li>
+   <li><a href="83_seguridad_al_arrancar_los_contenedores.html" class="no-ch">8.3 Seguridad al arrancar los contenedores</a></li>
+   <li><a href="84_video_resumen.html" class="no-ch">8.4 Video Resumen</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="81_seguridad_en_las_imgenes.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="83_seguridad_al_arrancar_los_contenedores.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">8.2 Seguridad en el proceso de build</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id10">
+<div class="iDevice emphasis0" >
+<div id="ta10_122_2" class="block iDevice_content">
+<div class="exe-text"><p>Cuando estamos construyendo nuestras propias imágenes también debemos de tener en consideración ciertos factores a la hora  de mejorar la seguridad de las imágenes resultantes. Algunos de los más básicos hacen referencia a las siguientes órdenes del Dockerfile</p>
+<ul>
+<li><strong><strong>ADD &amp; COPY</strong></strong><strong></strong></li>
+<li><strong>CMD &amp; ENTRYPOINT</strong></li>
+</ul></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id15">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">ADD &amp; COPY</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta15_116_2" class="block iDevice_content">
+<div class="exe-text"><p>Como ya vimos en el capítulo 6 <strong>la orden ADD</strong> funciona como una <strong>copia recursiva</strong> desde el origen hasta la carpeta destino en el contenedor, creando los directorios  en caso de que no existan. Esta copia recursiva puede ser desde un contenido local o desde una URL y además si le pasamos un archivo comprimido a la orden ADD los descomprime de manera automática.  <strong>Pero en caso de que este contenido venga de una URL:</strong></p>
+<ul>
+<li><strong>¿Confiamos realmente en los autores?</strong></li>
+<li><strong>¿Cómo sabemos que los contenidos no han sido comprometidos a nivel de seguridad en el origen?</strong></li>
+<li><strong>¿Nos hemos protegido frente a ataques Man-In-The-Middle?.</strong></li>
+</ul>
+<p>Todo estos aspectos deben de ser tenidos en cuenta.</p>
+<p>Al igual que ADD, COPY hace una copia recursiva desde el origen hasta el destino pero no permite ni URL de origen ni descomprime los ficheros. Si copiamos un archivo .zip este permanecerá como un archivo .zip. Esta vez <strong>el problema reside en ambos casos en la recursividad de la copia.<br /></strong></p>
+<p>Cuando copiamos elementos de forma recursiva incrementamos  la posibilidad de que suceda lo siguiente:</p>
+<ul>
+<li><strong>Aumentar  el tamaño de la imagen</strong> de manera innecesaria, tal y como dijimos anteriormente.</li>
+<li><strong>Copiar en el contenedor ficheros  sensibles</strong> que contengan claves, tokens de APis etc...</li>
+</ul>
+<p>En ambos casos tenemos que tener un <strong>fichero .dockerignore</strong> debidamente configurado y  que excluya explícitamente del proceso de copia recursiva archivos con claves como *.ENV, *.pem etc..</p>
+<p>El contenido del fichero .dockerignore funciona de manera <strong>análoga al fichero .gitignore</strong>, tal y como hemos comentado a lo largo del curso. Una descripción más detallada de los contenidos que podemos escribir en este archivo la podéis encontrar <a href="https://docs.docker.com/engine/reference/builder/#dockerignore-file" target="_blank" title="Referencia .dockerignore" rel="noopener">aquí.</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id16">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">CMD &amp; ENTRYPOINT</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta16_117_2" class="block iDevice_content">
+<div class="exe-text"><p>Como norma general <strong>los procesos que se ejecutan en un contenedor</strong> (al igual que en otros sistemas) <strong>no deben ejecutarse como root</strong>, en especial aquellos que son  servicios expuestos al exterior.</p>
+<p><span style="text-decoration: underline;"><strong>¿Por qué es importante esto?</strong></span></p>
+<p>Desde el punto de vista de seguridad una buena práctica es  que las aplicaciones únicamente tengan acceso a los recursos que necesitan para desempeñar sus funciones (PRINCIPIO DEL MÍNIMO PRIVILEGIO). Si no lo  hacemos así y ejecutamos aplicaciones como root esa aplicación podrá realizar cualquier operación en nuestro sistema, por ejemplo:</p>
+<ul>
+<li>Realizar operaciones no permitidas como borrar ficheros, parar servicios y transferir información.</li>
+<li>Acceder a ficheros con contenido sensible que hayamos podido colocar en el contenedor, por ejemplo usando un bind mount.</li>
+</ul>
+<p>Debemos de tener en cuenta que estamos usando imágenes de terceros y  confiando en las aplicaciones que vienen en dicha  imágenes. Debemos confiar,  pero siempre ser cautos y comprobar  si esa  aplicación que vamos a usar está actualizada desde el punto de vista de la seguridad.</p>
+<p><span style="text-decoration: underline;"><strong>¿ Cómo evito esto en mi Dockerfile?</strong></span></p>
+<p>Puedo afrontar este tipo de problemas desde un Dockerfile siguiendo este flujo de trabajo cuando lo estoy creando:</p>
+<ol>
+<li> Crear un usuario y un grupo para ese usuario (RUN).</li>
+<li>Ejecutar todas las instrucciones del Dockerfile que tengan que ser realizadas como root (RUN, COPY, ADD,WORKDIR  etc....).</li>
+<li>De manera previa a ejecutar el ENTRYPOINT y/o el CMD cambiar el usuario de ejecución de las órdenes al usuario creado previamente (USER).</li>
+<li>Definir el ENTRYPOINT y/o CMD y que esa órdenes lances procesos pertenecientes al usuario creado.</li>
+</ol>
+<p>Un ejemplo de esta estrategia:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Imágen que vamos a usar</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">FROM XXXXX</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">....</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Creación del usuario para arrancar el servicio</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">RUN addgroup -S usuario &amp;&amp; adduser -S usuario -G usuario.</span><span style="font-size: 14pt; color: #00ff00;"></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">.........</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Lista de órdenes que serán de ROOT</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">.........</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Establezco el usuario que ejecutará las siguientes órdenes.</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">USER usuario</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Defino el ENTRYPOINT, se ejecutará como usuario.</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">ENTRYPOINT .....</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="81_seguridad_en_las_imgenes.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="83_seguridad_al_arrancar_los_contenedores.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

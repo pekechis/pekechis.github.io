@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>3.2 Borrado de imágenes | 3. Gestión de imágenes en docker </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-2"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">3. Gestión de imágenes en docker</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">3. Gestión de imágenes docker</a></li>
+   <li><a href="31_descarga_de_imgenes.html" class="no-ch">3.1 Descarga de imágenes</a></li>
+   <li id="active"><a href="32_borrado_de_imgenes.html" class="active no-ch">3.2 Borrado de imágenes</a></li>
+   <li><a href="33_obteniendo_informacin_de_las_imgenes.html" class="no-ch">3.3 Obteniendo información de las imágenes</a></li>
+   <li><a href="34_ms_comandos_relacionados_con_imgenes.html" class="no-ch">3.4 Más comandos relacionados con imágenes</a></li>
+   <li><a href="34_vdeo_resumen.html" class="no-ch">3.4 Vídeo resumen</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="31_descarga_de_imgenes.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="33_obteniendo_informacin_de_las_imgenes.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">3.2 Borrado de imágenes</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id10">
+<div class="iDevice emphasis0" >
+<div id="ta10_109_2" class="block iDevice_content">
+<div class="exe-text"><p>Conforme vamos avanzando en el uso de Docker iremos <strong>acumulando imágenes</strong> en nuestro sistema. Estas imágenes, bien es cierto, no ocupan tanto espacio como una máquina virtual pero si hemos descargado varias decenas o centenas de las mismas (basta un par docker pull -a para eso) al final nos encontraremos con que <strong>podemos llegar a ocupar una  cantidad considerable de espacio en disco</strong> si no tenemos cierto control sobre las mismas.</p>
+<p>En este caso, para una mejor gestión, podemos empezar a borrar imágenes de la siguiente forma:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Borrado de la imagen mysql:8.0.22</span><span style="font-size: 14pt; color: #00ff00;"><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker rmi mysql:8.0.22<br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Borrado de una imagen usando su IMAGE ID</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker rmi dd7265748b5d</span><span style="font-size: 14pt; color: #00ff00;"></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Usando la orden docker image rm y el nombre</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker image rm mysq:8.0.22</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;"># Usando la orden docker image rm y el IMAGE ID</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker image rm dd7265748b5d</span></p>
+<p><span style="color: #ff0000;"><span style="font-size: 14pt;"># Borrado de dos imágenes (o varias)  a la vez. Puedes usar nombre e IMAGE ID</span><span style="font-size: 14pt;"></span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker rmi mysql:8.0.22 mysql:5.7</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Pero este borrado de imágenes, ¿va a ser siempre efectivo?. <strong>NO.</strong><strong></strong></p>
+<p><span style="font-size: 18pt;">NO PODEMOS BORRAR UNA IMAGEN SI YA TENEMOS UN CONTENEDOR QUE ESTÁ USÁNDOLA.</span></p>
+<p><span style="font-size: 12pt;">No obstante, si lo intentamos no va a suceder nada, simplemente se nos mostrará un mensaje de error como el siguiente:</span></p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #00ff00;">Error response from daemon: conflict: unable to remove repository reference "XXXX" (must force) - container 8d12ffafaaec is using its referenced image 417af7dc28bc</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Si aun así queremos borrarla <strong>podemos forzar ese borrado</strong>, lo cuál afectará,evidentemente, a los contenedores que tuviéramos referenciando esa imagen. Eso lo conseguimos añadiendo la opción<em><strong> -f o --force</strong></em>. Por ejemplo:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Borra la imagen httpd (Apache latest) aunque hubiera contenedores que estuvieran usando esa imagen.</span><span style="font-size: 14pt; color: #00ff00;"><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker rmi -f httpd</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Este proceso de borrado, sobre todo si tenemos muchas imágenes,  puede ser un proceso engorroso. <strong>Para facilitar</strong> esto disponemos de la orden <strong>docker image prune que tiene tres opciones básicas:</strong></p>
+<ul>
+<li><strong>-a o --all </strong>para borrar todas las imágenes que no están siendo usadas por contenedores<strong><br /></strong></li>
+<li><strong>-f o --force </strong>para que no nos solicite confirmación. Es una operación que puede borrar muchas imágenes de una tacada y debemos ser cuidadosos. Os recomiendo no usar esta opción.</li>
+<li><strong>--filter</strong> para especificar ciertos filtros a las imágenes.</li>
+</ul>
+<p>Para demostrar su funcionamiento vamos a poner varios ejemplos:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Borrar todas las imágenes sin usar</span><span style="font-size: 14pt; color: #00ff00;"><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker image prune -a<br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Borrado de la imágenes creadas hace más de una semana  10 días</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker image prune --filter until="240h"</span><span style="font-size: 14pt; color: #00ff00;"></span></p>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="31_descarga_de_imgenes.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="33_obteniendo_informacin_de_las_imgenes.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>7.2 El archivo docker-compose.yml | Módulo 7. Aplicaciones multicapa con docker-compose </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-3"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 7. Aplicaciones multicapa con docker-compose</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">7. Aplicaciones multicapa con docker-compose</a></li>
+   <li><a href="71_instalacin_de_dockercompose.html" class="no-ch">7.1 Instalación de docker-compose</a></li>
+   <li id="active"><a href="72_el_archivo_dockercomposeyml.html" class="active no-ch">7.2 El archivo docker-compose.yml</a></li>
+   <li><a href="73_la_orden_dockercompose.html" class="no-ch">7.3 La orden docker-compose</a></li>
+   <li><a href="74_aplicaciones_a_la_docencia_entornos_de_prcticas.html" class="no-ch">7.4 Aplicaciones a la docencia. Entornos de prácticas.</a></li>
+   <li><a href="75_publicacin_de_archivos_dockercompose_en_dockerhub.html" class="no-ch">7.5 Publicación de archivos docker-compose en DockerHub</a></li>
+   <li><a href="76_recursos_utilizados.html" class="no-ch">7.6 Recursos utilizados</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="71_instalacin_de_dockercompose.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="73_la_orden_dockercompose.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">7.2 El archivo docker-compose.yml</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id11">
+<div class="iDevice emphasis0" >
+<div id="ta11_116_2" class="block iDevice_content">
+<div class="exe-text"><p>Como ya hemos dicho en el apartado anterior el fichero docker-compose.yml es un fichero en formato YAML que contiene las instrucciones para crear y configurar los servicios que van a constituir mi aplicación o entorno. Su estructura general es la siguiente:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 744px;"><img src="DOCKERCOMPOSE.yml.png" alt="Estructura general de un docker-compose.yml" title="Estructura general de un docker-compose.yml" width="744" height="541" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Estructura general de un docker-compose.yml</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p style="text-align: left;"><br />Dentro de cada una de estas secciones tenemos multitud de opciones. Es imposible tratar todas de manera detallada así que nos vamos a centrar en ejemplos para conseguir:</p>
+<ul>
+<li style="text-align: left;">Asociar contenedores e imágenes a los servicios creados.</li>
+<li style="text-align: left;">Especificar las distintas variables de entorno que pueden tener los contenedores creados. Recordad que hay que consultar siempre la página de cada imagen en DockerHub.</li>
+<li style="text-align: left;">Establecer las redirecciones de puertos si fueran necesarias.</li>
+<li style="text-align: left;">Persistir los datos de los contenedores usando bind mounts o volúmenes . Definiremos los volúmenes, si es necesario, para que sean usados por los contenedores.</li>
+<li style="text-align: left;">Definir redes para asociarlas a los contenedores en caso de que queramos que no usen la red por defecto. En el módulo 5 hablamos de las diferencias entre la red por defecto y las redes creadas por el usuario.</li>
+<li style="text-align: left;">Establecer orden de inicio para los contenedores que componen mi aplicación.</li>
+</ul>
+<p><span style="text-decoration: underline;"><strong>ASOCIAR CONTENEDORES A SERVICIOS</strong></span></p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #00ff00;">version: '3'</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">  # Empieza la sección de servicios.</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">  services:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    <span style="color: #ff0000;"># Declaro un servicio con nombre miapache</span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    miapache:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;">     # Ese contenedor usará como imagen de base la imagen httpd(Servidor Apache) de DockerHub.</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      image: httpd</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;">      # Le doy nombre al contenedor cuando arranque (equivalente al flag --name de docker un) </span> </span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      container_name: web</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><span style="text-decoration: underline;"><strong>ESPECIFICAR LAS VARIABLES DE ENTORNO PARA  LOS CONTENEDORES</strong></span></p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #00ff00;">version: '3'</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">  # Empieza la sección de servicios.</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">  services:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    <span style="color: #ff0000;"># Declaro un servicio con nombre datos<br /></span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    datos:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;">     # Ese contenedor usará como imagen de base la imagen mariadb (Servidor de base de datos) de DockerHub.</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      image: mariadb<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;">      # Le doy nombre al contenedor cuando arranque (equivalente al flag --name de docker un) </span> </span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      container_name: bd<br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">      # Establezco las variables de entorno para configurar el servicio</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      environment: </span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">        MYSQL_ROOT_PASSWORD: 123456</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">        MYSQL_DATABASE: test</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">        MYSQL_USER: pepe</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">        MYSQL_PASSWORD: pepe</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><span style="text-decoration: underline;"><strong>ESTABLEZCO LA REDIRECCIÓN DE PUERTOS SI FUERA NECESARIO</strong></span><span style="text-decoration: underline;"><strong></strong></span></p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #00ff00;">version: '3'</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">  # Empieza la sección de servicios.</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">  services:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    <span style="color: #ff0000;"># Declaro un servicio con nombre miapache</span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    miapache:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;">     # Ese contenedor usará como imagen de base la imagen httpd(Servidor Apache) de DockerHub.</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      image: httpd</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;">      # Le doy nombre al contenedor cuando arranque (equivalente al flag --name de docker un) </span> </span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      container_name: web</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">      # Establezco la redirección de puertos</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      ports:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">        - 8080:80</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><span style="text-decoration: underline;"><strong>PERSISTO LOS DATOS USANDO UN BIND MOUNT PARA EL SERVIDOR WEB</strong></span><span style="text-decoration: underline;"><strong></strong></span></p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #00ff00;">version: '3'</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">  # Empieza la sección de servicios.</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">  services:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    <span style="color: #ff0000;"># Declaro un servicio con nombre miapache</span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    miapache:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;">     # Ese contenedor usará como imagen de base la imagen httpd(Servidor Apache) de DockerHub.</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      image: httpd</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;">      # Le doy nombre al contenedor cuando arranque (equivalente al flag --name de docker un) </span> </span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      container_name: web</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">      # Establezco un bind bound de la carpeta src de mi equipo en la carpeta /app del contenedor.</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      volumes:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">        - "./src:/app"</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">       # Notación alternativa a lo anterior</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">       - type: bind</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">         source: "./src"</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">         target: /app</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><span style="text-decoration: underline;"><strong>PERSISTIR LOS DATOS PARA QUE EL SERVIDOR DE BASE DE DATOS USE UN VOLUMEN</strong></span><span style="text-decoration: underline;"><strong></strong></span></p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #00ff00;">version: '3'</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">  services:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    <span style="color: #ff0000;"># Declaro un servicio con nombre datos<br /></span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    datos:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;">     # Ese contenedor usará como imagen de base la imagen mariadb (Servidor de base de datos) de DockerHub.</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      image: mariadb<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;">      # Le doy nombre al contenedor cuando arranque (equivalente al flag --name de docker un) </span> </span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      container_name: bd</span><span style="font-size: 14pt; color: #00ff00;"></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      .........</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">      # Establezco que los datos de la base de datos van a persistir en el volumen datosapp que se montará en /var/lib/mysql</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">      <span style="color: #00ff00;">volumes: </span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">        - "datosapp:/var/lib/mysql"</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">      # Notación alternativa a lo anterior</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      volumes:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">        - type: volume</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">          src: datosapp</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">          target: "var/lib/mysql"</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"> # Sección para la definición de los volúmenes. Está al mismo nivel de la sección services<br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"> <span style="color: #00ff00;"> volumes:</span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    datosapp: local</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong><span style="text-decoration: underline;">DEFINIR REDES PARA ASOCIARLAS A LOS CONTENEDORES</span></strong><span style="text-decoration: underline;"><strong></strong></span><span style="text-decoration: underline;"><strong></strong></span></p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #00ff00;">version: '3'</span><span style="font-size: 14pt; color: #00ff00;"></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Empieza la sección de servicios.</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">  services:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    <span style="color: #ff0000;"># Declaro un servicio con nombre miapache</span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    miapache:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;">     # Ese contenedor usará como imagen de base la imagen httpd(Servidor Apache) de DockerHub.</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      image: httpd</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;">      # Le doy nombre al contenedor cuando arranque (equivalente al flag --name de docker un) </span> </span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      container_name: web</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">      # Establezco el nombre de red para el contenedor</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      hostname: web</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">      # Establezco la red o redes a las que se va a conectar el contenedor<br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">      <span style="color: #00ff00;">networks:</span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">        - ejemplo</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">...</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Sección de definición de redes. Está al mismo nivel que services y volumes</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">networks:</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">  # Definición de la red ejemplo</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">  ejemplo:</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">    # Tipo de red</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    driver: bridge</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">    # Opciones de la red</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    ipam:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      driver: default</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      config:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">        subnet: 172.20.0.0/16</span><span style="font-size: 14pt; color: #00ff00;"></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><span style="text-decoration: underline;"><strong>ESTABLECER ORDEN DE INICIO DE LOS CONTENEDORES</strong></span><strong><span style="text-decoration: underline;"></span></strong><span style="text-decoration: underline;"><strong></strong></span><span style="text-decoration: underline;"><strong></strong></span></p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #00ff00;">version: '3'</span><span style="font-size: 14pt; color: #00ff00;"></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Empieza la sección de servicios.</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">  services:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    <span style="color: #ff0000;"># Declaro un servicio con nombre miapache</span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    miapache:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;">     # Ese contenedor usará como imagen de base la imagen httpd(Servidor Apache) de DockerHub.</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      image: httpd</span><span style="font-size: 14pt; color: #00ff00;"></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      ....</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;">     # Este contenedor arrancará después el contenedor del servicio datos</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      depends_on:<br />        - datos</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;">   # Comienzo de descripción del servicio de datos</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">    datos:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      image: mariadb</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">      ....</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NOTA: LA NOTACIÓN YAML ESTABLECE 2 ESPACIOS PARA LA TABULACIÓN DE LOS DISTINTOS NIVELES: </strong></p></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_caso" id="id12">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_caso.png)"><h1 class="iDeviceTitle">EJEMPLO COMPLETO</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta12_117_2" class="block iDevice_content">
+<div class="exe-text"><p>docker-compose.yml que une todo lo expuesto anteriormente.</p>
+<p>
+<script src="https://gist.github.com/pekechis/0b980096f65e8d03115472a5bfe2ccd8.js"></script>
+</p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_informarse" id="id6">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_informarse.png)"><h1 class="iDeviceTitle">REFERENCIA COMPLETA docker-compose.yml</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta6_120_2" class="block iDevice_content">
+<div class="exe-text"><p>Podemos encontrar una referencia completa sobre el fichero docker-compose.yml  en la documentación oficial: <a href="https://docs.docker.com/compose/compose-file/compose-file-v3/" target="_blank" rel="noopener">https://docs.docker.com/compose/compose-file/compose-file-v3/</a></p>
+<p>Y una extensión para manejar este tipo de ficheros en Visual Studio Code: <a href="https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml" target="_blank" rel="noopener">https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="71_instalacin_de_dockercompose.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="73_la_orden_dockercompose.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

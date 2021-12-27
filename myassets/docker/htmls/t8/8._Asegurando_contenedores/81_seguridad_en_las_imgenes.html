@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>8.1 Seguridad en las imágenes | Módulo 8. Asegurando contenedores </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-1"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 8. Asegurando contenedores</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">P8. Asegurando contenedores</a></li>
+   <li id="active"><a href="81_seguridad_en_las_imgenes.html" class="active no-ch">8.1 Seguridad en las imágenes</a></li>
+   <li><a href="82_seguridad_en_el_proceso_de_build.html" class="no-ch">8.2 Seguridad en el proceso de build</a></li>
+   <li><a href="83_seguridad_al_arrancar_los_contenedores.html" class="no-ch">8.3 Seguridad al arrancar los contenedores</a></li>
+   <li><a href="84_video_resumen.html" class="no-ch">8.4 Video Resumen</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="index.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="82_seguridad_en_el_proceso_de_build.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">8.1 Seguridad en las imágenes</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id3">
+<div class="iDevice emphasis0" >
+<div id="ta3_115_2" class="block iDevice_content">
+<div class="exe-text"><p>A lo largo de todos los capítulos  hemos descargado multitud de imágenes desde DockerHub. Estas <strong>imágenes son el elemento fundamental</strong> sobre el que hemos desarrollado todo el curso pero si no tenemos cuidado <strong>pueden representar un posible riesgo de seguridad</strong> ya que, normalmente son <strong>imágenes realizadas por terceros</strong> y, por lo tanto, no tenemos ningún control sobre ellas.</p>
+<p>Este aspecto no es tan importante si las usamos únicamente para el desarrollo pero adquiere mucha más relevancia si tenemos pensado llevar esos contenedores a producción.</p>
+<p>Para intentar minimizar los riesgos de usar imágenes hay que seguir una serie de pautas generales:</p>
+<ul>
+<li>Intentar siempre  usar una <strong>imagen de un usuario verificado o una imagen publicada</strong> por la propia empresa Docker.</li>
+<li><strong>Verificar la integridad de la imagen que nos descargamos.</strong></li>
+<li>Intentar usar <strong>imágenes que tengan lo mínimo.</strong></li>
+<li><strong>Restringir los privilegios</strong> de los datos a los que pueden acceder los contenedores.</li>
+<li>En caso de crear nuestras propias imágenes <strong>pagar por el servicio</strong> de DockerHub <em><strong>"Vulnerability Scanner" </strong></em>o utilizar herramientas que sirve para ese mismo propósito.<em><br /></em></li>
+</ul></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_caso" id="id5">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_caso.png)"><h1 class="iDeviceTitle">USUARIOS VERIFICADOS E IMÁGENES OFICIALES DE LA EMPRESA DOCKER</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta5_117_2" class="block iDevice_content">
+<div class="exe-text"><p>Aunque no es una garantía al 100%, el hecho de descargar este tipo de imágenes ayuda a reducir los posibles riesgos que puedan existir. Para obtener este tipo de imágenes, cuando hacemos una búsqueda debemos activar los filtros adecuados:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 799px; text-align: center;"><img src="oficiales.png" alt="Búsqueda de imágenes oficiales o verificadas" title="Búsqueda de imágenes oficiales o verificadas" width="799" height="388" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Búsqueda de imágenes oficiales o verificadas</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p></p>
+<p></p>
+<p></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_caso" id="id6">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_caso.png)"><h1 class="iDeviceTitle">VERIFICACIÓN DE LAS IMÁGENES</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta6_118_2" class="block iDevice_content">
+<div class="exe-text"><p>Docker utiliza un <strong>mecanismo de firma digital llamado DCT (Docker's Content Trust) p</strong>ara verificar la <strong>INTEGRIDAD y la AUTORÍA</strong> de las imágenes que nos descargamos desde DockerHub. Por defecto el mecanismo DCT está deshabilitado  y cuando hacemos docker pull podemos descargar imágenes sin verificar ni la integridad ni la autoría.</p>
+<p>Si habilitamos DCT  <strong>solo podré hacer PULL / RUN / BUILD con imágenes</strong> <em><strong>"Trusted"</strong></em> <strong>salvo</strong> que explícitamente haga alguna excepción <strong>añadiendo el flag ---disable-content-trust</strong> a la ejecución de dichas órdenes.</p>
+<p>Si quiero habilitarlo tengo que poner la variable de entorno <strong>DOCKER_CONTENT_TRUST=1.</strong> A partir de entonces no podré descargarme imágenes no firmadas, incluso aunque sean mías.En Linux esto se realiza de la siguiente manera:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Añado la siguiente línea al final del fichero .bashrc que sirve para añadir esa variable de entorno<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">export DOCKER_CONTENT_TRUST=1 <br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Recargo el .bashrc</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; source /home/miusuario/.bashrc</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>IMPORTANTE: El procedimiento en Windows y Mac para establecer variables de entorno es diferente.Si no quiero crear la variable de entorno puedo añadir DOCKER_CONTENT_TRUST=1 delante de la orden docker para conseguir el mismo efecto.</strong><strong></strong></p>
+<p><span style="text-decoration: underline;"><strong>FIRMA DIGITAL DE MIS IMÁGENES</strong></span></p>
+<p>Si quiero firmar digitalmente mis imágenes tengo que seguir los siguientes pasos:</p>
+<ol>
+<li><strong>Generar la parejas de claves</strong> público/privada. La privada se coloca en ~/.docker/trust/private</li>
+<li><strong>Compartir mi clave pública con el servidor Notary</strong> asociado a DockerHub. Notary es una herramienta que me permite publicar contenidos confiables asegurando la integridad de dicho contenido y la autoría del mismo. Si utilizara otro registro diferente a DockerHub el hecho de tener un servicio Notary es requisito para poder firmar las imágenes en ese registro.<strong>TENGO QUE GENERAR UNA CLAVE PÚBLICA PARA CADA REPOSITORIO (Colección de versiones de la misma imagen).<br /></strong></li>
+<li><strong>Firmar la imagen. </strong>Este proceso firma y a la vez hace un push.</li>
+</ol>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># 1. Generar la pareja de claves <br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt;  docker trust key generate miclave.pub<br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># 2. Comparto mi clave pública con el servidor Notary en el repositorio para las imágenes del respositorio usuario/nombreimagen. En nombre del firmante es miclave y miclave.pub es la clave pública generada en el proceso anterior. Recordad que un mismo repositorio puede contener varias versiones (TAGS) de una misma imagen.<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker trust signer add --key miclave.pub miclave usuario/nombrerepositorio<br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># 3. Firmo la imagen</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker trust sign usuario/nombreimagen[:tag]</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Si quiero ver las firmas almacenadas para un determinado repositorio debo ejecutar la siguiente orden:<span style="font-size: 14pt; color: #ff0000;"><br /></span></p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># 1. Obtener las firmantes y las claves de un repositorio</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt;  docker trust inspect --pretty nombreusuario/nombrerepositorio</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Obtendremos una salida similar a la siguiente:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 599px; text-align: center;"><img src="salida_inspect.png" alt="Salida de la orden docker trust inspect" title="Salida de la orden docker trust inspect" width="599" height="223" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Salida de la orden docker trust inspect</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p>Para más opciones de la orden docker trust os dejo el enlace directo a la referencia: <a href="https://docs.docker.com/engine/reference/commandline/trust/" target="_blank" rel="noopener">https://docs.docker.com/engine/reference/commandline/trust/</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_caso" id="id7">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_caso.png)"><h1 class="iDeviceTitle">IMÁGENES MíNIMAS</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta7_119_2" class="block iDevice_content">
+<div class="exe-text"><figure class="exe-figure exe-image float-left license-CC-BY" style="width: 100px; text-align: center;"><img src="shrink_icon.png" alt="Shrink icon" style="margin: 30px 10px 30px 10px;" width="100" vspace="30" hspace="10" height="100" />
+<figcaption class="figcaption"><a href="https://thenounproject.com/bfarias" target="_blank" class="author" rel="noopener">b farias</a> <span class="license"><span class="sep">(</span><a href="http://creativecommons.org/licenses/?lang=es" rel="license nofollow noopener" target="_blank" title="Creative Commons BY">CC BY</a><span class="sep">)</span></span></figcaption>
+</figure>
+<p style="padding-left: 60px;"><br />Cuando estamos construyendo imágenes debemos intentar que sean imágenes de un tamaño mínimo. <strong>¿Qué sentido tiene usar un sistema operativo entero si solo queremos instalar una aplicación o un servicio?.</strong></p>
+<p style="padding-left: 60px;"><strong>Cada aplicación nueva que instalamos añade un potencial punto de inseguridad</strong> y nos obliga a estar atentos para actualizar a una nueva versión cuando surja una vulnerabilidad.</p>
+<p></p>
+<p></p>
+<p></p>
+<p>Dos buenas prácticas en este sentido son:</p>
+<ul>
+<li><strong>Si estamos construyendo nuestra propia imagen</strong> usaremos una imagen de base que sea de tamaño mínimo. Un ejemplo es <a href="https://hub.docker.com/r/bitnami/minideb/" target="_blank" title="Bitnami minideb" rel="noopener">bitnami/minideb</a>. . También es cierto que a lo largo del curso hemos utilizado imágenes de terceros con un único servicio ya instalado. Normalmente estas imágenes ya están pulidas y no tienen mas que lo necesario.</li>
+</ul>
+<p></p>
+<ul>
+<li>Usar el fichero <em><strong>.dockerignore</strong></em><span style="text-decoration: underline;"></span> en nuestro proceso de build. Así evitamos que nuestra imagen tenga más tamaño del necesario.</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_caso" id="id8">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_caso.png)"><h1 class="iDeviceTitle">RESTRICCIÓN DE PRIVILEGIOS</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta8_120_2" class="block iDevice_content">
+<div class="exe-text"><p></p>
+<p>Cuando hablamos  de restricción de privilegios nos referimos a los <strong>permisos que el contenedor va a tener en el acceso</strong> a los volúmenes montados, bind mounts o a ciertos directorios del propio contenedor.<span style="text-decoration: underline;"><strong></strong></span></p>
+<p>Si vamos a usar un volumen o un bind mount en el que no queremos que se pueda escribir desde el contenedor podemos hacerlo añadiendo la opción readonly al flag --mount. Por ejemplo:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Realizo un bind mount evitando que desde el contenedor se pueda escribir en mi carpeta:</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt;  docker run -it --mount type=bind,src=/home/pekechis/pruebaPHP,dst=/var/www/html,readonly -p 8686:80 php:7.4-apache <br /></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Pero si por el contrario quiero evitar que se escriba en una carpeta propia del contenedor tengo que usar el flag --read-only de la orden docker run. El contenedor no podrá realizar ningún tipo de escritura en su sistema de ficheros. Por ejemplo:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Arranco un contenedor en modo solo lectura.<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt;  docker run -it --read-only ubuntu:20.04 /bin/bash <br /></span></p>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_caso" id="id9">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_caso.png)"><h1 class="iDeviceTitle">SERVICIO &quot;VULNERABILITY SCANNER&quot;</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta9_121_2" class="block iDevice_content">
+<div class="exe-text"><p><strong>Para cuentas de pago</strong> DockerHub proporciona un servicio que <strong>escanea las imágenes para encontrar vulnerabilidades</strong>  tanto a nivel de sistema operativo como a nivel de las posibles aplicaciones que tengamos instaladas en dichas imágenes. Para activar este servicio tenemos que cambiar de plan y aplicarlo a cada una de las imágenes que queramos escanear desde la sección de administración del repositorio de la imagen:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 801px; text-align: center;"><img src="vulnerability.png" alt="Habilitar el escaneo de vulnerabilidades" title="Habilitar el escaneo de vulnerabilidades" width="801" height="336" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Habilitar el escaneo de vulnerabilidades</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="index.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="82_seguridad_en_el_proceso_de_build.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

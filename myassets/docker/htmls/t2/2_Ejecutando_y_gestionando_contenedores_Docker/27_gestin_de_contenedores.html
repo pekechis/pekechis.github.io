@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>2.7 Gestión de contenedores | 2. Ejecutando y gestionando contenedores </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-7"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">2. Ejecutando y gestionando contenedores</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">P2. Ejecutando y gestionando contenedores Docker</a></li>
+   <li><a href="21_ejecutando_contenedores.html" class="no-ch">2.1 Ejecutando contenedores.</a></li>
+   <li><a href="22_los_flags_it.html" class="no-ch">2.2 Los flags -it</a></li>
+   <li><a href="23_ejecucin_de_servicios_puertos_y_variables_de_entorno.html" class="no-ch">2.3 Ejecución de servicios. Puertos y variables de entorno</a></li>
+   <li><a href="24_asignando_nombre_a_los_contenedores.html" class="no-ch">2.4 Asignando nombre a los contenedores</a></li>
+   <li><a href="25_ejecutar_rdenes_en_los_contenedores.html" class="no-ch">2.5 Ejecutar órdenes en los contenedores.</a></li>
+   <li><a href="26_obtencin_de_informacin_de_los_contenedores.html" class="no-ch">2.6 Obtención de información de los contenedores</a></li>
+   <li id="active"><a href="27_gestin_de_contenedores.html" class="active no-ch">2.7 Gestión de contenedores</a></li>
+   <li><a href="28_vdeo_resumen.html" class="no-ch">2.8. Vídeo resumen</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="26_obtencin_de_informacin_de_los_contenedores.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="28_vdeo_resumen.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">2.7 Gestión de contenedores</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id8">
+<div class="iDevice emphasis0" >
+<div id="ta8_112_2" class="block iDevice_content">
+<div class="exe-text"><p>Con el paso del tiempo iremos ejecutando muchos contenedores  y llegará un momento en que tengamos la necesidad de realizar operaciones como las siguientes:</p>
+<ul>
+<li><strong>Parar un contenedor</strong> que no estamos necesitando o que , puede ser, esté ejecutando un servicio que ocupe un puerto que queremos ocupar con otro servicio o contenedor.</li>
+<li><strong>Eliminar un contenedor</strong> que instalamos y que ya no necesitamos. Puede ser que ya ni nos acordemos del motivo por el cual teníamos "eso" en nuestro sistema (a mí al menos me pasa).</li>
+<li>Queremos <strong>iniciar un contenedor</strong> que estaba parado pero que vamos a volver a necesitar.</li>
+<li>Queremos <strong>reiniciar un contenedor</strong> para que nuevas opciones de configuración sean aplicadas.</li>
+</ul>
+<p>Para operaciones de ese tipo tenemos las siguientes órdenes docker:</p>
+<ul>
+<li><strong>docker stop </strong>para detener el contenedor, ya sea por nombre o por ID.</li>
+<li><strong>docker rm </strong>para borrar el contenedor, ya sea por nombre o por ID.</li>
+<li><strong>docker start </strong>iniciar un contenedor que estaba parado previamente, ya sea por nombre o por ID.</li>
+<li><strong>docker restart </strong>para reiniciar un contenedor que previamente ya estaba en ejecución.</li>
+</ul>
+<p>Cada una de ellas tiene diferentes flags u opciones. Vamos a ver las más importantes mediante ejemplos:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Para un contenedor en ejecución que se llame servidorWeb</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker stop servidorWeb</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Para un contenedor en ejecución cuyo ID es ea9b922190d8 pero esperando 10 segundo (-t o --time)</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker stop -t 10 ea9b922190d8</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Borrar un contenedor que se llama servidorBD</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker rm servidorBD</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Borrado un contenedor que se llame jenkins aunque esté en ejecución (--force o -f)</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker rm -f jenkins</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Inicio de un contenedor con nombre jenkins</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker start jenkins</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Inicio de un contenedor con nombre jenkins pero haciendo el attach de la entrada estándar para poder interactuar con él (-i o --interactive)</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker start -i jenkins</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Reinicio de un contenedor con ID ea9b922190d8</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker restart <span style="font-size: 14pt;">ea9b922190d8</span></span></p>
+<p><span style="font-size: 14pt;"><span style="font-size: 14pt; color: #ff0000;"># Reinicio de un contenedor con ID ea9b922190d8 pero esperando 10 segundo (-t o --time)<br /></span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="font-size: 14pt;">&gt; docker restart -t 10 ea9b922190d8</span></span><span style="font-size: 14pt;"></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>Hay que tener en cuenta varias cosas que si pensamos un poco ya nos indica los efectos el propio sentido común:</p>
+<ul>
+<li>Si hago <strong>docker start </strong>y el contenedor ya está iniciado, no pasa nada.</li>
+<li>Si hago <strong>docker stop </strong> y el contenedor ya está parado, no pasa nada.</li>
+<li>Si hago <strong>docker restart </strong>y el contenedor ya está parado, es lo mismo que si ejecutar un <strong>docker start.</strong></li>
+<li>Pero es importante destacar que <strong>SI UN CONTENEDOR ESTÁ EN EJECUCIÓN NO PODEMOS BORRARLO</strong> salvo que usemos la opción -f. Si lo intentamos obtendremos un error similar al siguente:</li>
+</ul>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 800px; text-align: center;"><img src="rmrunningcontainer.png" alt="Error al borrar un contenedor en ejecución" title="Error al borrar un contenedor en ejecución" width="800" height="40" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Error al borrar un contenedor en ejecución</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)<br /></span></span></figcaption>
+</figure></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="26_obtencin_de_informacin_de_los_contenedores.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="28_vdeo_resumen.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

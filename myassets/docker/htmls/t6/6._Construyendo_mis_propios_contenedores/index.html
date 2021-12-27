@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>Módulo 6. Construyendo mis propias imágenes </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<meta name="description" content="Módulo 6" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-0"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 6. Construyendo mis propias imágenes</div></header>
+<nav id="siteNav">
+<ul>
+   <li id="active"><a href="index.html" class="active daddy main-node">6. Construyendo mis propias imágenes</a></li>
+   <li><a href="61_desde_un_contenedor_en_ejecucin.html" class="no-ch">6.1 Desde un contenedor en ejecución</a></li>
+   <li><a href="62_el_fichero_dockerfile.html" class="daddy">6.2 El fichero Dockerfile</a>
+   <ul class="other-section">
+      <li><a href="621_resumen_de_comandos_dockerfile.html" class="no-ch">6.2.1 Resumen de comandos Dockerfile</a></li>
+      <li><a href="622_ejemplos_de_ficheros_dockerfile.html" class="no-ch">6.2.2 Ejemplos de ficheros Dockerfile</a></li>
+      <li><a href="623_buenas_prcticas_para_ficheros_dockerfile.html" class="no-ch">6.2.3 Buenas prácticas para ficheros Dockerfile</a></li>
+   </ul>
+   </li>
+   <li><a href="63_conectando_github_con_dockerhub_opcin_de_pago.html" class="no-ch">6.3 Conectando Github con DockerHub (Opción de Pago)</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="61_desde_un_contenedor_en_ejecucin.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">6. Construyendo mis propias imágenes</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id0">
+<div class="iDevice emphasis0" >
+<div id="ta0_112_2" class="block iDevice_content">
+<div class="exe-text"><p>Hasta este capítulo hemos estado usando contenedores basados en imágenes de terceros que nos descargábamos desde DockerHub. En este capítulo vamos a realizar la<strong> personalización de las imágenes</strong> para que se adecúen a nuestras necesidades.</p>
+<p>Esta personalización para conseguir nuestras propias imágenes la vamos a conseguir<strong> de dos maneras:</strong></p>
+<ul>
+<li><strong>Partiendo de un contenedor que tenemos en ejecución</strong> y sobre el que hemos realizado modificaciones.</li>
+<li><strong>De manera declarativa</strong> a través del<strong> fichero Dockerfile</strong> y un proceso de construcción  que  veremos que puede ser manual o automático.</li>
+</ul></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_reflexion" id="id1">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_reflexion.png)"><h1 class="iDeviceTitle">¿QUÉ ES PERSONALIZAR UNA  IMAGEN?</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta1_113_2" class="block iDevice_content">
+<div class="exe-text"><p>Pero exactamente, ¿en qué consiste exactamente esto de la personalización de las imágenes?.</p>
+<p>Si recordamos un poco los capítulos anteriores tras descargar las imágenes de DockerHub los contenedores que habíamos usado venían literalmente "pelados" incluyendo lo mínimo de lo mínimo para poder trabajar. Ni siquiera tenían cargados los repositorios y se queríamos instalar algo nuevo teníamos que ejecutar <em><strong>apt</strong> <strong>update</strong> (o similar).<br /></em></p>
+<p>Nosotros hemos <strong>instalado aplicaciones</strong>, hemos <strong>incluido el código de nuestras aplicaciones </strong> y si hubiera sido necesario habríamos <strong>configurado los sistemas o servicios</strong> para adecuarlos a nuestras necesidades. Esto es precisamente personalizar los contenedores.</p>
+<p><strong>¿Pero qué objetivo conseguimos con esta personalización?. </strong>Lo que buscamos es distribuir nuestras imágenes para que puedan ser usadas sin problemas en cualquier sistema en el que docker esté instalado.</p>
+<p><strong>¿Y cómo encaja esto con nuestra práctica docente?. </strong>Pues se relaciona directamente con algunos de los objetivos que nos habíamos planteado al inicio del curso:</p>
+<ul>
+<li>Al hacer nuestras propias imágenes <strong>podemos distribuirlas a los alumnos con TOTAL seguridad</strong> de que no van a tener ningún problema a la hora de acceder y ejecutar esas imágenes.</li>
+<li>Si los <strong>alumnos tienen que entregar sus proyectos</strong> y lo hacen en un contenedor <strong>no</strong> vamos a tener que <strong>montar cada vez un entorno diferente</strong> con todas sus dependencias para poder poner en marcha dichos proyectos.</li>
+<li>Podremos <strong>compartir nuestras imágenes</strong> con la comunidad de docentes.</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="61_desde_un_contenedor_en_ejecucin.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

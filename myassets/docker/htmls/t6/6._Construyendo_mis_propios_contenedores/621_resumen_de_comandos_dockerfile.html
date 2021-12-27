@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>6.2.1 Resumen de comandos Dockerfile | Módulo 6. Construyendo mis propias imágenes </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-3"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 6. Construyendo mis propias imágenes</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">6. Construyendo mis propias imágenes</a></li>
+   <li><a href="61_desde_un_contenedor_en_ejecucin.html" class="no-ch">6.1 Desde un contenedor en ejecución</a></li>
+   <li class="current-page-parent"><a href="62_el_fichero_dockerfile.html" class="current-page-parent daddy">6.2 El fichero Dockerfile</a>
+   <ul>
+      <li id="active"><a href="621_resumen_de_comandos_dockerfile.html" class="active no-ch">6.2.1 Resumen de comandos Dockerfile</a></li>
+      <li><a href="622_ejemplos_de_ficheros_dockerfile.html" class="no-ch">6.2.2 Ejemplos de ficheros Dockerfile</a></li>
+      <li><a href="623_buenas_prcticas_para_ficheros_dockerfile.html" class="no-ch">6.2.3 Buenas prácticas para ficheros Dockerfile</a></li>
+   </ul>
+   </li>
+   <li><a href="63_conectando_github_con_dockerhub_opcin_de_pago.html" class="no-ch">6.3 Conectando Github con DockerHub (Opción de Pago)</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="62_el_fichero_dockerfile.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="622_ejemplos_de_ficheros_dockerfile.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">6.2.1 Resumen de comandos Dockerfile</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id8">
+<div class="iDevice emphasis0" >
+<div id="ta8_117_2" class="block iDevice_content">
+<div class="exe-text"><p>En el apartado anterior hemos descrito como construir nuevos contenedores  mediante la <strong>docker build</strong> y los <strong>ficheros Dockerfile</strong> pero, ¿qué son y qué contienen esos ficheros declarativos que me sirven para construir mis imágenes?.</p>
+<p>Si queremos hacer una definición más o menos formal de estos ficheros podríamos decir que:</p>
+<p><strong>"Un fichero Dockerfile es un conjunto de instrucciones que serán ejecutadas de forma secuencial para construir una nueva imagen docker".</strong></p>
+<p>Cada una de estas instrucciones crea una nueva capa en la imagen que estamos creando. Si no ha habido cambios estas instrucciones  son cacheadas y la capa previamente creada usada. Esto me permite reusar capas entre imágenes que  están construidas de forma similar y basándose en las mismas imágenes de base. Esta <strong>estructura en forma de capas de las imágenes</strong> la podemos ver cuando ejecutamos la orden docker pull. Podemos apreciarlo en la siguiente imagen.</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 757px; text-align: center;"><img src="layers.png" alt="Capas de una imagen docker" title="Capas de una imagen docker" width="757" height="144" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Capas de una imagen docker</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p>Cada una de las líneas que nos aparecen en el proceso de descarga es una de las capas que conforman la imagen. En este caso tres capas, cada una con su identificador.</p>
+<p>¿ Y las instrucciones que puede contener el fichero Dockerfile?. Son varias que explicaremos posteriormente, pero de manera general podemos decir que dichos ficheros tienen la siguiente estructura.</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 699px; text-align: center;"><img src="DOCKERFILE.png" alt="Estructura de los ficheros Dockerfile" title="Estructura de los ficheros Dockerfile" width="699" height="468" />
+<figcaption class="figcaption"><a href="Juan Diego Pérez Jiménez" target="_blank" class="author" rel="noopener">Estructura de los ficheros Dockerfile</a>. <span class="title"><em>Estructura de los ficheros Dockerfile</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id11">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">ORDENES FICHEROS DOCKERFILE</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta11_114_2" class="block iDevice_content">
+<div class="exe-text"><p>Las órdenes más comunes son:</p>
+<ul>
+<li><strong>FROM: </strong>Sirve para especificar la imagen sobre la que voy a construir la mía. Ejemplo: <em><strong>FROM php:7.4-apache</strong></em></li>
+</ul>
+<p><em><strong></strong></em></p>
+<ul>
+<li><strong>LABEL: </strong>Sirve para añadir metadatos a la imagen mediante clave=valor. Ejemplo: <em><strong>LABEL company=iesalixar</strong></em></li>
+</ul>
+<p><em><strong></strong></em></p>
+<ul>
+<li><strong>COPY: </strong>Para copiar ficheros desde mi equipo a la imagen. Esos ficheros deben estar en el mismo contexto (carpeta o repositorio). Su sintaxis es <strong>COPY [--chown=&lt;usuario&gt;:&lt;grupo&gt;] src dest. </strong>Por ejemplo: <em><strong>COPY --chown=www-data:www-data myapp /var/www/html</strong></em></li>
+</ul>
+<p><em><strong></strong></em></p>
+<ul>
+<li><strong>ADD: </strong>Es similar a COPY pero tiene funcionalidades adicionales como especificar URLs  y tratar archivos comprimidos.</li>
+</ul>
+<p></p>
+<ul>
+<li><strong>RUN: </strong>Ejecuta una orden creando una nueva capa. Su sintaxis es <em><strong>RUN orden / RUN ["orden","param1","param2"]. </strong></em>Ejemplo: <em><strong>RUN apt update &amp;&amp; apt install -y git. </strong></em>En este caso es muy importante que pongamos la opción -y porque en el proceso de construcción no puede haber interacción con el usuario.</li>
+</ul>
+<p></p>
+<ul>
+<li><strong>WORKDIR: </strong>Establece el directorio de trabajo dentro de la imagen que estoy creando para posteriormente usar las órdenes RUN,COPY,ADD,CMD o ENTRYPOINT. Ejemplo: <em><strong>WORKDIR</strong></em> <em><strong>/usr/local/apache/htdocs</strong></em></li>
+</ul>
+<p><em><strong></strong></em></p>
+<ul>
+<li><strong>EXPOSE: </strong>Nos da información acerca de qué puertos tendrá abiertos el contenedor cuando se cree uno en base a la imagen que estamos creando. Es meramente informativo.  Ejemplo: <em><strong>EXPOSE 80</strong></em></li>
+</ul>
+<p><em><strong></strong></em></p>
+<ul>
+<li><strong>USER: </strong>Para especificar (por nombre o UID/GID) el usuario de trabajo para todas las órdenes RUN,CMD Y ENTRYPOINT posteriores. Ejemplos: <em><strong>USER jenkins / USER 1001:10001 </strong></em></li>
+</ul>
+<p><em><strong></strong></em></p>
+<ul>
+<li><strong>ARG: </strong>Para definir variables para las cuales los usuarios pueden especificar valores a la hora de hacer el proceso de build mediante el flag --build-arg. Su sintaxis es <em><strong>ARG nombre_variable o ARG nombre_variable=valor_por_defecto.</strong> </em>Posteriormente esa variable se puede usar en el resto de la órdenes de la siguiente manera <em><strong>$nombre_variable.</strong></em><strong> </strong>Ejemplo: <em><strong>ARG usuario=www-data. </strong></em><strong>NO SE PUEDE USAR EN ENTRYPOINT Y CMD <br /></strong></li>
+</ul>
+<p><em><strong></strong></em></p>
+<ul>
+<li><strong>ENV: </strong>Para establecer variables de entorno dentro del contenedor. Puede ser usado posteriormente en las órdenes RUN añadiendo $ delante de el nombre de la variable de entorno. Ejemplo: <em><strong>ENV WEB_DOCUMENT_ROOT=/var/www/html  NO </strong></em><strong> SE PUEDE USAR EN ENTRYPOINT Y CMD <br /></strong></li>
+</ul>
+<p><em><strong></strong></em></p>
+<ul>
+<li><strong>ENTRYPOINT: </strong>Para establecer el ejecutable que se lanza siempre  cuando se crea el contenedor  con docker run, salvo que se especifique expresamente algo diferente con el flag --entrypoint. Su síntaxis es la siguiente: <strong><em>ENTRYPOINT &lt;command&gt; / ENTRYPOINT ["executable","param1","param2"]</em>. </strong>Ejemplo: <strong>ENTRYPOINT ["service","apache2","start"]</strong></li>
+</ul>
+<p><em><strong></strong></em></p>
+<ul>
+<li><strong>CMD: </strong>Para establecer el ejecutable por defecto (salvo que se sobreescriba desde la order docker run) o para especificar parámetros para un ENTRYPOINT. Si tengo varios sólo se ejecuta el último. Su sintaxis es <em><strong>CMD param1 param2 / CMD ["param1","param2"] / CMD["command","param1"]. </strong></em>Ejemplo: <em><strong>CMD [“-c” “/etc/nginx.conf”]  / ENTRYPOINT [“nginx”].</strong></em></li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id10">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">FICHERO .dockerignore</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta10_113_2" class="block iDevice_content">
+<div class="exe-text"><p>Antes de que se ejecuten las órdenes ADD y COPY de los Dockerfile el proceso de construcción de docker build mira si en el contexto de la construcción  existe un fichero <strong>.dockerignore. </strong>El funcionamiento de este tipo de ficheros es <strong>análogo al funcionamiento de los ficheros .gitignore </strong>que excluyen una serie de ficheros del control de versiones.</p>
+<p><strong>EN ESTE CASO LOS ARCHIVOS QUE SE RECOJAN EN EL FICHERO .DOCKERIGNORE NO PASARÁN A LA IMAGEN EN EL PROCESO DE CONSTRUCCIÓN DE LA IMAGEN.</strong></p>
+<p>Algunos ejemplos de ficheros .dockerignore.</p>
+<p>Un ejemplo genérico:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="color: #ff0000;"><span style="font-size: 14pt;"># Esa carpeta app tiene el contenido de un repositorio</span><span style="font-size: 14pt;"></span></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">#Excluyo la carpeta .git</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">app/.git</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">#Excluyo el fichero .gitignore</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">app/.gitignore</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">#Excluyo todos los archivos dentro de la carpeta log pero dejo la carpeta</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">app/log/*</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">#Excluyo todos los archivos dentro de la carpeta tmp pero dejo la carpeta.</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">app/tmp/*</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">#Excluyo el archivo README.md</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">app/README.md</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Un ejemplo para una aplicación node:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="color: #ff0000;"><span style="font-size: 14pt;"># Esa carpeta nodeapp tiene el contenido de un repositorio</span><span style="font-size: 14pt;"></span></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">#Excluyo la carpeta .git</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">nodeapp/.git</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">#Excluyo el fichero .gitignore</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">nodeapp/.gitignore</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">#Excluyo la carpeta node_modules. Eso me obliga a hacer npm install al arrancar el contenedor<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">nodeapp/node_modules</span><span style="font-size: 14pt; color: #00ff00;"></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;">#Excluyo el fichero creado por el editor de código</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">.vscode</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Para más información sobre los comodines y reglas que puedo tener en un fichero .dockerignore os dejo este enlace: <a href="https://docs.docker.com/engine/reference/builder/#dockerignore-file" target="_blank" rel="noopener">https://docs.docker.com/engine/reference/builder/#dockerignore-file</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_informarse" id="id12">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_informarse.png)"><h1 class="iDeviceTitle">REFERENCIA COMPLETA FICHEROS DOCKERFILE</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta12_115_2" class="block iDevice_content">
+<div class="exe-text"><p>Podéis encontrar una referencia completa en este enlace <a href="https://docs.docker.com/engine/reference/builder/" target="_blank" rel="noopener">https://docs.docker.com/engine/reference/builder/</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="62_el_fichero_dockerfile.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="622_ejemplos_de_ficheros_dockerfile.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

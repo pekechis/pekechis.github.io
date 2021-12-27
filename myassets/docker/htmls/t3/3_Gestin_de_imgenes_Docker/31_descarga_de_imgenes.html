@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>3.1 Descarga de imágenes | 3. Gestión de imágenes en docker </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-1"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">3. Gestión de imágenes en docker</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">3. Gestión de imágenes docker</a></li>
+   <li id="active"><a href="31_descarga_de_imgenes.html" class="active no-ch">3.1 Descarga de imágenes</a></li>
+   <li><a href="32_borrado_de_imgenes.html" class="no-ch">3.2 Borrado de imágenes</a></li>
+   <li><a href="33_obteniendo_informacin_de_las_imgenes.html" class="no-ch">3.3 Obteniendo información de las imágenes</a></li>
+   <li><a href="34_ms_comandos_relacionados_con_imgenes.html" class="no-ch">3.4 Más comandos relacionados con imágenes</a></li>
+   <li><a href="34_vdeo_resumen.html" class="no-ch">3.4 Vídeo resumen</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="index.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="32_borrado_de_imgenes.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">3.1 Descarga de imágenes</h1></header>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_preconocimiento" id="id4">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_preconocimiento.png)"><h1 class="iDeviceTitle">Descarga de imágenes Docker</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta4_109_2" class="block iDevice_content">
+<div class="exe-text"><p>En lo que llevamos de curso hemos visto dos formas para poder descargarme una imagen docker:</p>
+<ul>
+<li>Usando la el comando <em><strong>docker pull </strong></em>indicando el nombre de la imagen y la versión de la misma (<strong>TAG</strong>). Si no indicamos nada se descarga la última versión (latest). Por ejemplo:</li>
+</ul>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># mysql - Es el nombre de la imagen 8.0.22 es la versión o TAG</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker pull mysql:8.0.22</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Al hacer <em><strong>docker run</strong></em><strong> </strong>indicando, para la ejecución del contenedor, una imagen base que no hayamos descargado previamente. En ese caso se descargará la imagen y posteriormente empezará a ejecutarse el contenedor si todos los parámetros están bien. Por ejemplo:</li>
+</ul>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;"># Supondremos que es la PRIMERA VEZ que vamos a usar esa imagen y no la hemos descargado</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker run -it -d --name mysql8 -p 3306:3306 mysql:8.0.22<br /></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>En cualquiera de los dos casos</strong> empieza un proceso de descarga que nos mostrará una serie de líneas, algo parecido a la siguiente imagen:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 700px; text-align: center;"><img src="pullmysql.png" alt="Resultado: docker pull mysql:8.0.22" title="Resultado: docker pull mysql:8.0.22" width="700" height="239" />
+<figcaption class="figcaption"><a href="http://www.github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez</a>. <span class="title"><em>Resultado: docker pull mysql:8.0.22</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p>Cada una de las líneas que se nos muestra es una de las <strong>capas</strong> que <strong>conforman la imagen docker</strong>. Se parte de una imagen <strong>inicial</strong> o <strong>imagen base</strong>  y  cada instrucción que realizamos para construir una nueva imagen con los elementos que queramos genera una nueva capa que en realidad, son <strong>imágenes intermedias</strong>. Eso nos permite además que las<strong> capas que son compartidas</strong> por varias imágenes no tengan que bajarse dos veces ya que las tendremos ya disponibles en nuestro sistema.</p>
+<p>De todas esto hablaremos con más calma en el módulo 6 de este mismo curso: <em><strong>"Construyendo mis propios contenedores".</strong></em></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id6">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">Mostrar imágenes descargadas</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta6_111_2" class="block iDevice_content">
+<div class="exe-text"><p>Cada vez que descarguemos una imagen podemos mostrar por pantalla una lista de las imágenes que tenemos en nuestro sistema usando la orden:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># Listas imágenes descargas</span><span style="font-size: 14pt; color: #00ff00;"></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker images</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>La salida a ese comando será algo similar a la siguiente:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 700px; text-align: center;"><img src="docker_images.png" alt="Mostrar imágenes descargadas" title="Mostrar imágenes descargadas" width="700" height="367" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Mostrar imágenes descargadas</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p>La información que se  nos muestra se organiza en forma tabular y nos proporciona los siguientes datos:</p>
+<ul>
+<li><strong>REPOSITORY:</strong> Nombre de la imagen en el repositorio. Por ejemplo: <em>mysql.</em></li>
+<li><strong>TAG: </strong>Versión de la imagen que hemos descargado. Por ejemplo: Para la imagen <em>mysql </em>tengo 3 versiones descargadas (5.7, latest que significa que era la última en el momento de descargarse y 8.0.22).</li>
+<li><strong>IMAGE ID: </strong>Un identificador que es único para cada imagen. Siempre podemos usar este ID en vez del nombre.</li>
+<li><strong>CREATED: </strong>Hace cuánto se creo la imagen.</li>
+<li><strong>SIZE: </strong>Tamaño de la imagen.<span class="license"></span></li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_recomendacion" id="id7">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_recomendacion.png)"><h1 class="iDeviceTitle">docker pull</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta7_112_2" class="block iDevice_content">
+<div class="exe-text"><p>Pese a que hemos visto que existen dos formas de realizar la descarga de las imágenes yo os recomiendo usar docker pull por las siguientes razones:</p>
+<ul>
+<li>Me permite <strong>actualizar</strong>  una determina pareja imagen:versión a su última actualización. Sólo tendré que hacer <em><strong>docker pull con el mismo imagen:versión</strong></em></li>
+</ul>
+<p></p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="color: #ff0000;"><span style="font-size: 14pt;"># Suponiendo que ya teníamos previamente la versión descargada. </span><span style="font-size: 14pt;">Actualiza la versión mysql:5.7</span></span><span style="font-size: 14pt; color: #00ff00;"><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker pull mysql:5.7<br /></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Me permite bajar <strong>todas las versiones de una imagen</strong> de una sola vez. Esto puede ser peligroso si una imagen tiene muchas versiones disponibles. Lo conseguiremos con la opción -a o --all-tags</li>
+</ul>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;"># Descargamos todas las versiones de la imagen php. CON MUCHO CUIDADO, NO PROBAR</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker pull -a php o </span><span style="font-size: 14pt; color: #00ff00;">docker pull --all-tags php</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Tiene otras opciones que son útiles a nivel de usuario, de momento nos quedaremos con aquella que no me muestra todas la información de las capas.</li>
+</ul>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;"># No muestro la información de las capas al descargarse</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker pull -q httpd  o docker pull --quiet</span><span style="font-size: 14pt; color: #00ff00;"></span></p>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="index.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="32_borrado_de_imgenes.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>4.4 Asociando almacenamiento a los contenedores | Módulo 4. Persistenia en docker </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez  para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-4"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 4. Persistenia en docker</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">4. Persistencia en docker</a></li>
+   <li><a href="41_los_datos_en_los_contenedores.html" class="no-ch">4.1 Los datos en los contenedores</a></li>
+   <li><a href="42_volmenes_y_bind_mount.html" class="no-ch">4.2 Volúmenes y Bind Mount</a></li>
+   <li><a href="43_gestionando_volmenes_y_obteniendo_informacin.html" class="no-ch">4.3 Gestionando volúmenes y obteniendo información</a></li>
+   <li id="active"><a href="44_asociando_almacenamiento_a_los_contenedores.html" class="active no-ch">4.4 Asociando almacenamiento a los contenedores</a></li>
+   <li><a href="45_herramientas_docker_en_visual_studio_code.html" class="no-ch">4.5 Herramientas Docker en Visual Studio Code</a></li>
+   <li><a href="46_uso_de_los_volmenes_y_bind_mounts.html" class="no-ch">4.6 Uso de los volúmenes y bind mounts</a></li>
+   <li><a href="47_bind_mounts_para_desarrollo_depurando_aplicaciones.html" class="no-ch">4.7 Bind mounts para desarrollo. Depurando aplicaciones</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="43_gestionando_volmenes_y_obteniendo_informacin.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="45_herramientas_docker_en_visual_studio_code.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">4.4 Asociando almacenamiento a los contenedores</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id7">
+<div class="iDevice emphasis0" >
+<div id="ta7_113_2" class="block iDevice_content">
+<div class="exe-text"><p>Una vez hemos visto en el apartado anterior cómo crear los volúmenes vamos a ver en este apartado como puedo usar los volúmenes y los bind mounts en los contenedores. Para cualquiera de los dos casos lo haremos mediante el uso de <strong>dos flags</strong> de la orden<strong> docker run:</strong></p>
+<ul>
+<li>El flag <strong>--volume o -v. </strong>Este flag lo utilizaremos para establecer bind mounts.</li>
+<li>El flag <strong>--mount. </strong>Este flag nos servirá para establecer bind mounts y para usar volúmenes previamente definidos (entre otras cosas).</li>
+</ul>
+<p>Es importante que tengamos en cuenta dos cosas importantes a la hora de realizar estas operaciones:</p>
+<ul>
+<li>Al usar tanto volúmenes como bind mount el contenido de lo que tenemos <strong>sobreescribirá la carpeta destino en el sistema de ficheros del contenedor</strong> en caso de que exista. Y si nuestra carpeta origen no existe y hacemos un bind mount esa carpeta se creará pero lo que tendremos en el contenedor es una carpeta vacía. Con esto hay que tener especial cuidado, sobre todo cuando estamos trabajando con carpetas que pueden contener datos y configuraciones varias.</li>
+<li>Si usamos imágenes de DockerHub, debemos <strong>leer la información que cada imagen nos proporciona en su página</strong> ya que esa información suele indicar cómo persistir los datos de esa imagen, ya sea con volúmenes o bind mounts, y cuáles son las <strong>carpetas importantes</strong> en caso de ser imágenes que contengan ciertos servicios (web, base de datos etc...)</li>
+</ul>
+<p>Como acostumbramos en este curso vamos a ilustrar todo esto mediante una serie de ejemplos a los que añadiremos varios opciones</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #ff0000;"># BIND MOUNT (flag -v): La carpeta web del usuario será el directorio raíz del servidor apache. Se crea si no existe<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker run --name apache -v /home/usuario/web:/usr/local/apache2/htdocs -p 80:80 httpd</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># BIND MOUNT (flag --mount): La carpeta web del usuario será el directorio raíz del servidor apache. Se crea si no existe<br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"><span style="color: #00ff00;">&gt; docker run --name apache -p 80:80 --mount type=bind,src=/home/usuario/web,dst=/usr/local/apache2/htdocs httpd</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># VOLUME (flag --mount). Mapear el volumen previamente creado y que se llama Data en la carpeta raíz del servidor apache</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker run --name apache -p 80:80 --mount type=volume,src=Data,dst=/usr/local/apache2/htdocs httpd</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># VOLUME (flag --mount). Igual que el anterior pero al no poner nombre de volumen se crea uno automáticamente (con un ID como nombre)<br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker run --name apache -p 80:80 --mount type=volume,dst=/usr/local/apache2/htdocs httpd</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>En cualquiera de los dos casos, cuando creamos un bind mount o asociamos un volumen a un contenedor, esto queda reflejado en la salida de la orden <strong>docker inspect sobre dicho contenedor</strong>, de una manera similar a la imagen inferior.</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 1097px; text-align: center;"><img src="persistencia_en_uso.png" alt="Volumen y Bind Mount en Uso" title="Volumen y Bind Mount en Uso" width="1097" height="317" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Ddiego Pérez Jiménez</a>. <span class="title"><em>Volumen y Bind Mount en Uso</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="43_gestionando_volmenes_y_obteniendo_informacin.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="45_herramientas_docker_en_visual_studio_code.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

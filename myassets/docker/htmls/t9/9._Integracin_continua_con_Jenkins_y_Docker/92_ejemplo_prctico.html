@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>9.2 Ejemplo práctico | Módulo 9.Integración y despliegue continuo con Jenkins y docker </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-5"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 9.Integración y despliegue continuo con Jenkins y docker</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">9. Integración y despliegue continuo con Jenkins y docker</a></li>
+   <li><a href="91_conceptos_importantes.html" class="no-ch">9.1 Conceptos importantes</a></li>
+   <li id="active"><a href="92_ejemplo_prctico.html" class="active no-ch">9.2 Ejemplo práctico</a></li>
+   <li><a href="recursos.html" class="no-ch">Recursos</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="91_conceptos_importantes.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="recursos.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">9.2 Ejemplo práctico</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id5">
+<div class="iDevice emphasis0" >
+<div id="ta5_116_2" class="block iDevice_content">
+<div class="exe-text"><p>Para finalizar, tal y como habíamos anunciado en el primer apartado de este tema,  vamos a realizar una práctica que cubra muchos de los aspectos que hemos visto a lo largo del curso y que introduzca ideas y conceptos relacionados con la unión de los contenedores y de los procesos de integración (CI) , entrega (CD) y despliegue continuo (CDep). El proceso no es exactamente de ese tipo de procesos, es un proyecto "ad-hoc" para mis clases pero nos va a ayudar a pensar en automatización de procesos.</p>
+<p>Es una práctica voluntaria, puede resultar compleja, pero el objetivo es vislumbrar  el mundo de posibilidades que nos abre el uso de las tecnologías vistas. Todos los archivos necesarios serán proporcionados. Nuestro objetivo va a ser un automatizar el siguiente proceso:</p>
+<p><span style="color: #ff0000;"><strong>En  las primeras ediciones de este curso el proceso que realizábamos era el proceso que podemos ver en la imagen de abajo a la izquierda. Tras el paso al plan de pago de  la sincronización de GitHub y DockerHub no realizaremos los "Automated Builds" con lo cual el proceso a constuir será el proceso de la derecha.</strong></span></p>
+<table style="height: 36px; width: 100%;" border="0">
+<tbody>
+<tr style="height: 18px; border-style: hidden;">
+<td style="width: 50%; text-align: center; height: 18px; border-style: hidden;"><span style="font-size: 14pt;"><strong>PIPELINE CON LA FASE DE CONSTRUCCIÓN EN DOCKERHUB</strong></span></td>
+<td style="width: 50%; height: 18px; text-align: center; border-style: hidden;"><span style="font-size: 14pt;"><strong>PIPELINE SIN LA FASE DE CONSTRUCCIÓN EN DOCKERHUB</strong></span></td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 50%; height: 18px; text-align: center; border-style: hidden;">
+<figure class="exe-figure exe-image position-center license-pd" style="width: 100%px;"><img src="Jenkins_Pipelin.png" alt="" title="Pipeline de Jenkins - Pseudo CDep Completo" width="100%" height="855" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Pipeline de jenkins - Pseudo CDep Completo</em></span> <span class="license"><span class="sep">(</span><span>Public Domain</span><span class="sep">)</span></span></figcaption>
+</figure>
+</td>
+<td style="width: 50%; height: 18px; border-style: hidden;">
+<figure class="exe-figure exe-image position-center license-pd" style="width: 100%px;"><img src="Jenkins_Pipeline_sinDockerHub.png" alt="" title="Pipeline de jenkins - Pseudo CDep (Sin construcción)" width="100%" height="855" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Pipeline de jenkins - Pseudo CDep (Sin construcción)</em></span> <span class="license"><span class="sep">(</span><span>Public Domain</span><span class="sep">)</span></span></figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<p><span style="text-decoration: underline;"><strong>PASOS DEL PROCESO</strong></span></p>
+<p><span style="text-decoration: underline;"></span>Los pasos del proceso son los pasos del Pipeline de Jenkins y serán:</p>
+<ol>
+<li><strong>BUILD: </strong>Descargar el código del ejemplo y compilarlo.</li>
+<li><strong>TESTS: </strong>Realizar los Test. En este ejemplo se deja vacío para no complicar más las cosas. Si nuestro proyecto tuviera pruebas sería el lugar para ejecutarlas.</li>
+<li><strong>CONTAINER: </strong>Clonaremos el repositorio de Github donde tengo el Dockerfile y tras añadir el fichero resultante de la compilación se hará un push. Este repositorio estará conectado a su vez con un repositorio de DockerHub que será el que haga el build de manera automática <strong><span style="color: #ff0000;">(ESTE ÚLTIMO PASO NO SE REALIZARÁ EN ESTA EDICIÓN)</span>.</strong></li>
+<li><strong>DEPLOY: </strong>Pondremos el archivo en un contenedor Tomcat al que accederemos por SSH.</li>
+</ol>
+<p><span style="text-decoration: underline;"><strong>RECURSOS NECESARIOS</strong></span></p>
+<p>Vamos a necesitar los siguiente recursos:</p>
+<ul>
+<li>Un contenedor de la imagen jenkins/jenkins:lts que lanzaremos con el siguiente comando docker. En ese contenedor instalaremos la herramienta Maven y los plugins Maven Integration y SSH Pipeline Steps.</li>
+</ul>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;"><span style="font-size: 14pt; color: #00ff00;">docker run -d --name serverJenkins -p 9393:8080 -p 50001:50000 jenkins/jenkins:lts</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Un contenedor de la imagen jperjim398/tomcatcursocep que contiene un servidor Tomcat y un servidor SSH que usaremos para conectarnos y desplegar la aplicación en el servidor Tomcat. Lanzaremos este contenedor con la siguiente orden docker.</li>
+</ul>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;"><span style="font-size: 14pt; color: #00ff00;">docker run -d -it --name cep -p 9292:8080 -p 2222:22 jperjim398/tomcatcursocep</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>El código de la aplicación del ejemplo que se puede encontrar aquí: <a href="https://github.com/jleetutorial/maven-project">https://github.com/jleetutorial/maven-project</a></li>
+</ul>
+<ul>
+<li>Un repositorio en github que tenga inicialmente el siguiente Dockerfile.</li>
+</ul>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt; color: #00ff00;">FROM tomcat:9.0.39-jdk11</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">COPY *.war /user/local/tomcat/webapps</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Un repositorio en DockerHub conectado  con el repositorio anterior.</li>
+</ul>
+<ul>
+<li>El fichero <a href="https://gist.github.com/pekechis/f8c682c4079457e22faf638b2279db72" target="_blank" rel="noopener">Jenkinsfile</a> que define el Pipeline. <span style="color: #ff0000;"><strong>ESTE FICHERO NO CAMBIA YA QUE LA SINCRONIZACIÓN ERA UN PROCESO AUTOMÁTICO QUE DEPENDÍA DE DOCKERHUB.</strong></span></li>
+</ul>
+<p>
+<script src="https://gist.github.com/pekechis/f8c682c4079457e22faf638b2279db72.js"></script>
+</p>
+<p></p></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_reproduccion" id="id9">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_reproduccion.png)"><h1 class="iDeviceTitle">VÍDEO SIN CONSTRUCCIÓN EN DOCKERHUB. SEPTIEMBRE 2021</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta9_133_2" class="block iDevice_content">
+<div class="exe-text"><p><iframe width="1280" height="720" src="https://www.youtube.com/embed/dW8SxZ18XcA" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0"></iframe></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_reproduccion" id="id7">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_reproduccion.png)"><h1 class="iDeviceTitle">VíDEO CON CONSTRUCCIÓN EN DOCKERHUB (Ediciones anteriores)</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta7_118_2" class="block iDevice_content">
+<div class="exe-text"><p><iframe width="1280" height="720" src="https://www.youtube.com/embed/qEZx4mQzTd4?list=PL-8CyWabyNa85xowmOeBMCspbrn6qNWgl" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0"></iframe></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="91_conceptos_importantes.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="recursos.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>6.2 El fichero Dockerfile | Módulo 6. Construyendo mis propias imágenes </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Juan Diego Pérez Jiménez para la Consejería de Educación y Deporte" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-2"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Módulo 6. Construyendo mis propias imágenes</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">6. Construyendo mis propias imágenes</a></li>
+   <li><a href="61_desde_un_contenedor_en_ejecucin.html" class="no-ch">6.1 Desde un contenedor en ejecución</a></li>
+   <li id="active"><a href="62_el_fichero_dockerfile.html" class="active daddy">6.2 El fichero Dockerfile</a>
+   <ul>
+      <li><a href="621_resumen_de_comandos_dockerfile.html" class="no-ch">6.2.1 Resumen de comandos Dockerfile</a></li>
+      <li><a href="622_ejemplos_de_ficheros_dockerfile.html" class="no-ch">6.2.2 Ejemplos de ficheros Dockerfile</a></li>
+      <li><a href="623_buenas_prcticas_para_ficheros_dockerfile.html" class="no-ch">6.2.3 Buenas prácticas para ficheros Dockerfile</a></li>
+   </ul>
+   </li>
+   <li><a href="63_conectando_github_con_dockerhub_opcin_de_pago.html" class="no-ch">6.3 Conectando Github con DockerHub (Opción de Pago)</a></li>
+   <li><a href="crditos.html" class="no-ch">Créditos</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="61_desde_un_contenedor_en_ejecucin.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="621_resumen_de_comandos_dockerfile.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">6.2 El fichero Dockerfile</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id4">
+<div class="iDevice emphasis0" >
+<div id="ta4_113_2" class="block iDevice_content">
+<div class="exe-text"><p>En el apartado anterior hemos visto cómo crear y distribuir mis <strong>nuevas imágenes partiendo de un contenedor.</strong> Esta forma suele ser la preferida cuando empezamos porque es fácil si tenemos ciertos conocimientos de sistemas y porque no hace falta muchos conocimiento sobre docker y su entorno. Sin embargo este tipo de flujo de trabajo aunque fácil, tiene unos inconvenientes importantes:</p>
+<ul>
+<li><strong>No se puede reproducir la imagen.</strong> Si la perdemos tenemos que recordar toda la secuencia de órdenes que habíamos ejecutado desde que arrancamos el contenedor hasta que teníamos una versión definitiva e hicimos docker commit.</li>
+<li><strong>No podemos cambiar la imagen de base.</strong> Si ha habido alguna actualización, problemas de seguridad etc con la imagen de base tenemos que descargar la nueva versión, volver a crear un nuevo contenedor basado en ella y ejecutar de nuevo toda la secuencia de órdenes.</li>
+</ul>
+<p>Frente a estos inconvenientes el enfoque preferido es utilizar <strong>ficheros Dockerfile,</strong> que son una<strong> forma declarativa de construir nuevas imágenes.</strong> Este proceso de construcción queda descrito en las siguientes imágenes:</p>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 601px; text-align: center;"><img src="BuildDockerfile.png" alt="Creación de imágenes con Dockerfile" title="Creación de imágenes con Dockerfile" width="601" height="357" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Creación de imágenes con Dockerfile</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<figure class="exe-figure exe-image position-center license-pd" style="width: 599px; text-align: center;"><img src="ProcesoDockerBuild.png" alt="Proceso de creación y distribución usando docker build" title="Proceso de creación y distribución usando docker build" width="599" height="280" />
+<figcaption class="figcaption"><a href="http://github.com/pekechis" target="_blank" class="author" rel="noopener">Juan Diego Pérez Jiménez</a>. <span class="title"><em>Proceso de creación y distribución usando docker build</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></figcaption>
+</figure>
+<p>Si trabajamos así y aunque el proceso de construcción del Dockerfile es costoso al principio, vamos a evitar los dos problemas citados anteriormente:</p>
+<ul>
+<li><strong>Podremos reproducir la imagen fácilmente</strong> ya que en el fichero <strong>Dockerfile</strong> tenemos todas y cada una de las <strong>órdenes necesarias</strong> para la construcción de la imagen. Si además ese Dockfile está guardado en un sistema de control de versiones como git podremos, no sólo reproducir la imagen si no asociar los cambios en el Dockerfile a los cambios en las versiones de las imágenes creadas.</li>
+<li>Si queremos <strong>cambiar la imagen de base</strong> esto es extremadamente sencillo con un Dockerfile, únicamente tendremos que <strong>modificar la primera línea de ese fichero</strong> tal y como explicaremos posteriormente.</li>
+</ul></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice em_iDevice_conocer" id="id6">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header" style="background-image:url(icon_conocer.png)"><h1 class="iDeviceTitle">USO DE DOCKER BUILD</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta6_115_2" class="block iDevice_content">
+<div class="exe-text"><p>Por lo tanto para construir las imágenes necesitamos un <strong>fichero Dockerfile dentro de un contexto</strong>, ya sea en mi equipo o un repositorio exterior, y la<strong> orden docker build</strong> cuya estructura general es la siguiente:</p>
+<p style="text-align: center;"><img src="EstructuraDockerBuild.png" alt="Estructura de la orden docker build" title="Estructura de la orden docker build" width="599" height="401" /></p>
+<p>Esta orden tiene muchas opciones pero como estamos acostumbrados a lo largo del curso vamos a ver algunas de las más importantes mediante ejemplos.:</p>
+<table style="width: 100%; background-color: #000000;" border="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p><span style="font-size: 14pt;"><span style="color: #ff0000;"># Construcción de una imagen sin nombre ni versión estando el Dockerfile en el mismo directorio donde se ejecuta docker build</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker build .</span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Construcción de una imagen especificando nombre y versión estando el Dockerfile en el mismo directorio donde se ejecuta docker build (--tag/-t)<br /></span></p>
+<p><span style="font-size: 14pt;"><span style="color: #00ff00;">&gt; docker build -t  usuario/nombre_imagen:1.0 .</span><br /></span></p>
+<p><span style="font-size: 14pt; color: #ff0000;"># Construcción de una imagen especificando un repositorio en GitHub donde se encuentra el Dockerfile. Ese repositorio es el contexto de construcción</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker build -t usuarioDockerHub/nombre_imagen:1.1 https://github.com/...../nombre_repo.git#nombre_rama_git</span><span style="font-size: 14pt;"></span></p>
+<p><span style="font-size: 14pt;"><span style="color: #ff0000;"># Construcción de una imagen usando una variable de entorno <span style="font-size: 14pt; color: #ff0000;"> estando el Dockerfile en el mismo directorio donde se ejecuta docker build (--build-arg)</span></span><br /></span></p>
+<p><span style="font-size: 14pt;"><span style="color: #00ff00;">&gt; docker build --build-arg user=usuario <span style="font-size: 14pt;"> -t  usuarioDockerHub/nombre_imagen:1.0 .</span></span></span></p>
+<p><span style="font-size: 14pt;"><span style="color: #ff0000;"># Construcción de una imagen sin usar las capas cacheadas por haber realizado anteriormente imágenes con capas similares y</span> <span style="font-size: 14pt; color: #ff0000;"> estando el Dockerfile en el mismo directorio donde se ejecuta docker build (--no-cache)</span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;">&gt; docker build --no-cache -t  usuarioDockerHub/nombre_imagen:1.0 .</span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="color: #ff0000;">#</span> <span style="font-size: 14pt; color: #ff0000;"> Construcción de una imagen especificando nombre,versión y especificando la ruta al fichero Dockerfile mediante el flag --file/-f</span></span></p>
+<p><span style="font-size: 14pt; color: #00ff00;"><span style="font-size: 14pt; color: #ff0000;"><span style="font-size: 14pt;"><span style="color: #00ff00;">&gt; docker build -t  usuario/nombre_imagen:1.0 -f /home/usuario/DockerProject/Dockerfile<br /></span></span></span></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>NOTA: Si quiero que la imagen construida sea distribuida mediante DockerHub debo poner como prefijo de la imagen mi nombre de usuario de DockerHub.</p>
+<p></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="61_desde_un_contenedor_en_ejecucin.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="621_resumen_de_comandos_dockerfile.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>
