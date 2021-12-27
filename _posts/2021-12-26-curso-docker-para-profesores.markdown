@@ -13,15 +13,15 @@ Los resultados del curso han sido espectaculares, con más de 500 profesores de 
 Todos los materiales creados han sido desarrollados bajo la licencia [CC-BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/) y los he puesto a vuesta disposición desde aquí.
 
 
-1. Introducción. [Fuente]({{site.baseurl}}/myassets/docker/elps/1_Introduccion.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t1/index.html)
-2. Ejecutando contenedores. [Fuente]({{site.baseurl}}/myassets/docker/elps/2_Ejecutando%20y%20gestionando%20contenedores%20Docker.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t2/index.html)
-3. Gestionando imágenes. [Fuente]({{site.baseurl}}/myassets/docker/elps/3_Gestion_de_imagenes_Docker.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t3/index.html)
-4. Volúmenes en docker. [Fuente]({{site.baseurl}}/myassets/docker/elps/4_Volúmenes_en_Docker.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t4/index.html)
-5. Redes en Docker. [Fuente]({{site.baseurl}}/myassets/docker/elps/5_Redes_en_Docker_V02.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t5/index.html)
-6. Mis propios contenedores. [Fuente]({{site.baseurl}}/myassets/docker/elps/6.%20Construyendo%20mis%20propios%20contenedores.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t6/index.html)
-7. Docker-compose. Aplicaciones multicapa. [Fuente]({{site.baseurl}}/myassets/docker/elps/7_Docker-Compose.%20Aplicaciones%20multicapa.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t7/index.html)
-8. Asegurando contenedores. [Fuente]({{site.baseurl}}/myassets/docker/elps/8_Asegurando%20contenedores.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t8/index.html)
-9. Integración continua con Jenkins y docker. [Fuente]({{site.baseurl}}/myassets/docker/elps/9_Integración%20continua%20con%20Jenkins%20y%20Docker.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t9/index.html)
+1. Introducción. [Fuente]({{site.baseurl}}/myassets/docker/elps/1_Introduccion.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t1/index.html){:target="_blank"}
+2. Ejecutando contenedores. [Fuente]({{site.baseurl}}/myassets/docker/elps/2_Ejecutando%20y%20gestionando%20contenedores%20Docker.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t2/index.html){:target="_blank"}
+3. Gestionando imágenes. [Fuente]({{site.baseurl}}/myassets/docker/elps/3_Gestion_de_imagenes_Docker.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t3/index.html){:target="_blank"}
+4. Volúmenes en docker. [Fuente]({{site.baseurl}}/myassets/docker/elps/4_Volúmenes_en_Docker.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t4/index.html){:target="_blank"}
+5. Redes en Docker. [Fuente]({{site.baseurl}}/myassets/docker/elps/5_Redes_en_Docker_V02.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t5/index.html){:target="_blank"}
+6. Mis propios contenedores. [Fuente]({{site.baseurl}}/myassets/docker/elps/6.%20Construyendo%20mis%20propios%20contenedores.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t6/index.html){:target="_blank"}
+7. Docker-compose. Aplicaciones multicapa. [Fuente]({{site.baseurl}}/myassets/docker/elps/7_Docker-Compose.%20Aplicaciones%20multicapa.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t7/index.html){:target="_blank"}
+8. Asegurando contenedores. [Fuente]({{site.baseurl}}/myassets/docker/elps/8_Asegurando%20contenedores.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t8/index.html){:target="_blank"}
+9. Integración continua con Jenkins y docker. [Fuente]({{site.baseurl}}/myassets/docker/elps/9_Integración%20continua%20con%20Jenkins%20y%20Docker.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t9/index.html){:target="_blank"}
 
 Los archivos fuentes son archivos .elp que se puede abrir y modificar con la aplicación [eXeLearning](https://exelearning.net/).
 
