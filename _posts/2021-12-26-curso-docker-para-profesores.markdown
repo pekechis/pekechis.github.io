@@ -3,7 +3,7 @@ layout: post
 title:  "Curso: Introducción a Docker para desarrolladores"
 lang: es
 date: 2021-12-26 13:20:44 +0100
-categories: docker cursos jenkins cep ci desarrolladores
+categories: docker cursos jenkins cep ci desarrolladores materiales
 ---
 
 Durante el 2021 he tenido la suerte de poder realizar y tutorizar el curso de "Introducción de Docker para desarrolladores" para el CEP (Centro de Estudios del Profesorado) de Castilleja de la Cuesta (Sevilla).
@@ -23,6 +23,6 @@ Todos los materiales creados han sido desarrollados bajo la licencia [CC-BY-NC-S
 8. Asegurando contenedores. [Fuente]({{site.baseurl}}/myassets/docker/elps/8_Asegurando%20contenedores.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t8/index.html){:target="_blank"}
 9. Integración continua con Jenkins y docker. [Fuente]({{site.baseurl}}/myassets/docker/elps/9_Integración%20continua%20con%20Jenkins%20y%20Docker.elp) [HTML]({{site.baseurl}}/myassets/docker/htmls/t9/index.html){:target="_blank"}
 
-Los archivos fuentes son archivos .elp que se puede abrir y modificar con la aplicación [eXeLearning](https://exelearning.net/).
+Los archivos fuentes son archivos .elp que se pueden abrir y modificar con la aplicación [eXeLearning](https://exelearning.net/).
 
 Sois libres de usarlos, por favor respetad la licencia.
