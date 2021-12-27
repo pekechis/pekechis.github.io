@@ -8,7 +8,7 @@ categories: docker cursos jenkins cep ci desarrolladores
 
 Durante el 2021 he tenido la suerte de poder realizar y tutorizar el curso de "Introducción de Docker para desarrolladores" para el CEP (Centro de Estudios del Profesorado) de Castilleja de la Cuesta (Sevilla).
 
-Los resultados del curso han sido espectaculares, con más de 500 profesores de la especialidad (informática) que han pasado por el mismo, y espero que la transferencia al aula sea inmediata e importante. Ese el objetivo principal.
+Los resultados del curso han sido espectaculares, con más de 500 profesores de la especialidad (informática) que han pasado por el mismo. Espero que la transferencia al aula sea inmediata e importante. Ese el objetivo principal.
 
 Todos los materiales creados han sido desarrollados bajo la licencia [CC-BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/) y los he puesto a vuesta disposición desde aquí.
 

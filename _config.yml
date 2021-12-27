@@ -40,3 +40,7 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+#Include para que se muestren los ficheros que genera eXeLearning que empiezan por _
+include:
+  - "_*.*"
