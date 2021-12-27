@@ -1,0 +1,187 @@
+I"�-<p>Con el cambio de año me he animado a <strong>empredender</strong> de nuevo. No sé si la cosa acabará de nuevo en fracaso pero lo volveremos a intentar. Por el camino, pase lo que pase, seguro que aprenderé algo.</p>
+
+<p>Este nuevo proyecto requiere la creación de una <strong>App</strong> que se conecte mediante un <a href="https://en.wikipedia.org/wiki/Application_programming_interface">API</a> a un BackEnd en el que estarán los datos. Tras darle varias vueltas al asunto he decidido optar por las siguiente tecnologías:</p>
+
+<ul>
+  <li><a href="https://facebook.github.io/react-native/docs/getting-started">React-Native</a> para realizar la App ya que me permite desarrollar tanto para Android como para iOS.</li>
+  <li><a href="https://laravel.com/">Laravel</a> para realizar el BackEnd.</li>
+</ul>
+
+<p>No es que haya hecho un estudio muy profundo para elegir estas tecnologías pero son muy usadas, bien documentadas y me van a permitir aprender, que es algo que siempre busco. Deformación profesional de un profesor que siempre está buscando reciclarse.</p>
+
+<p>Sobre <strong>React-Native</strong> os iré hablando es otros posts. En este post lo que os quiero contar es cómo he montado el Entorno para desarrollar el BackEnd con <strong>Laravel</strong>.</p>
+
+<p>Antes de montarlo quería principalmente dos cosas:</p>
+
+<ul>
+  <li>Evitar el consabido problema <strong><em>…pues funciona en mi máquina…</em></strong>.</li>
+  <li>Tocar mi máquina lo mínimo posible. Estoy un poco cansado de andar peleándome con las versiones de Java, PHP, de los distintos SDKs etc…</li>
+</ul>
+
+<p>Creía que todo esto iba a ser un poco más complicado pero al final me he encontrado con dos posibilidades que me han permitido montar el entorno de una manera más fácil de lo esperado:</p>
+
+<ul>
+  <li>Utilizando la Box de <a href="https://www.vagrantup.com/">Vagrant</a> Laravel/Homestead que tiene todo incluido.</li>
+  <li>Utilizando el Docker-Compose que me proporciona <a href="https://bitnami.com">Bitnami</a> que lleva todo lo necesario.</li>
+</ul>
+
+<h2 id="vagrant-box-laravelhomestead">Vagrant Box Laravel/Homestead</h2>
+
+<p>Los <em>muchachos</em> de <strong>Laravel</strong> para no tener que montar todo el entorno desde cero nos proporcionan, como ya he dicho, una <em>Box</em> de <strong>Vagrant</strong>. Esto significa, evidentemente, que para hacer que funcione deberemos tener:</p>
+
+<ul>
+  <li>Un hipervisor instalado, por ejemplo <a href="https://www.virtualbox.org/">Virtual Box</a></li>
+  <li><a href="https://www.vagrantup.com/">Vagrant</a> instalado.</li>
+  <li><strong>Git</strong> instalado para poder gestionar los repositorios que voy a necesitar.</li>
+</ul>
+
+<p>Una vez nos hemos asegurado de cumplir con estos requisitos procederemos con los siguientes pasos:</p>
+
+<ol>
+  <li>Deberemos descargar dicha box</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> vagrant box laravel/homestead
+</code></pre></div></div>
+
+<ol>
+  <li>Cremos un directorio y descargamos los archivos necesarios que utilizará <strong>Vagrant</strong> para crear la máquina virtual que tenga todo lo necesario instalado.</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">mkdir </span>homestead
+ <span class="nb">cd </span>homestead
+ git clone https://github.com/laravel/homestead.git
+</code></pre></div></div>
+
+<p>Una vez hemos bajado todo este repositorio, en él hay un archivo que he modificado para adaptarlo a las necesidades y directorios de mi proyecto. Es el archivo <strong>Homestead.yaml</strong> y podemos verlo más abajo:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="c1"># Utilizo esta IP, que es la que viene por defecto aunque puedes modificarla según tus necesidades.</span>
+<span class="na">ip</span><span class="pi">:</span> <span class="s2">"</span><span class="s">192.168.10.10"</span>
+<span class="c1"># Por defecto viene 2048, pero tengo un equipo viejo :(</span>
+<span class="na">memory</span><span class="pi">:</span> <span class="m">1024</span>
+<span class="na">cpus</span><span class="pi">:</span> <span class="m">1</span>
+<span class="na">provider</span><span class="pi">:</span> <span class="s">virtualbox</span>
+
+<span class="na">authorize</span><span class="pi">:</span> <span class="s">~/.ssh/id_rsa.pub</span>
+
+<span class="na">keys</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">~/.ssh/id_rsa</span>
+
+<span class="na">folders</span><span class="pi">:</span>
+  <span class="c1"># Directorio de tu máquina real donde tendrás el código de tu BackEnd</span>
+  <span class="pi">-</span> <span class="na">map</span><span class="pi">:</span> <span class="s">/home/some_user/tuapp</span>
+    <span class="c1"># Directorio dentro de la MV en donde pondrás ese código al arrancar la MV</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">/home/vagrant/code/tuapp</span>
+
+<span class="na">sites</span><span class="pi">:</span>
+  <span class="c1"># Nombre del site para el servidor ngingx</span>
+  <span class="pi">-</span> <span class="na">map</span><span class="pi">:</span> <span class="s">tuapp.local</span>
+    <span class="c1"># Directorio público de la aplicación</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">/home/vagrant/code/tuapp/public</span>
+
+<span class="na">databases</span><span class="pi">:</span>
+  <span class="c1"># Nombre de la base de datos que quieres crear para laravel</span>
+  <span class="pi">-</span> <span class="s">tu_database</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Una vez tengo esto ya puedo arrancar la máquina virtual, desde el directorio :</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant up
+</code></pre></div></div>
+
+<ol>
+  <li>Una vez acaba todo el proceso de arranque ya puedo entrar en la máquina virtual:</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant ssh
+</code></pre></div></div>
+
+<p>Obtendré una imagen similar a la siguiente:</p>
+
+<p><img src="/myassets/homestead_ssh.png" alt="Homestead SSH" /></p>
+
+<ol>
+  <li>Me coloco en el directorio que haya puesto anteriormente en el <strong>Homestead.yaml</strong> y creo un nuevo proyeto laravel.</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> lavarel new tuapp
+</code></pre></div></div>
+
+<p><strong>Nota:</strong> Si el directorio con ese nombre previamente deberemos llamarlo de otra manera y mover todo el contenido a la carpeta que hayamos especificado en el fichero <strong><em>Homestead.yaml</em></strong></p>
+
+<ol>
+  <li>Añado la entrada correspondiente a mi archivo /etc/hosts</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># O la ip y el nombre que hayamos elegido</span>
+192.168.10.10 tuapp.local
+</code></pre></div></div>
+
+<ol>
+  <li>Comprobaremos que todo esta funcionando. Si todo ha ido bien al poner tuapp.local en tu navegador deberemos ver algo similar a lo siguiente:</li>
+</ol>
+
+<p><img src="/myassets/laravel_ok.png" alt="Laravel OK" /></p>
+
+<p><strong>NOTA:</strong> Dependiendo de la versión de la Box de Vagrant que hayamos instalado tendremos disponibles una u otra versión de sistema, PHP, Nginx etc…pero de esta manera tenemos todos los requisitos diponibles de una sola vez (que no es poco).</p>
+
+<h2 id="docker-compose-laravel-by-bitnami">Docker-Compose Laravel by Bitnami</h2>
+
+<p>Si no quieres virtualizar (por el motivo que sea ) la mejor opción que he encontrado es el docker-compose que nos proporciona la empresa <a href="https://bitnami.com">Bitnami</a></p>
+
+<p>Si queremos usarla podemos hacer lo siguiente:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>tuapp
+<span class="nb">cd </span>tuapp
+curl <span class="nt">-LO</span> https://raw.githubusercontent.com/bitnami/bitnami-docker-laravel/master/docker-compose.yml
+</code></pre></div></div>
+
+<p>Este docker-compose tiene la siguiente pinta:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2"</span>
+
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">mariadb</span><span class="pi">:</span>
+    <span class="c1"># Como base de datos usa MariaDB pero podría cambiar a MySQL</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s2">"</span><span class="s">bitnami/mariadb:latest"</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="c1"># Datos de la BD. Se pueden cambiar</span>
+      <span class="pi">-</span> <span class="s">ALLOW_EMPTY_PASSWORD=yes</span>
+      <span class="pi">-</span> <span class="s">MARIADB_USER=homestead</span>
+      <span class="pi">-</span> <span class="s">MARIADB_DATABASE=homestead</span>
+      <span class="pi">-</span> <span class="s">MARIADB_PASSWORD=secret</span>
+
+  <span class="na">myapp</span><span class="pi">:</span>
+    <span class="na">tty</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="c1"># Podríamos usar una versión anterior de Laravel</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s2">"</span><span class="s">bitnami/laravel:latest"</span>
+    <span class="na">labels</span><span class="pi">:</span>
+      <span class="na">kompose.service.type</span><span class="pi">:</span> <span class="s">nodeport</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">DB_HOST=mariadb</span>
+      <span class="pi">-</span> <span class="s">DB_USERNAME=homestead</span>
+      <span class="pi">-</span> <span class="s">DB_DATABASE=homestead</span>
+      <span class="pi">-</span> <span class="s">DB_PASSWORD=secret</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">mariadb</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="c1"># Puerto en el que lo voy a instalar</span>
+      <span class="pi">-</span> <span class="s">3000:3000</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="c1"># Mapeado de mi directorio de trabajo local (normalmente en un repo) con al directorio de trabajo de Laravel en el contenedor</span>
+      <span class="pi">-</span> <span class="s">/path_to_my_code:/app</span>
+</code></pre></div></div>
+
+<p>Este archivo tiene todo lo necesario para poner mi aplicación Laravel a funcionar. Para lanzarlo sólo tendré que:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose up
+</code></pre></div></div>
+
+<p>El proceso crea dos contenedores con todo lo necesario y también ejecuta todas las migrations de Laravel (en breve hablaré de ellas en un post).Al acabar tendremos la aplicación funcionando en el puerto especificado (en este caso el 3000). El resultado será el mismo que habiendo utilizado la máquina virtual. Además son versiones bastante coincidentes(la de Vagrant y las de los contenedores)</p>
+
+<p><strong>NOTA:</strong> En este caso no he tenido que crear el proyecto con <em>laravel new tuapp</em> ya que estaba creado ya en mi directorio local de trabajo para la VM de Vagrant.</p>
+
+:ET

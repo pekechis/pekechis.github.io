@@ -25,8 +25,8 @@ github_username: pekechis
 
 # Build settings
 markdown: kramdown
-remote_theme: jekyll-theme-architect
-theme: jekyll-theme-architect
+remote_theme: minima
+theme: minima
 plugins:
   - jekyll-feed
 # Exclude from processing.

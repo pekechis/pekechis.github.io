@@ -1,8 +1,285 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-07-26T17:52:14+02:00</updated><id>http://localhost:4000/</id><title type="html">@pekechiswebsite</title><subtitle>Profesor, desarrollador, emprendedor y jedi fallido y, judoka desde siempre. Siempre abierto a propuestas interesantes.</subtitle><entry xml:lang="es"><title type="html">Bienvenido a mi nuevo Blog</title><link href="http://localhost:4000/personal/2018/06/12/welcome-to-my-new-blog.html" rel="alternate" type="text/html" title="Bienvenido a mi nuevo Blog" /><published>2018-06-12T13:20:44+02:00</published><updated>2018-06-12T13:20:44+02:00</updated><id>http://localhost:4000/personal/2018/06/12/welcome-to-my-new-blog</id><content type="html" xml:base="http://localhost:4000/personal/2018/06/12/welcome-to-my-new-blog.html">&lt;p&gt;Tras probar diversos hostings y en vista de que los posts que hacía suelen ser sencillos y, como mucho, incluyen imágenes, enlaces y código formateado he decidido crear mi blog en  &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-27T17:59:55+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">@pekechiswebsite</title><subtitle>Profesor, desarrollador, emprendedor,jedi fallido y, judoka desde siempre. Siempre abierto a propuestas interesantes.</subtitle><entry xml:lang="es"><title type="html">Curso: Introducción a Docker para desarrolladores</title><link href="http://localhost:4000/docker,/cursos/2021/12/26/curso-docker-para-profesores.html" rel="alternate" type="text/html" title="Curso: Introducción a Docker para desarrolladores" /><published>2021-12-26T00:00:00+01:00</published><updated>2021-12-26T00:00:00+01:00</updated><id>http://localhost:4000/docker,/cursos/2021/12/26/curso-docker-para-profesores</id><content type="html" xml:base="http://localhost:4000/docker,/cursos/2021/12/26/curso-docker-para-profesores.html">&lt;p&gt;Durante el 2021 he tenido la suerte de poder realizar y tutorizar el curso de “Introducción de Docker para desarrolladores” para el CEP (Centro de Estudios del Profesorado) de Castilleja de la Cuesta (Sevilla).&lt;/p&gt;
+
+&lt;p&gt;Los resultados del curso han sido espectaculares, con más de 500 profesores de la especialidad (informática) que han pasado por el mismo, y espero que la transferencia al aula sea inmediata e importante. Ese el objetivo principal.&lt;/p&gt;
+
+&lt;p&gt;Todos los materiales creados han sido desarrollados bajo la licencia &lt;a href=&quot;https://creativecommons.org/licenses/by-sa/3.0/es/&quot;&gt;CC-BY-SA&lt;/a&gt; y los he puesto a vuesta disposición desde aquí.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Introducción. &lt;a href=&quot;/myassets/docker/elps/1_Introduccion.elp&quot;&gt;Fuente&lt;/a&gt; &lt;a href=&quot;&quot;&gt;HTML-Navegable&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Ejecutando contenedores. &lt;a href=&quot;/myassets/docker/elps/2_Ejecutando%20y%20gestionando%20contenedores%20Docker.elp&quot;&gt;Fuente&lt;/a&gt; &lt;a href=&quot;&quot;&gt;HTML-Navegable&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Gestionando imágenes. &lt;a href=&quot;/myassets/docker/elps/3_Gestion_de_imagenes_Docker.elp&quot;&gt;Fuente&lt;/a&gt; &lt;a href=&quot;&quot;&gt;HTML-Navegable&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Volúmenes en docker. &lt;a href=&quot;/myassets/docker/elps/4_Volúmenes_en_Docker.elp&quot;&gt;Fuente&lt;/a&gt; &lt;a href=&quot;&quot;&gt;HTML-Navegable&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Redes en Docker. &lt;a href=&quot;/myassets/docker/elps/5_Redes_en_Docker_V02.elp&quot;&gt;Fuente&lt;/a&gt; &lt;a href=&quot;&quot;&gt;HTML-Navegable&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Mis propios contenedores. &lt;a href=&quot;/myassets/docker/elps/6.%20Construyendo%20mis%20propios%20contenedores.elp&quot;&gt;Fuente&lt;/a&gt; &lt;a href=&quot;&quot;&gt;HTML-Navegable&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Docker-compose. Aplicaciones multicapa. &lt;a href=&quot;/myassets/docker/elps/7_Docker-Compose.%20Aplicaciones%20multicapa.elp&quot;&gt;Fuente&lt;/a&gt; &lt;a href=&quot;&quot;&gt;HTML-Navegable&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Asegurando contenedores. &lt;a href=&quot;/myassets/docker/elps/8_Asegurando%20contenedores.elp&quot;&gt;Fuente&lt;/a&gt; &lt;a href=&quot;&quot;&gt;HTML-Navegable&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Integración continua con Jenkins y docker. &lt;a href=&quot;/myassets/docker/elps/9_Integración%20continua%20con%20Jenkins%20y%20Docker.elp&quot;&gt;Fuente&lt;/a&gt; &lt;a href=&quot;&quot;&gt;HTML-Navegable&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Los archivos fuentes son archivos .elp que se puede abrir y modificar con la aplicación &lt;a href=&quot;https://exelearning.net/&quot;&gt;eXeLearning&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Sois libre de usarlos, por favor respetad la licencia.&lt;/p&gt;</content><author><name></name></author><category term="docker," /><category term="cursos" /><summary type="html">Durante el 2021 he tenido la suerte de poder realizar y tutorizar el curso de “Introducción de Docker para desarrolladores” para el CEP (Centro de Estudios del Profesorado) de Castilleja de la Cuesta (Sevilla).</summary></entry><entry xml:lang="es"><title type="html">1000 valoraciones en los cursos de OpenWebinars</title><link href="http://localhost:4000/personal/cursos/openwebinars/2019/10/19/1000-valoraciones-cursos-openwebinars.html" rel="alternate" type="text/html" title="1000 valoraciones en los cursos de OpenWebinars" /><published>2019-10-19T13:20:44+02:00</published><updated>2019-10-19T13:20:44+02:00</updated><id>http://localhost:4000/personal/cursos/openwebinars/2019/10/19/1000-valoraciones-cursos-openwebinars</id><content type="html" xml:base="http://localhost:4000/personal/cursos/openwebinars/2019/10/19/1000-valoraciones-cursos-openwebinars.html">&lt;p&gt;Parece que fue ayer, pero ya hace casi un par de años empecé a colaborar con la que entonces era una startUp andaluza prometedora &lt;a href=&quot;https://openwebinars.net&quot;&gt;OpenWebinars&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Dos años y seis cursos después lo que empezó por casualidad ha llegado lejos. Ellos han crecido y siguen creciendo.  Se están convirtiendo en un &lt;strong&gt;referente nacional&lt;/strong&gt; a nivel de formación y se esan consolidando como una &lt;strong&gt;EMPRESA&lt;/strong&gt; en mayúsculas.&lt;/p&gt;
+
+&lt;p&gt;Y yo, no puedo estar más contento, el hecho de realizar cursos te ayuda a &lt;strong&gt;crecer como profesor&lt;/strong&gt;. Estructurar y reflexionar sobre tus conocimientos, sobre el mercado y sobre la práctica docente de cara a tener una &lt;strong&gt;audiencia tan grande&lt;/strong&gt; hace que mejores , no puede ser de otra forma si quieres estar al nivel que te exigen desde &lt;a href=&quot;http://openwebinar.net&quot;&gt;Openwebinars&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Y hoy, precisamente, mis cursos llegan a las &lt;strong&gt;1000 valoraciones&lt;/strong&gt; con una media de &lt;a href=&quot;https://openwebinars.net/profesores/juan-diego/&quot;&gt;4.4 / 5&lt;/a&gt;. Me parece una cantidad increíble. No acabo de ser consciente de a cuánta gente estoy ayudando a desarrollarse profesionalmente.&lt;/p&gt;
+
+&lt;p&gt;Y la cosa no para, en breve entregaré otro curso más &lt;strong&gt;&lt;em&gt;Desarrollo FrontEnd profesional con Sass&lt;/em&gt;&lt;/strong&gt; y ellos, estoy, seguro, seguirán creciendo.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Muchas gracias&lt;/strong&gt; a &lt;a href=&quot;https://openwebinars.net&quot;&gt;OpenWebinars&lt;/a&gt; y muchas gracias a todos aquellos que me han cursado mis cursos, tanto a aquellos que los han valorado bien como a aquellos que han realizado críticas constructivas.&lt;/p&gt;</content><author><name></name></author><category term="personal" /><category term="cursos" /><category term="openwebinars" /><summary type="html">Parece que fue ayer, pero ya hace casi un par de años empecé a colaborar con la que entonces era una startUp andaluza prometedora OpenWebinars.</summary></entry><entry xml:lang="es"><title type="html">Proyecto con Laravel - Montando el entorno</title><link href="http://localhost:4000/personal/laravel/devops/vagrant/docker/bitnami/ubuntu/2019/01/16/entorno-laravel-devops.html" rel="alternate" type="text/html" title="Proyecto con Laravel - Montando el entorno" /><published>2019-01-16T12:20:44+01:00</published><updated>2019-01-16T12:20:44+01:00</updated><id>http://localhost:4000/personal/laravel/devops/vagrant/docker/bitnami/ubuntu/2019/01/16/entorno-laravel-devops</id><content type="html" xml:base="http://localhost:4000/personal/laravel/devops/vagrant/docker/bitnami/ubuntu/2019/01/16/entorno-laravel-devops.html">&lt;p&gt;Con el cambio de año me he animado a &lt;strong&gt;empredender&lt;/strong&gt; de nuevo. No sé si la cosa acabará de nuevo en fracaso pero lo volveremos a intentar. Por el camino, pase lo que pase, seguro que aprenderé algo.&lt;/p&gt;
+
+&lt;p&gt;Este nuevo proyecto requiere la creación de una &lt;strong&gt;App&lt;/strong&gt; que se conecte mediante un &lt;a href=&quot;https://en.wikipedia.org/wiki/Application_programming_interface&quot;&gt;API&lt;/a&gt; a un BackEnd en el que estarán los datos. Tras darle varias vueltas al asunto he decidido optar por las siguiente tecnologías:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://facebook.github.io/react-native/docs/getting-started&quot;&gt;React-Native&lt;/a&gt; para realizar la App ya que me permite desarrollar tanto para Android como para iOS.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://laravel.com/&quot;&gt;Laravel&lt;/a&gt; para realizar el BackEnd.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;No es que haya hecho un estudio muy profundo para elegir estas tecnologías pero son muy usadas, bien documentadas y me van a permitir aprender, que es algo que siempre busco. Deformación profesional de un profesor que siempre está buscando reciclarse.&lt;/p&gt;
+
+&lt;p&gt;Sobre &lt;strong&gt;React-Native&lt;/strong&gt; os iré hablando es otros posts. En este post lo que os quiero contar es cómo he montado el Entorno para desarrollar el BackEnd con &lt;strong&gt;Laravel&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Antes de montarlo quería principalmente dos cosas:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Evitar el consabido problema &lt;strong&gt;&lt;em&gt;…pues funciona en mi máquina…&lt;/em&gt;&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;Tocar mi máquina lo mínimo posible. Estoy un poco cansado de andar peleándome con las versiones de Java, PHP, de los distintos SDKs etc…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Creía que todo esto iba a ser un poco más complicado pero al final me he encontrado con dos posibilidades que me han permitido montar el entorno de una manera más fácil de lo esperado:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Utilizando la Box de &lt;a href=&quot;https://www.vagrantup.com/&quot;&gt;Vagrant&lt;/a&gt; Laravel/Homestead que tiene todo incluido.&lt;/li&gt;
+  &lt;li&gt;Utilizando el Docker-Compose que me proporciona &lt;a href=&quot;https://bitnami.com&quot;&gt;Bitnami&lt;/a&gt; que lleva todo lo necesario.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;vagrant-box-laravelhomestead&quot;&gt;Vagrant Box Laravel/Homestead&lt;/h2&gt;
+
+&lt;p&gt;Los &lt;em&gt;muchachos&lt;/em&gt; de &lt;strong&gt;Laravel&lt;/strong&gt; para no tener que montar todo el entorno desde cero nos proporcionan, como ya he dicho, una &lt;em&gt;Box&lt;/em&gt; de &lt;strong&gt;Vagrant&lt;/strong&gt;. Esto significa, evidentemente, que para hacer que funcione deberemos tener:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Un hipervisor instalado, por ejemplo &lt;a href=&quot;https://www.virtualbox.org/&quot;&gt;Virtual Box&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.vagrantup.com/&quot;&gt;Vagrant&lt;/a&gt; instalado.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Git&lt;/strong&gt; instalado para poder gestionar los repositorios que voy a necesitar.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Una vez nos hemos asegurado de cumplir con estos requisitos procederemos con los siguientes pasos:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Deberemos descargar dicha box&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; vagrant box laravel/homestead
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Cremos un directorio y descargamos los archivos necesarios que utilizará &lt;strong&gt;Vagrant&lt;/strong&gt; para crear la máquina virtual que tenga todo lo necesario instalado.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;homestead
+ &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;homestead
+ git clone https://github.com/laravel/homestead.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Una vez hemos bajado todo este repositorio, en él hay un archivo que he modificado para adaptarlo a las necesidades y directorios de mi proyecto. Es el archivo &lt;strong&gt;Homestead.yaml&lt;/strong&gt; y podemos verlo más abajo:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Utilizo esta IP, que es la que viene por defecto aunque puedes modificarla según tus necesidades.&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;192.168.10.10&quot;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Por defecto viene 2048, pero tengo un equipo viejo :(&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1024&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;cpus&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;virtualbox&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;authorize&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;~/.ssh/id_rsa.pub&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;~/.ssh/id_rsa&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;folders&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# Directorio de tu máquina real donde tendrás el código de tu BackEnd&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/home/some_user/tuapp&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Directorio dentro de la MV en donde pondrás ese código al arrancar la MV&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/home/vagrant/code/tuapp&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;sites&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# Nombre del site para el servidor ngingx&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tuapp.local&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Directorio público de la aplicación&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/home/vagrant/code/tuapp/public&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;databases&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# Nombre de la base de datos que quieres crear para laravel&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tu_database&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Una vez tengo esto ya puedo arrancar la máquina virtual, desde el directorio :&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vagrant up
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Una vez acaba todo el proceso de arranque ya puedo entrar en la máquina virtual:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vagrant ssh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Obtendré una imagen similar a la siguiente:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/myassets/homestead_ssh.png&quot; alt=&quot;Homestead SSH&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Me coloco en el directorio que haya puesto anteriormente en el &lt;strong&gt;Homestead.yaml&lt;/strong&gt; y creo un nuevo proyeto laravel.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; lavarel new tuapp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; Si el directorio con ese nombre previamente deberemos llamarlo de otra manera y mover todo el contenido a la carpeta que hayamos especificado en el fichero &lt;strong&gt;&lt;em&gt;Homestead.yaml&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Añado la entrada correspondiente a mi archivo /etc/hosts&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# O la ip y el nombre que hayamos elegido&lt;/span&gt;
+192.168.10.10 tuapp.local
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Comprobaremos que todo esta funcionando. Si todo ha ido bien al poner tuapp.local en tu navegador deberemos ver algo similar a lo siguiente:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/myassets/laravel_ok.png&quot; alt=&quot;Laravel OK&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NOTA:&lt;/strong&gt; Dependiendo de la versión de la Box de Vagrant que hayamos instalado tendremos disponibles una u otra versión de sistema, PHP, Nginx etc…pero de esta manera tenemos todos los requisitos diponibles de una sola vez (que no es poco).&lt;/p&gt;
+
+&lt;h2 id=&quot;docker-compose-laravel-by-bitnami&quot;&gt;Docker-Compose Laravel by Bitnami&lt;/h2&gt;
+
+&lt;p&gt;Si no quieres virtualizar (por el motivo que sea ) la mejor opción que he encontrado es el docker-compose que nos proporciona la empresa &lt;a href=&quot;https://bitnami.com&quot;&gt;Bitnami&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Si queremos usarla podemos hacer lo siguiente:&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;tuapp
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;tuapp
+curl &lt;span class=&quot;nt&quot;&gt;-LO&lt;/span&gt; https://raw.githubusercontent.com/bitnami/bitnami-docker-laravel/master/docker-compose.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Este docker-compose tiene la siguiente pinta:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;2&quot;&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;mariadb&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Como base de datos usa MariaDB pero podría cambiar a MySQL&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;bitnami/mariadb:latest&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;# Datos de la BD. Se pueden cambiar&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ALLOW_EMPTY_PASSWORD=yes&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;MARIADB_USER=homestead&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;MARIADB_DATABASE=homestead&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;MARIADB_PASSWORD=secret&lt;/span&gt;
+
+  &lt;span class=&quot;na&quot;&gt;myapp&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;tty&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Podríamos usar una versión anterior de Laravel&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;bitnami/laravel:latest&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;kompose.service.type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nodeport&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;DB_HOST=mariadb&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;DB_USERNAME=homestead&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;DB_DATABASE=homestead&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;DB_PASSWORD=secret&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;depends_on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mariadb&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;# Puerto en el que lo voy a instalar&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;3000:3000&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;# Mapeado de mi directorio de trabajo local (normalmente en un repo) con al directorio de trabajo de Laravel en el contenedor&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/path_to_my_code:/app&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Este archivo tiene todo lo necesario para poner mi aplicación Laravel a funcionar. Para lanzarlo sólo tendré que:&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker-compose up
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;El proceso crea dos contenedores con todo lo necesario y también ejecuta todas las migrations de Laravel (en breve hablaré de ellas en un post).Al acabar tendremos la aplicación funcionando en el puerto especificado (en este caso el 3000). El resultado será el mismo que habiendo utilizado la máquina virtual. Además son versiones bastante coincidentes(la de Vagrant y las de los contenedores)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NOTA:&lt;/strong&gt; En este caso no he tenido que crear el proyecto con &lt;em&gt;laravel new tuapp&lt;/em&gt; ya que estaba creado ya en mi directorio local de trabajo para la VM de Vagrant.&lt;/p&gt;</content><author><name></name></author><category term="personal" /><category term="laravel" /><category term="devops" /><category term="vagrant" /><category term="docker" /><category term="bitnami" /><category term="ubuntu" /><summary type="html">Con el cambio de año me he animado a empredender de nuevo. No sé si la cosa acabará de nuevo en fracaso pero lo volveremos a intentar. Por el camino, pase lo que pase, seguro que aprenderé algo.</summary></entry><entry xml:lang="es"><title type="html">Bienvenido a mi nuevo Blog</title><link href="http://localhost:4000/personal/2018/06/12/welcome-to-my-new-blog.html" rel="alternate" type="text/html" title="Bienvenido a mi nuevo Blog" /><published>2018-06-12T13:20:44+02:00</published><updated>2018-06-12T13:20:44+02:00</updated><id>http://localhost:4000/personal/2018/06/12/welcome-to-my-new-blog</id><content type="html" xml:base="http://localhost:4000/personal/2018/06/12/welcome-to-my-new-blog.html">&lt;p&gt;Tras probar diversos hostings y en vista de que los posts que hacía suelen ser sencillos y, como mucho, incluyen imágenes, enlaces y código formateado he decidido crear mi blog en  &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Existen varias razones para ello:&lt;/p&gt;
 
-&lt;p&gt;*Es gratis.
-*Tiene una síntaxis muy sencilla, Mardkdown.
-*Está perfectamente integrado con GitHub que se ha convertido en un estándar para los profesionales de nuestro sector.
-*Pretendemos que en un futuro nuestros alumnos tengan un portfolio al acabar sus estudios en el IES Triana. Como profesores debemos de probar varias posibilidades antes de plantearles a ellos una opción.&lt;/p&gt;</content><author><name></name></author><summary type="html">Tras probar diversos hostings y en vista de que los posts que hacía suelen ser sencillos y, como mucho, incluyen imágenes, enlaces y código formateado he decidido crear mi blog en GitHub Pages.</summary></entry></feed>
+&lt;ul&gt;
+  &lt;li&gt;Es gratis.&lt;/li&gt;
+  &lt;li&gt;Tiene una síntaxis muy sencilla, Mardkdown.&lt;/li&gt;
+  &lt;li&gt;Está perfectamente integrado con GitHub que se ha convertido en un estándar para los profesionales de nuestro sector.&lt;/li&gt;
+  &lt;li&gt;Pretendemos que en un futuro nuestros alumnos tengan un portfolio al acabar sus estudios en el IES Triana. Como profesores debemos de probar varias posibilidades antes de plantearles a ellos una opción.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="personal" /><summary type="html">Tras probar diversos hostings y en vista de que los posts que hacía suelen ser sencillos y, como mucho, incluyen imágenes, enlaces y código formateado he decidido crear mi blog en GitHub Pages.</summary></entry><entry xml:lang="es"><title type="html">Animación CSS3 Sunrise</title><link href="http://localhost:4000/articulo/css3/2018/06/12/simple-css3-sunrise-animation.html" rel="alternate" type="text/html" title="Animación CSS3 Sunrise" /><published>2018-06-12T13:20:44+02:00</published><updated>2018-06-12T13:20:44+02:00</updated><id>http://localhost:4000/articulo/css3/2018/06/12/simple-css3-sunrise-animation</id><content type="html" xml:base="http://localhost:4000/articulo/css3/2018/06/12/simple-css3-sunrise-animation.html">&lt;h2 id=&quot;día-animación-del-sol-y-la-luna-usando-css3&quot;&gt;Día. Animación del sol y la luna usando CSS3&lt;/h2&gt;
+
+&lt;p&gt;CSS3 es una referencia muy extensa. Es tan grande que es casi imposible dominar todos sus aspectos. Una de las novedades que trajo  fue la posibilidad de realizar animaciones lo que abre, desde mi punto de vista, infinitas posibilidades.&lt;/p&gt;
+
+&lt;p&gt;Multitud de efectos para los que, anteriormente, necesitábamos otras tecnologías (flash, javascript etc…) pueden lograrse ahora de manera más o menos sencilla usando simplemente CSS3.&lt;/p&gt;
+
+&lt;p&gt;Para ilustrar cómo funciona vamos a realizar la siguiente escena, el transcurso de un día:&lt;/p&gt;
+
+&lt;p&gt;La estructura del html será la siguiente:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;es&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;UTF-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;viewport&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;width=device-width, initial-scale=1.0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;http-equiv=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;X-UA-Compatible&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ie=edge&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Sunrise CSS3 Animation by @pekechis &lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;./styles.css&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mountain&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;./img/mountain.png&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;moon&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;./img/luna.png&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;rays&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;./img/rayos.png&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;En primer lugar iremos posicionando los distintos elementos de la siguiente manera:&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;nc&quot;&gt;.container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;animation-duration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;24s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;animation-iteration-count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;infinite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;animation-name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;skycolor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100px&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;relative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;El contenedor general lo centramos con la propiedad margin, le damos las dimensiones adecuadas, position&lt;/p&gt;
+
+&lt;p&gt;en la que veremos tres animaciones:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;El sol que saldrá y se pondrá coincidiendo brevemente con la luna.&lt;/li&gt;
+  &lt;li&gt;La luna que saldrá y se pondrá coincidiendo brevemente con la luna.&lt;/li&gt;
+  &lt;li&gt;El color de fondo que irá cambiando a lo&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="articulo" /><category term="css3" /><summary type="html">Día. Animación del sol y la luna usando CSS3</summary></entry></feed>

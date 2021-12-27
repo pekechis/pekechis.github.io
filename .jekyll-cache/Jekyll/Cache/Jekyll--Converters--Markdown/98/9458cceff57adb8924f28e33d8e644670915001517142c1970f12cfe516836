@@ -1,0 +1,22 @@
+I"�<p>Durante el 2021 he tenido la suerte de poder realizar y tutorizar el curso de “Introducción de Docker para desarrolladores” para el CEP (Centro de Estudios del Profesorado) de Castilleja de la Cuesta (Sevilla).</p>
+
+<p>Los resultados del curso han sido espectaculares, con más de 500 profesores de la especialidad (informática) que han pasado por el mismo, y espero que la transferencia al aula sea inmediata e importante. Ese el objetivo principal.</p>
+
+<p>Todos los materiales creados han sido desarrollados bajo la licencia <a href="https://creativecommons.org/licenses/by-sa/3.0/es/">CC-BY-SA</a> y los he puesto a vuesta disposición desde aquí.</p>
+
+<ol>
+  <li>Introducción. <a href="/myassets/docker/elps/1_Introduccion.elp">Fuente</a> <a href="">HTML-Navegable</a></li>
+  <li>Ejecutando contenedores. <a href="/myassets/docker/elps/2_Ejecutando%20y%20gestionando%20contenedores%20Docker.elp">Fuente</a> <a href="">HTML-Navegable</a></li>
+  <li>Gestionando imágenes. <a href="/myassets/docker/elps/3_Gestion_de_imagenes_Docker.elp">Fuente</a> <a href="">HTML-Navegable</a></li>
+  <li>Volúmenes en docker. <a href="/myassets/docker/elps/4_Volúmenes_en_Docker.elp">Fuente</a> <a href="">HTML-Navegable</a></li>
+  <li>Redes en Docker. <a href="/myassets/docker/elps/5_Redes_en_Docker_V02.elp">Fuente</a> <a href="">HTML-Navegable</a></li>
+  <li>Mis propios contenedores. <a href="/myassets/docker/elps/6.%20Construyendo%20mis%20propios%20contenedores.elp">Fuente</a> <a href="">HTML-Navegable</a></li>
+  <li>Docker-compose. Aplicaciones multicapa. <a href="/myassets/docker/elps/7_Docker-Compose.%20Aplicaciones%20multicapa.elp">Fuente</a> <a href="">HTML-Navegable</a></li>
+  <li>Asegurando contenedores. <a href="/myassets/docker/elps/8_Asegurando%20contenedores.elp">Fuente</a> <a href="">HTML-Navegable</a></li>
+  <li>Integración continua con Jenkins y docker. <a href="/myassets/docker/elps/9_Integración%20continua%20con%20Jenkins%20y%20Docker.elp">Fuente</a> <a href="">HTML-Navegable</a></li>
+</ol>
+
+<p>Los archivos fuentes son archivos .elp que se puede abrir y modificar con la aplicación <a href="https://exelearning.net/">eXeLearning</a>.</p>
+
+<p>Sois libre de usarlos, por favor respetad la licencia.</p>
+:ET
