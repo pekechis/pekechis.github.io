@@ -2,7 +2,7 @@
 layout: post
 title:  "Curso: Introducción a Docker para desarrolladores"
 lang: es
-date: 2021-26-12 13:20:44 +0100
+#date: 2021-26-12 13:20:44 +0100
 categories: docker, cursos
 ---
 
