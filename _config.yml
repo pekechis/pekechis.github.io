@@ -19,7 +19,7 @@ email: pekechis@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Profesor, desarrollador, emprendedor,jedi fallido y, judoka desde siempre. Siempre abierto a propuestas interesantes.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://pekechis.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://pekechis.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: pekechis
 github_username: pekechis
 
